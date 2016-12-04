@@ -1,15 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h3>
   <%= @statement.text %>
-</p>
+</h3>
 
-<p>
-  <% if @statement.has_parent? %>
+<% if @statement.has_parent? %>
+  <p>
     <strong>Regarding:</strong>
     <%= link_to @statement.parent_statement.text, statement_path(@statement.parent_statement_id) %>
-  <% end %>
-</p>
+  </p>
+<% end %>
+
+<% if @statement.child_statements.any? %>
+  <p><strong>Responses:</strong></p>
+  <table class="">
+    <tbody>
+      <% @statement.child_statements.each do |child| %>
+        <tr>
+          <td><%= child.agree_disagree %>:</td>
+          <td><%= link_to child.text, child %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No responses.</p>
+<% end %>
+
+<hr>
+
 
 <%= link_to 'Edit', edit_statement_path(@statement) %> |
 <%= link_to 'Back', statements_path %>

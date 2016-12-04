@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204160252) do
+ActiveRecord::Schema.define(version: 20161204161823) do
 
   create_table "statements", force: :cascade do |t|
     t.string   "text"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161204160252) do
     t.integer  "parent_statement_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.boolean  "agree"
   end
 
 end
