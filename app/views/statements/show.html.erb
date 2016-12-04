@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @statement.text %>
+</p>
+
+<p>
+  <% if @statement.has_parent? %>
+    <strong>Regarding:</strong>
+    <%= link_to @statement.parent_statement.text, statement_path(@statement.parent_statement_id) %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_statement_path(@statement) %> |
+<%= link_to 'Back', statements_path %>

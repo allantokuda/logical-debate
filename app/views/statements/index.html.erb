@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tbody>
+    <% @statements.each do |statement| %>
+      <tr>
+        <td><%= link_to statement.text, statement %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Statement', new_statement_path %>
