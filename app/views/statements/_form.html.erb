@@ -21,10 +21,7 @@
     <%= f.number_field :user_id %>
   </div>
 
-  <div class="field">
-    <%= f.label :parent_statement_id %>
-    <%= f.number_field :parent_statement_id %>
-  </div>
+  <%= f.number_field :parent_statement_id, hidden: true %>
 
   <div class="actions">
     <%= f.submit %>

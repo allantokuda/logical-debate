@@ -17,6 +17,11 @@ class StatementsController < ApplicationController
     @statement = Statement.new
   end
 
+  def new_response
+    @statement = Statement.new(parent_statement_id: params[:id])
+    render :new
+  end
+
   # GET /statements/1/edit
   def edit
   end
