@@ -18,7 +18,8 @@ class StatementsController < ApplicationController
   end
 
   def new_response
-    @statement = Statement.new(parent_statement_id: params[:id])
+    allowed_params = params.permit(:id, :agree, :statement)
+    @statement = Statement.new(parent_statement_id: allowed_params[:id], agree: allowed_params[:agree] == 'true')
     render :new
   end
 
@@ -74,6 +75,6 @@ class StatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def statement_params
-      params.require(:statement).permit(:text, :user_id, :parent_statement_id)
+      params.require(:statement).permit(:text, :user_id, :parent_statement_id, :agree)
     end
 end

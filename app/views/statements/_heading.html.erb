@@ -1,0 +1,10 @@
+<% if statement.has_parent? %>
+  <p>
+    <small>
+    Regarding:
+    <%= link_to statement.parent_statement.text, statement_path(statement.parent_statement_id) %>
+    </small>
+  </p>
+<% end %>
+
+<p class="statement-heading"><%= statement.text %></p>

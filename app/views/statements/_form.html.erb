@@ -4,26 +4,25 @@
       <h2><%= pluralize(statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
 
       <ul>
-      <% statement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% statement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :text %>
-    <%= f.text_field :text %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <% if statement.agree %>
+      <%= f.label 'Why do you agree?' %>
+    <% else %>
+      <%= f.label 'Why do you disagree?' %>
+    <% end %>
+    <%= f.text_field :text, style: 'width: 600px' %>
   </div>
 
   <%= f.number_field :parent_statement_id, hidden: true %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Publish" %>
   </div>
 <% end %>

@@ -1,15 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h3>
-  <%= @statement.text %>
-</h3>
+<%= render 'heading', statement: @statement %>
 
-<% if @statement.has_parent? %>
-  <p>
-    <strong>Regarding:</strong>
-    <%= link_to @statement.parent_statement.text, statement_path(@statement.parent_statement_id) %>
-  </p>
-<% end %>
+<%= link_to "Agree", new_response_statement_path(statement: @statement, agree: true), class: 'btn btn-success' %>
+&nbsp;
+<%= link_to "Disagree", new_response_statement_path(statement: @statement, agree: false), class: 'btn btn-success' %>
+<br>
+<br>
 
 <% if @statement.child_statements.any? %>
   <p><strong>Responses:</strong></p>
@@ -27,8 +24,6 @@
   <p>No responses.</p>
 <% end %>
 
-<br>
-<%= link_to "Add response", new_response_statement_path(statement: @statement) %>
 <br>
 <br>
 

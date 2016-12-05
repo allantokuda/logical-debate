@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<table>
+<table class="statements-index">
   <tbody>
     <% @statements.each do |statement| %>
       <tr>
-        <td><%= link_to statement.text, statement %></td>
+        <td>
+          <%= link_to statement.text, statement, class: 'statement-heading' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
