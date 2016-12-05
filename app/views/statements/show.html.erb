@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'heading', statement: @statement %>
+<p class="statement-heading"><%= @statement.text %></p>
 
-<%= link_to "Agree", new_response_statement_path(statement: @statement, agree: true), class: 'btn btn-success' %>
+<%= link_to "Agree", new_argument_path(statement_id: @statement, agree: true), class: 'btn btn-success' %>
 &nbsp;
-<%= link_to "Disagree", new_response_statement_path(statement: @statement, agree: false), class: 'btn btn-success' %>
+<%= link_to "Disagree", new_argument_path(statement_id: @statement, agree: false), class: 'btn btn-danger' %>
 <br>
 <br>
 
-<% if @statement.child_statements.any? %>
+<% if @statement.arguments.any? %>
   <p><strong>Responses:</strong></p>
   <table class="">
     <tbody>
