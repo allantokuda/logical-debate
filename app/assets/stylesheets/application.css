@@ -43,3 +43,11 @@ input[type="text"] {
   padding: 6px;
   font-size: medium;
 }
+
+td, th {
+  vertical-align: top;
+}
+
+.date {
+  color: #888;
+}

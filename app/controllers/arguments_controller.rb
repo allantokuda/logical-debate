@@ -71,7 +71,6 @@ class ArgumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def argument_params
-      puts params
       params.require(:argument).permit(:text, :agree, :statement_id, :statement_text)
     end
 end

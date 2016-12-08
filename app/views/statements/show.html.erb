@@ -12,10 +12,10 @@
   <p><strong>Responses:</strong></p>
   <table class="">
     <tbody>
-      <% @statement.child_statements.each do |child| %>
+      <% @statement.arguments.each do |argument| %>
         <tr>
-          <td><%= child.agree_disagree %>:</td>
-          <td><%= link_to child.text, child %></td>
+          <td><%= argument.agree_disagree %>:</td>
+          <td><%= link_to argument.statement_text, argument %></td>
         </tr>
       <% end %>
     </tbody>
@@ -30,5 +30,4 @@
 <hr>
 
 
-<%= link_to 'Edit', edit_statement_path(@statement) %> |
-<%= link_to 'Back', statements_path %>
+<%= link_to 'Home', statements_path %>

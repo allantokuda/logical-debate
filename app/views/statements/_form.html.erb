@@ -12,15 +12,8 @@
   <% end %>
 
   <div class="field">
-    <% if statement.agree %>
-      <%= f.label 'Why do you agree?' %>
-    <% else %>
-      <%= f.label 'Why do you disagree?' %>
-    <% end %>
     <%= f.text_field :text, style: 'width: 600px' %>
   </div>
-
-  <%= f.number_field :parent_statement_id, hidden: true %>
 
   <div class="actions">
     <%= f.submit "Publish" %>
