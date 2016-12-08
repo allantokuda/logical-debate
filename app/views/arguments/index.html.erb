@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Arguments</h1>
+
+<table>
+  <tbody>
+    <% @arguments.each do |argument| %>
+      <tr>
+        <td><%= link_to "#{argument.agree_disagree}: #{argument.statement.text}", argument %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,28 @@
+<p class="statement-heading"><%= @argument.statement.text %></p>
+
+<%= form_for(argument) do |f| %>
+  <% if argument.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(argument.errors.count, "error") %> prohibited this argument from being saved:</h2>
+      <ul>
+      <% argument.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Why do you <%= argument.agree_disagree.downcase %>? (Use short sentences)</label>
+
+  <%= f.text_area :statement_text, style: 'width: 600px; height: 50px; font-family: Verdana;' %>
+
+  <%= f.number_field :statement_id, hidden: true %>
+  <%= f.check_box :agree, hidden: true %>
+
+  <br>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Next" %>
+  </div>
+<% end %>
