@@ -7,6 +7,7 @@
 <%= link_to "Disagree", new_argument_path(statement_id: @statement, agree: false), class: 'btn btn-danger' %>
 <br>
 <br>
+<br>
 
 <% if @statement.arguments.any? %>
   <p><strong>Responses:</strong></p>

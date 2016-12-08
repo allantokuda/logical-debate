@@ -5,7 +5,9 @@
   <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
 </p>
 <p>
-  <%= @argument.statement_text %>
+  <% @argument.statement_text_sentences.each do |sentence| %>
+    <li><%= sentence %></li>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_argument_path(@argument) %>
+<%= link_to 'Back', statement_path(@argument.statement) %> | <%= link_to 'Edit', edit_argument_path(@argument) %>

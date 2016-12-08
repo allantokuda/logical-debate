@@ -15,4 +15,9 @@ class Argument < ApplicationRecord
     premises.any?
   end
 
+  def statement_text_sentences
+    # Need better algorithm for sentence detection later
+    statement_text.split('.').map(&:strip).map { |s| "#{s}." }
+  end
+
 end
