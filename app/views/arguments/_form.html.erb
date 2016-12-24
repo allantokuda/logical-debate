@@ -12,9 +12,18 @@
     </div>
   <% end %>
 
-  <label>Why do you <%= argument.agree_disagree.downcase %>? (Use short sentences)</label>
+  <label>Why do you <%= argument.agree_disagree.downcase %>?</label>
 
-  <%= f.text_area :statement_text, style: 'width: 600px; height: 50px; font-family: Verdana;' %>
+  <ul>
+  <% @argument.premises.each do |premise| %>
+    <li><%= premise.text %></li>
+  <% end %>
+    <li>
+      <input name="new_statement_text" style='width: 600px'</input>
+    </li>
+  </ul>
+
+
 
   <%= f.number_field :statement_id, hidden: true %>
   <%= f.check_box :agree, hidden: true %>

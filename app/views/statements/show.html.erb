@@ -7,7 +7,6 @@
 <%= link_to "Disagree", new_argument_path(statement_id: @statement, agree: false), class: 'btn btn-danger' %>
 <br>
 <br>
-<br>
 
 <% if @statement.arguments.any? %>
   <p><strong>Responses:</strong></p>
@@ -16,7 +15,7 @@
       <% @statement.arguments.each do |argument| %>
         <tr>
           <td><%= argument.agree_disagree %>:</td>
-          <td><%= link_to argument.statement_text, argument %></td>
+          <td><%= link_to argument.premises.map(&:text).join(' '), argument %></td>
         </tr>
       <% end %>
     </tbody>

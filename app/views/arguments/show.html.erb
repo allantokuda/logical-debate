@@ -5,8 +5,8 @@
   <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
 </p>
 <p>
-  <% @argument.statement_text_sentences.each do |sentence| %>
-    <li><%= sentence %></li>
+  <% @argument.premises.each do |premise| %>
+    <li><%= premise.text %></li>
   <% end %>
 </p>
 

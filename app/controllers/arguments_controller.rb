@@ -42,10 +42,15 @@ class ArgumentsController < ApplicationController
   # PATCH/PUT /arguments/1
   # PATCH/PUT /arguments/1.json
   def update
+    if (new_statement = params[:new_statement_text]).present?
+      @argument.premises << Statement.create(text: new_statement)
+      params[:new_statement_text] = nil
+    end
+
     respond_to do |format|
       if @argument.update(argument_params)
-        format.html { redirect_to @argument, notice: 'Argument was successfully updated.' }
-        format.json { render :show, status: :ok, location: @argument }
+        format.html { render after_update_view, notice: 'Argument was successfully updated.' }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @argument.errors, status: :unprocessable_entity }
@@ -72,5 +77,13 @@ class ArgumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def argument_params
       params.require(:argument).permit(:text, :agree, :statement_id, :statement_text)
+    end
+
+    def after_update_view
+      if params[:statement_text].blank?
+        :edit
+      else
+        :show
+      end
     end
 end

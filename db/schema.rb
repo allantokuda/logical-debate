@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205043250) do
+ActiveRecord::Schema.define(version: 20161209023858) do
 
   create_table "arguments", force: :cascade do |t|
-    t.boolean  "agree",          null: false
-    t.integer  "statement_id",   null: false
-    t.text     "statement_text", null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "agree",        null: false
+    t.integer  "statement_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "premise_citations", force: :cascade do |t|
