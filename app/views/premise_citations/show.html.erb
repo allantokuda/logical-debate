@@ -1,0 +1,8 @@
+<p class="statement-heading"><%= @premise_citation.premise.text %></p>
+<p>In <b><%= @premise_citation.argument.agree_disagree.downcase %>ment</b> with:
+<%= @premise_citation.argument.statement.text %></p>
+
+<%= link_to "Agree", new_premise_argument_path(statement_id: @statement, agree: true), class: 'btn btn-success' %>
+&nbsp;
+<%= link_to "Disagree", new_premise_argument_path(statement_id: @statement, agree: false), class: 'btn btn-danger' %>
+<br>

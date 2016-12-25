@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       get :new_response
     end
   end
+  resources :premises, controller: :premise_citations, only: [:index, :show]
 end

@@ -1,6 +1,6 @@
 class Argument < ApplicationRecord
   belongs_to :statement
-  has_many :premise_citations
+  has_many :premise_citations, dependent: :destroy
   has_many :premises, through: :premise_citations, class_name: 'Statement', foreign_key: 'statement_id'
 
   validates_inclusion_of :agree, in: [true, false]

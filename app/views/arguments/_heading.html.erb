@@ -1,5 +1,4 @@
 <p>
-  I <%= @argument.agree_disagree.downcase %> with:
+  User <b><%= @argument.agree_disagree.pluralize.downcase %></b> with:
   <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
 </p>
-

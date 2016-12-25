@@ -84,11 +84,11 @@ class ArgumentsController < ApplicationController
     end
 
     def premise_params
-      params.permit(:premises => @argument.premises.map(&:id).map(&:to_s)).fetch(:premises)
+      params.permit(:premises => @argument.premises.map(&:id).map(&:to_s)).fetch(:premises, {})
     end
 
     def new_premise
-      params.permit(:new_premise).fetch(:new_premise)
+      params.permit(:new_premise).fetch(:new_premise, nil)
     end
 
     def create_premise
