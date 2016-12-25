@@ -1,13 +1,3 @@
-<p id="notice"><%= notice %></p>
+<%= render 'form', new_statement: false %>
 
-<p>
-  I <%= @argument.agree_disagree.downcase %> with:
-  <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
-</p>
-<p>
-  <% @argument.premises.each do |premise| %>
-    <li><%= premise.text %></li>
-  <% end %>
-</p>
-
-<%= link_to 'Back', statement_path(@argument.statement) %> | <%= link_to 'Edit', edit_argument_path(@argument) %>
+<%= link_to 'Back', statement_path(@argument.statement) %>

@@ -31,7 +31,7 @@ class ArgumentsController < ApplicationController
 
     respond_to do |format|
       if @argument.save
-        format.html { redirect_to action: after_update_action }
+        format.html { redirect_to after_update_action }
         format.json { render :show, status: :created, location: @argument }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ArgumentsController < ApplicationController
     create_statement
     respond_to do |format|
       if @argument.update(argument_params)
-        format.html { redirect_to action: after_update_action, notice: 'Argument was successfully updated.' }
+        format.html { redirect_to after_update_action, notice: 'Argument was successfully updated.' }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }
@@ -78,9 +78,9 @@ class ArgumentsController < ApplicationController
 
     def after_update_action
       if params[:edit_action] == 'add_another'
-        :edit
+        edit_argument_path(@argument)
       else
-        :show
+        argument_path(@argument)
       end
     end
 

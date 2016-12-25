@@ -1,29 +1,34 @@
-<p class="statement-heading"><%= @argument.statement.text %></p>
+<p>
+  I <%= @argument.agree_disagree.downcase %> with:
+  <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
+</p>
 
-<%= form_for(argument) do |f| %>
-  <% if argument.errors.any? %>
+<%= form_for(@argument) do |f| %>
+  <% if @argument.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(argument.errors.count, "error") %> prohibited this argument from being saved:</h2>
+      <h2><%= pluralize(@argument.errors.count, "error") %> prohibited this argument from being saved:</h2>
       <ul>
-      <% argument.errors.full_messages.each do |message| %>
+      <% @argument.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <label>Why do you <%= argument.agree_disagree.downcase %>?</label>
-
   <ul>
   <% @argument.premises.each do |premise| %>
     <li><%= premise.text %></li>
   <% end %>
-    <li>
-      <input name="new_statement_text" style='width: 600px'</input>
-    </li>
+    <% if new_statement %>
+      <li>
+        <input name="new_statement_text" style='width: 600px' placeholder="<%= @argument.premises.none? ? "Why do you #{@argument.agree_disagree.downcase}?" : "Expand on your #{'premise'.pluralize(@argument.premises.count)} above to form an argument." %>"></input>
+      </li>
+    <% end %>
     <li style="list-style-type: none; padding-top: 10px;">
-      <button type="submit" name="edit_action" value="add_another">Add another statement</button>
-      <button type="submit" name="edit_action" value="done">Done</button>
+      <button type="submit" name="edit_action" value="add_another">Add Premise</button>
+      <% if new_statement %>
+        <button type="submit" name="edit_action" value="done">Done</button>
+      <% end %>
     </li>
   </ul>
 
