@@ -21,6 +21,10 @@
     <li>
       <input name="new_statement_text" style='width: 600px'</input>
     </li>
+    <li style="list-style-type: none; padding-top: 10px;">
+      <button type="submit" name="edit_action" value="add_another">Add another statement</button>
+      <button type="submit" name="edit_action" value="done">Done</button>
+    </li>
   </ul>
 
 
@@ -32,6 +36,5 @@
   <br>
 
   <div class="actions">
-    <%= f.submit "Next" %>
   </div>
 <% end %>

@@ -27,10 +27,11 @@ class ArgumentsController < ApplicationController
   # POST /arguments.json
   def create
     @argument = Argument.new(argument_params)
+    create_statement
 
     respond_to do |format|
       if @argument.save
-        format.html { redirect_to @argument }
+        format.html { redirect_to action: after_update_action }
         format.json { render :show, status: :created, location: @argument }
       else
         format.html { render :new }
@@ -42,14 +43,10 @@ class ArgumentsController < ApplicationController
   # PATCH/PUT /arguments/1
   # PATCH/PUT /arguments/1.json
   def update
-    if (new_statement = params[:new_statement_text]).present?
-      @argument.premises << Statement.create(text: new_statement)
-      params[:new_statement_text] = nil
-    end
-
+    create_statement
     respond_to do |format|
       if @argument.update(argument_params)
-        format.html { render after_update_view, notice: 'Argument was successfully updated.' }
+        format.html { redirect_to action: after_update_action, notice: 'Argument was successfully updated.' }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }
@@ -79,11 +76,18 @@ class ArgumentsController < ApplicationController
       params.require(:argument).permit(:text, :agree, :statement_id, :statement_text)
     end
 
-    def after_update_view
-      if params[:statement_text].blank?
+    def after_update_action
+      if params[:edit_action] == 'add_another'
         :edit
       else
         :show
+      end
+    end
+
+    def create_statement
+      if (new_statement = params[:new_statement_text]).present?
+        @argument.premises << Statement.create(text: new_statement)
+        params[:new_statement_text] = nil
       end
     end
 end
