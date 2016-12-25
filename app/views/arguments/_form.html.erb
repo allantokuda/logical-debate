@@ -12,10 +12,12 @@
 
   <ul class="premises">
     <% @argument.premises.each do |premise| %>
-      <li><%= f.text_field "premises[#{premise.id}]", value: premise.text %></li>
+      <li>
+        <input type="text" name="<%= "premises[#{premise.id}]" %>" value="<%= premise.text %>">
+      </li>
     <% end %>
     <li>
-      <%= f.text_field "new_statement_text", value: '', placeholder: @argument.premise_input_placeholder %>
+      <input type="text" name="new_premise" value="" placeholder="<%= @argument.premise_input_placeholder %>" />
     </li>
   </ul>
 

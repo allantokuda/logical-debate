@@ -27,7 +27,7 @@ class ArgumentsController < ApplicationController
   # POST /arguments.json
   def create
     @argument = Argument.new(argument_params)
-    create_statement
+    create_premise
 
     respond_to do |format|
       if @argument.save
@@ -43,13 +43,13 @@ class ArgumentsController < ApplicationController
   # PATCH/PUT /arguments/1
   # PATCH/PUT /arguments/1.json
   def update
-    create_statement
+    create_premise
 
     success = premise_params.all? do |premise_id, premise_text|
       if premise_text.present?
         Statement.find(premise_id).update(text: premise_text)
       else
-        PremiseCitation.find_by(statement_id: premise_id, argument_id: @argument.id).destroy
+        PremiseCitation.find_by(statement_id: premise_id, argument_id: @argument.id)&.destroy
       end
     end
 
@@ -75,25 +75,23 @@ class ArgumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_argument
       @argument = Argument.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def argument_params
       params.require(:argument).permit(:text, :agree, :statement_id)
     end
 
     def premise_params
-      params.require(:argument).require(:premises)
+      params.permit(:premises => @argument.premises.map(&:id).map(&:to_s)).fetch(:premises)
     end
 
-    def new_statement
-      params.require(:argument).permit(:new_statement_text).fetch(:new_statement_text, nil)
+    def new_premise
+      params.permit(:new_premise).fetch(:new_premise)
     end
 
-    def create_statement
-      @argument.premises << Statement.create(text: new_statement) if new_statement.present?
+    def create_premise
+      @argument.premises << Statement.create(text: new_premise) if new_premise.present?
     end
 end
