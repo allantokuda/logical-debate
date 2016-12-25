@@ -31,7 +31,7 @@ class ArgumentsController < ApplicationController
 
     respond_to do |format|
       if @argument.save
-        format.html { redirect_to after_update_action }
+        format.html { redirect_to @argument }
         format.json { render :show, status: :created, location: @argument }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ArgumentsController < ApplicationController
     create_statement
     respond_to do |format|
       if @argument.update(argument_params)
-        format.html { redirect_to after_update_action, notice: 'Argument was successfully updated.' }
+        format.html { redirect_to @argument, notice: 'Argument was successfully updated.' }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }
@@ -74,14 +74,6 @@ class ArgumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def argument_params
       params.require(:argument).permit(:text, :agree, :statement_id, :statement_text)
-    end
-
-    def after_update_action
-      if params[:edit_action] == 'add_another'
-        edit_argument_path(@argument)
-      else
-        argument_path(@argument)
-      end
     end
 
     def create_statement

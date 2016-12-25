@@ -1,8 +1,3 @@
-<p>
-  I <%= @argument.agree_disagree.downcase %> with:
-  <%= link_to @argument.statement.text, statement_path(@argument.statement) %>
-</p>
-
 <%= form_for(@argument) do |f| %>
   <% if @argument.errors.any? %>
     <div id="error_explanation">
@@ -15,24 +10,16 @@
     </div>
   <% end %>
 
+  <%= render 'premises' %>
   <ul>
-  <% @argument.premises.each do |premise| %>
-    <li><%= premise.text %></li>
-  <% end %>
-    <% if new_statement %>
-      <li>
-        <input name="new_statement_text" style='width: 600px' placeholder="<%= @argument.premises.none? ? "Why do you #{@argument.agree_disagree.downcase}?" : "Expand on your #{'premise'.pluralize(@argument.premises.count)} above to form an argument." %>"></input>
-      </li>
-    <% end %>
-    <li style="list-style-type: none; padding-top: 10px;">
-      <button type="submit" name="edit_action" value="add_another">Add Premise</button>
-      <% if new_statement %>
-        <button type="submit" name="edit_action" value="done">Done</button>
-      <% end %>
+    <li>
+      <input name="new_statement_text" style='width: 600px' placeholder="<%= @argument.premises.none? ? "Why do you #{@argument.agree_disagree.downcase}?" : "Expand on your #{'premise'.pluralize(@argument.premises.count)} above to form an argument." %>"></input>
     </li>
   </ul>
 
-
+  <div class="argument-actions">
+    <button type="submit">Save</button>
+  </div>
 
   <%= f.number_field :statement_id, hidden: true %>
   <%= f.check_box :agree, hidden: true %>

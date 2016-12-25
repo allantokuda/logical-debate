@@ -1,3 +1,6 @@
-<%= render 'form', new_statement: false %>
-
+<%= render 'heading' %>
+<%= render 'premises' %>
+<div class="argument-actions">
+  <%= link_to 'Edit', edit_argument_path(@argument) %>
+</div>
 <%= link_to 'Back', statement_path(@argument.statement) %>
