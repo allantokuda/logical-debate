@@ -44,8 +44,17 @@ class ArgumentsController < ApplicationController
   # PATCH/PUT /arguments/1.json
   def update
     create_statement
+
+    success = premise_params.all? do |premise_id, premise_text|
+      if premise_text.present?
+        Statement.find(premise_id).update(text: premise_text)
+      else
+        PremiseCitation.find_by(statement_id: premise_id, argument_id: @argument.id).destroy
+      end
+    end
+
     respond_to do |format|
-      if @argument.update(argument_params)
+      if success && @argument.update(argument_params)
         format.html { redirect_to @argument, notice: 'Argument was successfully updated.' }
         format.json { render :show, status: :ok }
       else
@@ -73,13 +82,18 @@ class ArgumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def argument_params
-      params.require(:argument).permit(:text, :agree, :statement_id, :statement_text)
+      params.require(:argument).permit(:text, :agree, :statement_id)
+    end
+
+    def premise_params
+      params.require(:argument).require(:premises)
+    end
+
+    def new_statement
+      params.require(:argument).permit(:new_statement_text).fetch(:new_statement_text, nil)
     end
 
     def create_statement
-      if (new_statement = params[:new_statement_text]).present?
-        @argument.premises << Statement.create(text: new_statement)
-        params[:new_statement_text] = nil
-      end
+      @argument.premises << Statement.create(text: new_statement) if new_statement.present?
     end
 end

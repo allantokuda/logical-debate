@@ -13,7 +13,7 @@
       <% @statement.arguments.each do |argument| %>
         <tr>
           <td><%= argument.agree_disagree %>:</td>
-          <td><%= link_to argument.premises.map(&:text).join(' '), argument %></td>
+          <td><%= link_to argument.one_line, argument %></td>
         </tr>
       <% end %>
     </tbody>

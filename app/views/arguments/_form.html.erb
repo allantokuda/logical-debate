@@ -10,10 +10,12 @@
     </div>
   <% end %>
 
-  <%= render 'premises' %>
-  <ul>
+  <ul class="premises">
+    <% @argument.premises.each do |premise| %>
+      <li><%= f.text_field "premises[#{premise.id}]", value: premise.text %></li>
+    <% end %>
     <li>
-      <input name="new_statement_text" style='width: 600px' placeholder="<%= @argument.premises.none? ? "Why do you #{@argument.agree_disagree.downcase}?" : "Expand on your #{'premise'.pluralize(@argument.premises.count)} above to form an argument." %>"></input>
+      <%= f.text_field "new_statement_text", value: '', placeholder: @argument.premise_input_placeholder %>
     </li>
   </ul>
 

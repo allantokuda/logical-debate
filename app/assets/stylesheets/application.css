@@ -51,3 +51,11 @@ td, th {
 .date {
   color: #888;
 }
+
+.premises input {
+  width: 600px;
+}
+
+.argument-actions {
+  margin-left: 40px;
+}
