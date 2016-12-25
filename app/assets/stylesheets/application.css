@@ -29,8 +29,17 @@ a:hover {
   background: none;
 }
 
+p {
+  margin: 16px 0px;
+}
+
+.statements-index {
+  border-spacing: 0;
+}
+
 .statements-index td {
-  padding-left: none;
+  padding-top: 0;
+  padding-left: 0;
 }
 
 .statement-heading {
