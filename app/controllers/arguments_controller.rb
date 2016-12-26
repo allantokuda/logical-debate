@@ -53,7 +53,7 @@ class ArgumentsController < ApplicationController
 
     respond_to do |format|
       if success && @argument.update(argument_params)
-        format.html { redirect_to @argument, notice: 'Argument was successfully updated.' }
+        format.html { redirect_to after_update_view, notice: 'Argument was successfully updated.' }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }
@@ -83,6 +83,14 @@ class ArgumentsController < ApplicationController
 
     def premise_params
       params.permit(:premises => @argument.premises.map(&:id).map(&:to_s)).fetch(:premises, {})
+    end
+
+    def after_update_view
+      if params.permit(:update_action).fetch(:update_action, nil) == 'save_and_add'
+        edit_argument_path(@argument)
+      else
+        @argument
+      end
     end
 
     def new_premise
