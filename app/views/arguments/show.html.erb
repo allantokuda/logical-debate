@@ -1,16 +1,5 @@
-<%= render 'heading' %>
-
-<% if @argument.premises.any? %>
-  Their argument:
-<% else %>
-  No premises given.
-<% end %>
-
-<ul>
-  <% @argument.premise_citations.each do |pc| %>
-    <li><%= link_to pc.text, premise_path(pc.id) %></li>
-  <% end %>
-</ul>
+<%= render 'heading', argument: @argument %>
+<%= render 'premises', argument: @argument %>
 <div class="argument-actions">
   <%= link_to 'Edit', edit_argument_path(@argument) %>
 </div>

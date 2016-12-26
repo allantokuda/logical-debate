@@ -14,9 +14,7 @@ class ArgumentsController < ApplicationController
 
   # GET /arguments/new
   def new
-    @statement = Statement.find(params[:statement_id])
-    new_params = params.permit(:statement_id, :agree)
-    @argument = Argument.new(statement: @statement, agree: new_params[:agree])
+    @argument = Argument.from_params(params.permit(:statement_id, :premise_citation_id, :agree))
   end
 
   # GET /arguments/1/edit

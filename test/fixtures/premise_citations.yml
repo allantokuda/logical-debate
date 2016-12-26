@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  argument_id: 1
-  statement_id: 1
-
-two:
-  argument_id: 1
-  statement_id: 1

@@ -1,8 +1,13 @@
-<p class="statement-heading"><%= @premise_citation.premise.text %></p>
-<p>In <b><%= @premise_citation.argument.agree_disagree.downcase %>ment</b> with:
-<%= @premise_citation.argument.statement.text %></p>
+<%= render 'arguments/heading', argument: @premise_citation.argument %>
+<%= render 'arguments/premises', argument: @premise_citation.argument, highlight: @premise_citation.premise.id %>
 
-<%= link_to "Agree", new_premise_argument_path(statement_id: @statement, agree: true), class: 'btn btn-success' %>
-&nbsp;
-<%= link_to "Disagree", new_premise_argument_path(statement_id: @statement, agree: false), class: 'btn btn-danger' %>
+How do you respond to the <span class="highlighted">highlighted</span> statement?
+<ul>
+  <li><%= link_to "I agree with the statement, and it is a good premise for the argument.", new_argument_path(premise_citation_id: @premise_citation.id, agree: true), class: 'btn btn-success' %></li>
+  <li><%= link_to "I agree with the statement, but it is NOT a good premise for the argument.", new_argument_path(premise_citation_id: @premise_citation.id, agree: true), class: 'btn btn-danger' %></li>
+  <li><%= link_to "I disagree with the statement itself.", new_argument_path(premise_citation_id: @premise_citation.id, agree: true), class: 'btn btn-danger' %></li>
+</ul>
+<div class="argument-actions">
+  <%= link_to 'Cancel', argument_path(@premise_citation.argument) %>
+</div>
 <br>

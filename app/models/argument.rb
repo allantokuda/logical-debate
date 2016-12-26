@@ -4,7 +4,19 @@ class Argument < ApplicationRecord
   has_many :premises, through: :premise_citations, class_name: 'Statement', foreign_key: 'statement_id'
 
   validates_inclusion_of :agree, in: [true, false]
-  validates :statement,      presence: true
+  validates :statement, presence: true
+
+  def self.from_params(params)
+    if params[:statement_id]
+      statement = Statement.find(params[:statement_id])
+      Argument.new(statement_id: statement.id, agree: params[:agree])
+    elsif params[:premise_citation_id]
+      premise_citation = PremiseCitation.find(params[:premise_citation_id])
+      Argument.new(premise_citation_id: premise_citation.id, agree: params[:agree])
+    else
+      raise 'An argument must pertain to a statement or a premise citation. Neither was specified.'
+    end
+  end
 
   def premise_input_placeholder
     if premises.none?

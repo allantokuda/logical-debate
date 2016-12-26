@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <ul class="premises">
+  <ul class="premises-form">
     <% @argument.premises.each do |premise| %>
       <li>
         <input type="text" name="<%= "premises[#{premise.id}]" %>" value="<%= premise.text %>">

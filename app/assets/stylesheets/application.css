@@ -33,6 +33,13 @@ p {
   margin: 16px 0px;
 }
 
+.highlighted {
+  background: yellow;
+}
+.highlighted a {
+  color: black;
+}
+
 .statements-index {
   border-spacing: 0;
 }
@@ -68,3 +75,8 @@ td, th {
 .argument-actions {
   margin-left: 40px;
 }
+
+/* Temporary - replace with bootstrap */
+.btn-success { color: #070; }
+.btn-warning { color: #990; }
+.btn-danger  { color: #900; }
