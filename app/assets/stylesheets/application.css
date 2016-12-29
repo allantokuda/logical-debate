@@ -77,6 +77,6 @@ td, th {
 }
 
 /* Temporary - replace with bootstrap */
-.btn-success { color: #070; }
-.btn-warning { color: #990; }
-.btn-danger  { color: #900; }
+.btn-success, .btn-success:active, .btn-success:visited { color: #070; }
+.btn-warning, .btn-warning:active, .btn-warning:visited { color: #990; }
+.btn-danger , .btn-danger :active, .btn-danger :visited { color: #900; }
