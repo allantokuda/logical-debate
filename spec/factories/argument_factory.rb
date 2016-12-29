@@ -1,6 +1,8 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :argument do
-    statement
+    association :subject_statement, factory: :statement
     agree true
   end
 end

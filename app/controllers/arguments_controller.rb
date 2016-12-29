@@ -14,7 +14,7 @@ class ArgumentsController < ApplicationController
 
   # GET /arguments/new
   def new
-    @argument = Argument.from_params(params.permit(:statement_id, :premise_id, :agree))
+    @argument = Argument.from_params(params.permit(:subject_statement_id, :subject_premise_id, :agree))
   end
 
   # GET /arguments/1/edit
@@ -44,10 +44,11 @@ class ArgumentsController < ApplicationController
     create_premise
 
     success = premise_params.all? do |premise_id, premise_text|
+      next unless premise = Premise.find(premise_id)
       if premise_text.present?
-        Premise.find(premise_id)&.statement&.update(text: premise_text)
+        premise.statement.update(text: premise_text)
       else
-        Premise.find_by(statement_id: premise_id, argument_id: @argument.id)&.destroy
+        premise.destroy
       end
     end
 
@@ -78,7 +79,7 @@ class ArgumentsController < ApplicationController
     end
 
     def argument_params
-      params.require(:argument).permit(:text, :agree, :statement_id)
+      params.require(:argument).permit(:text, :agree, :subject_statement_id, :subject_premise_id)
     end
 
     def premise_params
@@ -99,8 +100,9 @@ class ArgumentsController < ApplicationController
 
     def create_premise
       if new_premise.present?
-        statement = Statement.create(text: new_premise)
-        Premise.create(statement: statement, argument: @argument)
+        premise = Premise.new
+        premise.statement = Statement.create(text: new_premise)
+        @argument.premises << premise
       end
     end
 end

@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: debate
+  password: debate
+
+development:
+  <<: *default
+  database: debate_dev
+
+test:
+  <<: *default
+  database: debate_test
+
+production:
+  <<: *default
+  database: debate_prod

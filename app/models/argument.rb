@@ -1,17 +1,20 @@
 class Argument < ApplicationRecord
-  belongs_to :statement
+  # Subject can be either a standalone Statement, or a Premise which is the use of a statement in an argument
+  belongs_to :subject_statement, class_name: 'Statement', optional: true
+  belongs_to :subject_premise, class_name: 'Premise', optional: true
+
   has_many :premises, dependent: :destroy
 
   validates_inclusion_of :agree, in: [true, false]
-  validates :statement, presence: true
+  validate :has_subject
 
   def self.from_params(params)
-    if params[:statement_id]
-      statement = Statement.find(params[:statement_id])
-      Argument.new(statement_id: statement.id, agree: params[:agree])
-    elsif params[:premise_id]
-      premise = Premise.find(params[:premise_id])
-      Argument.new(premise_id: premise.id, agree: params[:agree])
+    if params[:subject_statement_id]
+      statement = Statement.find(params[:subject_statement_id])
+      Argument.new(subject_statement_id: statement.id, agree: params[:agree])
+    elsif params[:subject_premise_id]
+      premise = Premise.find(params[:subject_premise_id])
+      Argument.new(subject_premise_id: premise.id, agree: params[:agree])
     else
       raise 'An argument must pertain to a statement or a premise. Neither was specified.'
     end
@@ -38,15 +41,23 @@ class Argument < ApplicationRecord
   end
 
   def conclusion_overlaps(premise)
-    overlaps = wordmap(statement.text)
+    overlaps = wordmap(subject_statement.text)
     premise.words.each do |word|
       overlaps[word] += 1 if overlaps.key?(word)  
     end
+  end
+
+  def subject
+    subject_statement || subject_premise
   end
 
   private
 
   def wordmap(text)
     Hash[text.words.map { |word| [word, nil] }]
+  end
+
+  def has_subject
+    errors.add(:base, 'Must have subject statement or premise') unless subject.present?
   end
 end

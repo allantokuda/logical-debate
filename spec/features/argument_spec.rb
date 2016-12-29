@@ -29,7 +29,7 @@ describe 'An argument' do
   end
 
   context '(before publishing)' do
-    let!(:argument) { FactoryGirl.create :argument, statement: statement }
+    let!(:argument) { FactoryGirl.create :argument, subject_statement: statement }
     before(:each) do
       3.times do
         argument.premises << FactoryGirl.create(:premise, argument: argument)
@@ -38,9 +38,9 @@ describe 'An argument' do
     end
 
     it 'allows editing of unpublished premises' do
-      expect(all('.premises-list li', text: argument.premises[0].text)).to be_present
-      expect(all('.premises-list li', text: argument.premises[1].text)).to be_present
-      expect(all('.premises-list li', text: argument.premises[2].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
       click_link 'Edit'
       fill_in "premises[#{argument.premises[0].id}]", with: 'Premise one'
       fill_in "premises[#{argument.premises[1].id}]", with: 'Premise two'
@@ -49,6 +49,15 @@ describe 'An argument' do
       expect(find('.premises-list li', text: 'Premise one')).to be_present
       expect(find('.premises-list li', text: 'Premise two')).to be_present
       expect(find('.premises-list li', text: 'Premise three')).to be_present
+    end
+
+    it 'allows deletion of premises by resending them blank' do
+      click_link 'Edit'
+      fill_in "premises[#{argument.premises[0].id}]", with: ''
+      click_button 'Save'
+      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+      expect( all('.premises-list li').count).to eq 2
     end
   end
 end

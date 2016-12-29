@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229202104) do
+ActiveRecord::Schema.define(version: 20161229221846) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "arguments", force: :cascade do |t|
-    t.boolean  "agree",        null: false
-    t.integer  "statement_id", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "agree",                null: false
+    t.integer  "subject_statement_id", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "subject_premise_id"
   end
 
   create_table "premises", force: :cascade do |t|
@@ -33,4 +37,8 @@ ActiveRecord::Schema.define(version: 20161229202104) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "arguments", "premises", column: "subject_premise_id"
+  add_foreign_key "arguments", "statements", column: "subject_statement_id"
+  add_foreign_key "premises", "arguments"
+  add_foreign_key "premises", "statements"
 end
