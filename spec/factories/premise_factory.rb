@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :premise_citation do
+  factory :premise do
     argument
-    premise
+    statement
   end
 end

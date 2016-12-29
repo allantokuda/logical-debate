@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209023858) do
+ActiveRecord::Schema.define(version: 20161229202104) do
 
   create_table "arguments", force: :cascade do |t|
     t.boolean  "agree",        null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161209023858) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "premise_citations", force: :cascade do |t|
+  create_table "premises", force: :cascade do |t|
     t.integer  "statement_id"
     t.integer  "argument_id"
     t.datetime "created_at",   null: false

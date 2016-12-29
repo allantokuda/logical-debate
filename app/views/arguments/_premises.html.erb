@@ -5,8 +5,8 @@
 <% end %>
 
 <ul class="premises-list">
-  <% argument.premise_citations.each do |pc| %>
-    <% if pc.statement_id == local_assigns[:highlight] %>
+  <% argument.premises.each do |pc| %>
+    <% if pc.id == local_assigns[:highlight] %>
       <li><span class="highlighted"><%= link_to pc.text, argument_path(pc.argument.id) %></span></li>
     <% else %>
       <li><%= link_to pc.text, premise_path(pc.id) %></li>

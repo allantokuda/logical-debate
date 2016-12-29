@@ -1,7 +1,6 @@
 class Argument < ApplicationRecord
   belongs_to :statement
-  has_many :premise_citations, dependent: :destroy
-  has_many :premises, through: :premise_citations, class_name: 'Statement', foreign_key: 'statement_id'
+  has_many :premises, dependent: :destroy
 
   validates_inclusion_of :agree, in: [true, false]
   validates :statement, presence: true
@@ -10,11 +9,11 @@ class Argument < ApplicationRecord
     if params[:statement_id]
       statement = Statement.find(params[:statement_id])
       Argument.new(statement_id: statement.id, agree: params[:agree])
-    elsif params[:premise_citation_id]
-      premise_citation = PremiseCitation.find(params[:premise_citation_id])
-      Argument.new(premise_citation_id: premise_citation.id, agree: params[:agree])
+    elsif params[:premise_id]
+      premise = Premise.find(params[:premise_id])
+      Argument.new(premise_id: premise.id, agree: params[:agree])
     else
-      raise 'An argument must pertain to a statement or a premise citation. Neither was specified.'
+      raise 'An argument must pertain to a statement or a premise. Neither was specified.'
     end
   end
 

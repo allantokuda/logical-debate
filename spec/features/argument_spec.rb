@@ -32,7 +32,7 @@ describe 'An argument' do
     let!(:argument) { FactoryGirl.create :argument, statement: statement }
     before(:each) do
       3.times do
-        argument.premise_citations << FactoryGirl.create(:premise_citation, argument: argument)
+        argument.premises << FactoryGirl.create(:premise, argument: argument)
       end
       visit argument_path(argument.id)
     end
