@@ -43,7 +43,7 @@ class ArgumentsController < ApplicationController
   def update
     create_premise
 
-    success = premise_params.all? do |premise_id, premise_text|
+    success = premise_params.to_h.all? do |premise_id, premise_text|
       next unless premise = Premise.find(premise_id)
       if premise_text.present?
         premise.statement.update(text: premise_text)
