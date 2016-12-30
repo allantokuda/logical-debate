@@ -29,7 +29,7 @@ class ArgumentsController < ApplicationController
 
     respond_to do |format|
       if @argument.save
-        format.html { redirect_to @argument }
+        format.html { redirect_to after_update_view }
         format.json { render :show, status: :created, location: @argument }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class ArgumentsController < ApplicationController
 
     respond_to do |format|
       if success && @argument.update(argument_params)
-        format.html { redirect_to after_update_view, notice: 'Argument was successfully updated.' }
+        format.html { redirect_to after_update_view }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }

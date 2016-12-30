@@ -10,6 +10,8 @@
     </div>
   <% end %>
 
+  <p><%= @argument.premise_input_placeholder %></p>
+
   <ul class="premises-form">
     <% @argument.premises.each do |premise| %>
       <li>
@@ -17,13 +19,13 @@
       </li>
     <% end %>
     <li>
-      <input type="text" name="new_premise" value="" placeholder="<%= @argument.premise_input_placeholder %>" />
+      <input type="text" name="new_premise" value="" />
     </li>
   </ul>
 
   <div class="argument-actions">
     <button type="submit">Save</button>
-    <button type="submit" name="update_action" value="save_and_add">Add premise</button>
+    <button type="submit" name="update_action" value="save_and_add">Add another premise</button>
   </div>
 
   <%= f.number_field :subject_statement_id, hidden: true %>

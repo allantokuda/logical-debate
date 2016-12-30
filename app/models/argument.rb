@@ -22,7 +22,7 @@ class Argument < ApplicationRecord
 
   def premise_input_placeholder
     if premises.none?
-      "Why do you #{agree_disagree.downcase}?"
+      "Why do you #{agree_disagree.downcase}? Enter one premise per line."
     else
       "Expand on your other #{'premise'.pluralize(premises.count)} to form an argument."
     end

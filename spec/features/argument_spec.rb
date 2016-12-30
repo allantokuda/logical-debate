@@ -6,6 +6,7 @@ describe 'An argument' do
   before(:each) do
     visit statement_path(statement.id)
     expect(find('.statement-heading', text: statement.text)).to be_present
+    expect(statement.arguments).to_not be_present
   end
 
   it 'can agree with a statement' do
@@ -15,7 +16,7 @@ describe 'An argument' do
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Save'
     expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
-    expect(statement.arguments).to be_present
+    expect(statement.reload.arguments).to be_present
   end
 
   it 'can disagree with a statement' do
@@ -25,7 +26,18 @@ describe 'An argument' do
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
     click_button 'Save'
     expect(find('.premises-list li', text: 'There exist examples of honest politicians.')).to be_present
-    expect(statement.arguments).to be_present
+    expect(statement.reload.arguments).to be_present
+  end
+
+  it 'can include multiple premises' do
+    click_link 'Agree'
+    fill_in 'new_premise', with: 'Honesty is unprofitable.'
+    click_button 'Add another premise'
+    fill_in 'new_premise', with: 'Profit is king.'
+    click_button 'Save'
+    expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
+    expect(find('.premises-list li', text: 'Profit is king')).to be_present
+    expect(statement.reload.arguments.last.premises.count).to eq 2
   end
 
   context '(before publishing)' do
