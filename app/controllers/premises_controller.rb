@@ -23,7 +23,7 @@ class PremisesController < ApplicationController
   end
 
   def respond(agree)
-    @argument = Argument.new(premise_id: @premise.id)
+    redirect_to new_argument_path(subject_premise_id: @premise.id, agree: agree)
   end
 
   def premise_params

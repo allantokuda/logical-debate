@@ -1,5 +1,8 @@
 <%= render 'heading', argument: @argument %>
 <%= render 'premises', argument: @argument %>
-<div class="argument-actions">
-  <%= link_to 'Edit', edit_argument_path(@argument) %>
-</div>
+<% unless @argument.published? %>
+  <div class="argument-actions">
+    <%= button_to 'Publish', publish_argument_path(@argument) %>
+    <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
+  </div>
+<% end %>

@@ -76,7 +76,27 @@ td, th {
   margin-left: 40px;
 }
 
+/* Allow standalone buttons with implied <form> to be inline blocks */
+form {
+  display: inline-block;
+}
+
+.btn {
+  display: inline-block;
+  margin: 2px 15px;
+}
+
 /* Temporary - replace with bootstrap */
 .btn-success, .btn-success:active, .btn-success:visited { color: #070; }
 .btn-warning, .btn-warning:active, .btn-warning:visited { color: #990; }
 .btn-danger,  .btn-danger:active,  .btn-danger:visited  { color: #900; }
+
+.vote-block {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}
+
+.premises-list {
+  list-style: none;
+}

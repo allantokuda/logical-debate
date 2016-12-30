@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :arguments
+  resources :arguments do
+    member do
+      post :publish
+    end
+  end
+
   resources :statements do
     member do
       get :new_response

@@ -1,5 +1,5 @@
 class ArgumentsController < ApplicationController
-  before_action :set_argument, only: [:show, :edit, :update, :destroy]
+  before_action :set_argument, only: [:show, :edit, :update, :publish, :destroy]
 
   # GET /arguments
   # GET /arguments.json
@@ -32,7 +32,7 @@ class ArgumentsController < ApplicationController
         format.html { redirect_to after_update_view }
         format.json { render :show, status: :created, location: @argument }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Failed to create argument.' }
         format.json { render json: @argument.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +61,11 @@ class ArgumentsController < ApplicationController
         format.json { render json: @argument.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def publish
+    @argument.publish!
+    redirect_to @argument
   end
 
   # DELETE /arguments/1

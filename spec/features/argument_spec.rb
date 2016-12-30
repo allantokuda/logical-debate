@@ -44,7 +44,7 @@ describe 'An argument' do
     let!(:argument) { FactoryGirl.create :argument, subject_statement: statement }
     before(:each) do
       3.times do
-        argument.premises << FactoryGirl.create(:premise, argument: argument)
+        FactoryGirl.create(:premise, argument: argument)
       end
       visit argument_path(argument.id)
     end
@@ -70,6 +70,18 @@ describe 'An argument' do
       expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
       expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
       expect( all('.premises-list li').count).to eq 2
+    end
+
+    it 'can be published, making it no longer editable' do
+      expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+      click_button 'Publish'
+      expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
+      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+      expect(all('a', text: 'Edit')).to_not be_present
+      expect(all('button', text: 'Publish')).to_not be_present
     end
   end
 end

@@ -5,11 +5,14 @@
 <% end %>
 
 <ul class="premises-list">
-  <% argument.premises.each do |pc| %>
-    <% if pc.id == local_assigns[:highlight] %>
-      <li><span class="highlighted"><%= link_to pc.text, argument_path(pc.argument.id) %></span></li>
-    <% else %>
-      <li><%= link_to pc.text, premise_path(pc.id) %></li>
-    <% end %>
+  <% argument.premises.each do |p| %>
+    <li>
+      <%= render 'arguments/response_counts', premise: p %>
+      <% if p.id == local_assigns[:highlight] %>
+        <span class="highlighted"><%= link_to p.text, argument_path(p.argument.id) %></span>
+      <% else %>
+        <%= link_to p.text, premise_path(p.id) %>
+      <% end %>
+    </li>
   <% end %>
 </ul>

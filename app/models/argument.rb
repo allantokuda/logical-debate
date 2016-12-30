@@ -8,6 +8,10 @@ class Argument < ApplicationRecord
   validates_inclusion_of :agree, in: [true, false]
   validate :has_subject
 
+  def self.published
+    where.not(published_at: nil)
+  end
+
   def self.from_params(params)
     if params[:subject_statement_id]
       statement = Statement.find(params[:subject_statement_id])
@@ -49,6 +53,14 @@ class Argument < ApplicationRecord
 
   def subject
     subject_statement || subject_premise
+  end
+
+  def publish!
+    touch(:published_at)
+  end
+
+  def published?
+    published_at.present?
   end
 
   private
