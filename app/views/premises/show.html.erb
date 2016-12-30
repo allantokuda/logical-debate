@@ -7,7 +7,7 @@ How do you respond to the <span class="highlighted">highlighted</span> statement
 <ul>
   <li><%= link_to "I agree with the statement, and it is a good premise for the argument.",        agree_premise_path, class: 'premise-agree btn btn-success' %></li>
   <li><%= link_to "I agree with the statement, but it is NOT a good premise for the argument.", disagree_premise_path, class: 'premise-disagree btn btn-danger' %></li>
-  <li><%= link_to "I disagree with the statement itself.", new_argument_path(subject_statement_id: @premise.statement_id, agree: false), class: 'premise-statement-disagree btn btn-danger' %></li>
+  <li><%= link_to "I disagree with the statement itself.", new_argument_path(argument: { subject_statement_id: @premise.statement_id, agree: false }), class: 'premise-statement-disagree btn btn-danger' %></li>
 </ul>
 <div class="argument-actions">
   <%= link_to 'Cancel', argument_path(@premise.argument) %>

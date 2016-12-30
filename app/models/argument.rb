@@ -1,4 +1,6 @@
 class Argument < ApplicationRecord
+  belongs_to :user
+
   # Subject can be either a standalone Statement, or a Premise which is the use of a statement in an argument
   belongs_to :subject_statement, class_name: 'Statement', optional: true
   belongs_to :subject_premise, class_name: 'Premise', optional: true
@@ -10,18 +12,6 @@ class Argument < ApplicationRecord
 
   def self.published
     where.not(published_at: nil)
-  end
-
-  def self.from_params(params)
-    if params[:subject_statement_id]
-      statement = Statement.find(params[:subject_statement_id])
-      Argument.new(subject_statement_id: statement.id, agree: params[:agree])
-    elsif params[:subject_premise_id]
-      premise = Premise.find(params[:subject_premise_id])
-      Argument.new(subject_premise_id: premise.id, agree: params[:agree])
-    else
-      raise 'An argument must pertain to a statement or a premise. Neither was specified.'
-    end
   end
 
   def premise_input_placeholder

@@ -33,6 +33,10 @@ p {
   margin: 16px 0px;
 }
 
+p#notice, p#alert {
+  height: 20px;
+}
+
 .highlighted {
   background: yellow;
 }

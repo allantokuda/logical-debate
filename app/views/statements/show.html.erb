@@ -1,8 +1,8 @@
 <p class="statement-heading"><%= @statement.text %></p>
 
-<%= link_to "Agree", new_argument_path(subject_statement_id: @statement, agree: true), class: 'btn btn-success' %>
+<%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
 &nbsp;
-<%= link_to "Disagree", new_argument_path(subject_statement_id: @statement, agree: false), class: 'btn btn-danger' %>
+<%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
 <br>
 <br>
 

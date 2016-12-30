@@ -1,4 +1,5 @@
 class PremisesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_premise, except: [:index]
 
   def index
@@ -23,7 +24,7 @@ class PremisesController < ApplicationController
   end
 
   def respond(agree)
-    redirect_to new_argument_path(subject_premise_id: @premise.id, agree: agree)
+    redirect_to new_argument_path(argument: { subject_premise_id: @premise.id, agree: agree })
   end
 
   def premise_params

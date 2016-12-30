@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe 'A premise' do
+  let(:user) { FactoryGirl.create :user }
   let(:premise) { FactoryGirl.create :premise }
   let(:argument) { premise.argument }
   let(:original_statement) { argument.statement }
 
   before(:each) do
+    visit '/'
+    login_as user, scope: :user
     visit premise_path(premise.id)
   end
 

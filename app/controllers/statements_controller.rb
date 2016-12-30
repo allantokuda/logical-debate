@@ -1,4 +1,5 @@
 class StatementsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_statement, only: [:show, :edit, :update, :destroy]
 
   # GET /statements
@@ -31,6 +32,7 @@ class StatementsController < ApplicationController
   # POST /statements.json
   def create
     @statement = Statement.new(statement_params)
+    @statement.user = current_user
 
     respond_to do |format|
       if @statement.save

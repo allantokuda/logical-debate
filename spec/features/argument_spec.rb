@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe 'An argument' do
+  let(:user) { FactoryGirl.create(:user) }
   let(:statement) { FactoryGirl.create :statement }
 
   before(:each) do
+    visit '/'
+    login_as user, scope: :user
     visit statement_path(statement.id)
     expect(find('.statement-heading', text: statement.text)).to be_present
     expect(statement.arguments).to_not be_present
@@ -17,6 +20,7 @@ describe 'An argument' do
     click_button 'Save'
     expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
     expect(statement.reload.arguments).to be_present
+    expect(statement.arguments.first.user).to eq user
   end
 
   it 'can disagree with a statement' do
