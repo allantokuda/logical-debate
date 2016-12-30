@@ -3,28 +3,37 @@
 <% if @statement.user == current_user %>
   <span class="date">Published by you <%= I18n.l @statement.created_at %></span>
 <% else %>
-  <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
-  &nbsp;
-  <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+  <% if @statement.stance_of(current_user).blank? %>
+    <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
+    &nbsp;
+    <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+  <% else %>
+    You <%= @statement.stance_of(current_user) %>.
+  <% end %>
 <% end %>
 <br>
 <br>
 
-<% if @statement.arguments.published_or_by_user(current_user).any? %>
-  <p><strong>Responses:</strong></p>
-  <table class="arguments-table">
-    <tbody>
-      <% @statement.arguments.published_or_by_user(current_user).each do |argument| %>
-        <tr>
-          <td><%= user_for(argument) %> <%= argument.agree_disagree(current_user) %>:</td>
-          <td><%= link_to argument.one_line, argument %></td>
-        </tr>
+<div class="arguments-table">
+  <% [true, false].each do |side| %>
+    <div class="agree-<%= side %>">
+      <% if (arguments = @statement.arguments.where(agree: side).published_or_by_user(current_user)).any? %>
+        <p><strong><%= side ? 'Agreements' : 'Disagreements' %></strong></p>
+        <% arguments.each do |argument| %>
+          <div class="argument">
+            <div><%= link_to argument.one_line, argument %></div>
+            <div>by <%= user_for(argument) %></div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No responses.</p>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>No responses.</p>
-<% end %>
+    </div>
+
+  <% end %>
+  <div class="disagree-side">
+  </div>
+</div>
 
 <br>
 <br>

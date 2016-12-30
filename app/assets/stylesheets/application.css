@@ -39,6 +39,8 @@ p#notice, p#alert {
   height: 20px;
 }
 
+p#alert { color: red; }
+
 .highlighted {
   background: yellow;
 }
@@ -71,7 +73,13 @@ p#notice, p#alert {
   font-size: medium;
 }
 
-input[type="text"] {
+.field {
+  padding: 10px 0px;
+}
+
+label { display: inline; }
+
+input[type="text"], input[type="email"], input[type="password"] {
   margin: 6px;
   margin-left: 0px;
   padding: 6px;
@@ -113,4 +121,17 @@ form {
   display: inline-block;
   width: 50px;
   text-align: center;
+}
+
+.arguments-table {
+  display: flex;
+}
+.arguments-table > div:first-child {
+  padding-right: 20px;
+  border-right: 5px solid #bbb;
+  margin-right: 20px;
+}
+
+.argument {
+  margin-bottom: 20px;
 }

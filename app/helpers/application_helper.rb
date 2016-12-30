@@ -3,8 +3,7 @@ module ApplicationHelper
     if my(object)
       'You'
     else
-      # Add usernames later
-      'User'
+      object.user.display_username
     end
   end
 

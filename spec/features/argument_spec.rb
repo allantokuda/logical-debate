@@ -80,7 +80,7 @@ describe 'An argument' do
 
     it 'shows on the statement page as an unpublished argument' do
       visit statement_path(argument.subject_statement)
-      expect(find('.arguments-table td', text: argument.one_line)).to be_present
+      expect(find('.argument', text: argument.one_line)).to be_present
     end
 
     it 'can be published, making it no longer editable' do

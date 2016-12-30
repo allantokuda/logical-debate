@@ -8,4 +8,8 @@ class Statement < ApplicationRecord
   def words
     text.split(' ').map(&:strip)
   end
+
+  def stance_of(current_user)
+    arguments.where(user: current_user).last&.agree_disagree(current_user)
+  end
 end
