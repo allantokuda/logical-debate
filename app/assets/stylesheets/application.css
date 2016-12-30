@@ -17,6 +17,7 @@
 body {
   margin-left: 120px;
   background: #ddd;
+  margin: 40px 40px 40px 120px;
 }
 
 a, a:visited, a:active {
@@ -42,6 +43,18 @@ p#notice, p#alert {
 }
 .highlighted a {
   color: black;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  height: 20px;
+  text-align: right;
+  background: #ccc;
+  display: block;
 }
 
 .statements-index {
