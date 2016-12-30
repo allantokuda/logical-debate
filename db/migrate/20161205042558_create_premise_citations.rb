@@ -4,10 +4,10 @@ class CreatePremiseCitations < ActiveRecord::Migration[5.0]
       t.integer :statement_id
       t.integer :argument_id
 
-      add_foreign_key :premise_citations, :statements
-      add_foreign_key :premise_citations, :arguments
-
       t.timestamps
     end
+
+    add_foreign_key :premise_citations, :statements
+    add_foreign_key :premise_citations, :arguments
   end
 end
