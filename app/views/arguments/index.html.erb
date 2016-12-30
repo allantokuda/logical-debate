@@ -4,7 +4,7 @@
   <tbody>
     <% @arguments.each do |argument| %>
       <tr>
-        <td><%= link_to "#{argument.agree_disagree}: #{argument.subject.text}", argument %></td>
+        <td><%= link_to "#{argument.agree_disagree.capitalize}: #{argument.subject.text}", argument %></td>
       </tr>
     <% end %>
   </tbody>

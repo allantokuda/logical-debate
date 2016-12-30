@@ -1,18 +1,22 @@
 <p class="statement-heading"><%= @statement.text %></p>
 
-<%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
-&nbsp;
-<%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+<% if @statement.user == current_user %>
+  <span class="date">Published by you <%= I18n.l @statement.created_at %></span>
+<% else %>
+  <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
+  &nbsp;
+  <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+<% end %>
 <br>
 <br>
 
-<% if @statement.arguments.any? %>
+<% if @statement.arguments.published_or_by_user(current_user).any? %>
   <p><strong>Responses:</strong></p>
-  <table class="">
+  <table class="arguments-table">
     <tbody>
-      <% @statement.arguments.each do |argument| %>
+      <% @statement.arguments.published_or_by_user(current_user).each do |argument| %>
         <tr>
-          <td>User <%= argument.agree_disagree.downcase %>s:</td>
+          <td><%= user_for(argument) %> <%= argument.agree_disagree(current_user) %>:</td>
           <td><%= link_to argument.one_line, argument %></td>
         </tr>
       <% end %>

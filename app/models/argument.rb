@@ -14,9 +14,13 @@ class Argument < ApplicationRecord
     where.not(published_at: nil)
   end
 
+  def self.published_or_by_user(user)
+    where('published_at is not null or user_id = ?', user.id)
+  end
+
   def premise_input_placeholder
     if premises.none?
-      "Why do you #{agree_disagree.downcase}? Enter one premise per line."
+      "Why do you #{agree_disagree}? Enter one premise per line."
     else
       "Expand on your other #{'premise'.pluralize(premises.count)} to form an argument."
     end
@@ -26,8 +30,14 @@ class Argument < ApplicationRecord
     premises.map(&:text).join(' ').presence || '(No comment)'
   end
 
-  def agree_disagree
-    agree ? 'Agree' : 'Disagree'
+  def agree_disagree(context = nil)
+    word = agree ? 'agree' : 'disagree'
+
+    if context.is_a?(User) && context != user
+      word + 's'
+    else
+      word
+    end
   end
 
   def can_be_published?

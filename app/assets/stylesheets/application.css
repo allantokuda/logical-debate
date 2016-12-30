@@ -17,7 +17,8 @@
 body {
   margin-left: 120px;
   background: #ddd;
-  margin: 40px 40px 40px 120px;
+  margin: 40px;
+  margin-left: 120px;
 }
 
 a, a:visited, a:active {

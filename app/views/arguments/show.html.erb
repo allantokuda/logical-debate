@@ -1,10 +1,10 @@
 <%= render 'heading', argument: @argument %>
 <%= render 'premises', argument: @argument %>
 <div class="argument-actions">
-  <% if !@argument.published? %>
+  <% if my(@argument) && !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
-  <% else %>
+  <% elsif !my(@argument) && @argument.published? %>
     <!--- temporary -->
     <%= link_to 'Agree',    edit_argument_path(@argument), class: 'btn' %>
     <%= link_to 'Disagree', edit_argument_path(@argument), class: 'btn' %>

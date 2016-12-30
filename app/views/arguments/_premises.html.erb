@@ -1,5 +1,5 @@
 <% if argument.premises.any? %>
-  Their argument:
+  <%= my(argument) ? 'Your' : 'Their' %> argument:
 <% else %>
   No premises given.
 <% end %>
@@ -7,7 +7,9 @@
 <ul class="premises-list">
   <% argument.premises.each do |p| %>
     <li>
-      <% if p.id == local_assigns[:highlight] %>
+      <% if my(argument) %>
+        <%= p.text %>
+      <% elsif p.id == local_assigns[:highlight] %>
         <span class="highlighted"><%= link_to p.text, argument_path(p.argument.id) %></span>
       <% else %>
         <%= link_to p.text, premise_path(p.id) %>
