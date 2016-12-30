@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 body {
   margin-left: 120px;
   background: #ddd;
@@ -145,3 +146,35 @@ form {
 .upvote {
   margin: 4px 0;
 }
+
+
+/* Larger than mobile */
+@media (min-width: 0px) {
+  body {
+    margin-left: 20px;
+  }
+}
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+  body {
+    margin-left: 40px;
+  }
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  body {
+    margin-left: 80px;
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
