@@ -12,7 +12,7 @@
     <tbody>
       <% @statement.arguments.each do |argument| %>
         <tr>
-          <td><%= argument.agree_disagree %>:</td>
+          <td>User <%= argument.agree_disagree.downcase %>s:</td>
           <td><%= link_to argument.one_line, argument %></td>
         </tr>
       <% end %>

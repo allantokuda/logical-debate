@@ -53,7 +53,7 @@ p {
   font-size: medium;
 }
 
-input[type="text"], button {
+input[type="text"] {
   margin: 6px;
   margin-left: 0px;
   padding: 6px;
@@ -72,18 +72,18 @@ td, th {
   width: 600px;
 }
 
-.argument-actions {
-  margin-left: 40px;
-}
-
 /* Allow standalone buttons with implied <form> to be inline blocks */
 form {
   display: inline-block;
 }
 
+.argument-actions button, .argument-actions input[type="submit"] {
+  margin-right: 15px;
+}
+
 .btn {
   display: inline-block;
-  margin: 2px 15px;
+  margin: 2px 15px 2px 0px;
 }
 
 /* Temporary - replace with bootstrap */
@@ -95,8 +95,4 @@ form {
   display: inline-block;
   width: 50px;
   text-align: center;
-}
-
-.premises-list {
-  list-style: none;
 }

@@ -7,7 +7,6 @@
 <ul class="premises-list">
   <% argument.premises.each do |p| %>
     <li>
-      <%= render 'arguments/response_counts', premise: p %>
       <% if p.id == local_assigns[:highlight] %>
         <span class="highlighted"><%= link_to p.text, argument_path(p.argument.id) %></span>
       <% else %>

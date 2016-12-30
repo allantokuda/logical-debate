@@ -1,8 +1,12 @@
 <%= render 'heading', argument: @argument %>
 <%= render 'premises', argument: @argument %>
-<% unless @argument.published? %>
-  <div class="argument-actions">
+<div class="argument-actions">
+  <% if !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
-  </div>
-<% end %>
+  <% else %>
+    <!--- temporary -->
+    <%= link_to 'Agree',    edit_argument_path(@argument), class: 'btn' %>
+    <%= link_to 'Disagree', edit_argument_path(@argument), class: 'btn' %>
+  <% end %>
+</div>
