@@ -17,12 +17,12 @@
 <div class="arguments-table">
   <% [true, false].each do |side| %>
     <div class="agree-<%= side %>">
+      <p><strong><%= side ? 'Agreements' : 'Disagreements' %></strong></p>
       <% if (arguments = @statement.arguments.where(agree: side).published_or_by_user(current_user)).any? %>
-        <p><strong><%= side ? 'Agreements' : 'Disagreements' %></strong></p>
         <% arguments.each do |argument| %>
           <div class="argument">
             <div><%= link_to argument.one_line, argument %></div>
-            <div>by <%= user_for(argument) %></div>
+            <div>by <%= argument.user.username %></div>
           </div>
         <% end %>
       <% else %>
