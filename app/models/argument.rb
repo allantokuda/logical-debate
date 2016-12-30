@@ -15,7 +15,11 @@ class Argument < ApplicationRecord
   end
 
   def self.published_or_by_user(user)
-    where('published_at is not null or user_id = ?', user.id)
+    where('published_at is not null or arguments.user_id = ?', user.id)
+  end
+
+  def self.vote_order
+    joins('LEFT JOIN votes ON votes.argument_id = arguments.id').group('arguments.id').order('count(votes.id) desc')
   end
 
   def premise_input_placeholder
@@ -52,7 +56,7 @@ class Argument < ApplicationRecord
   end
 
   def subject
-    subject_statement || subject_premise
+    subject_statement || subject_premise || Statement.new(text: '(No subject)')
   end
 
   def publish!

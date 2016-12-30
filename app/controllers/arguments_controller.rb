@@ -1,6 +1,6 @@
 class ArgumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_argument, only: [:show, :edit, :update, :publish, :destroy]
+  before_action :find_argument, only: [:show, :edit, :update, :publish, :upvote, :remove_vote, :destroy]
   before_action :new_argument, only: [:new, :create]
   before_action :new_premise, only: [:create, :update]
 
@@ -67,6 +67,16 @@ class ArgumentsController < ApplicationController
   def publish
     @argument.publish!
     redirect_to @argument
+  end
+
+  def upvote
+    Vote.create(argument: @argument, user: current_user)
+    redirect_to @argument.subject
+  end
+
+  def remove_vote
+    Vote.find_by(argument: @argument, user: current_user).destroy
+    redirect_to @argument.subject
   end
 
   # DELETE /arguments/1

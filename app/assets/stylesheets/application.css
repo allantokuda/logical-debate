@@ -126,6 +126,12 @@ form {
 .arguments-table {
   display: flex;
 }
+
+.arguments-table > div {
+  width: 50%;
+  max-width: 500px;
+}
+
 .arguments-table > div:first-child {
   padding-right: 20px;
   border-right: 5px solid #bbb;
@@ -134,4 +140,8 @@ form {
 
 .argument {
   margin-bottom: 20px;
+}
+
+.upvote {
+  margin: 4px 0;
 }

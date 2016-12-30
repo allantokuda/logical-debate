@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :arguments do
     member do
       post :publish
+      post :upvote
+      post :remove_vote
     end
   end
 

@@ -9,7 +9,15 @@ class Statement < ApplicationRecord
     text.split(' ').map(&:strip)
   end
 
-  def stance_of(current_user)
-    arguments.where(user: current_user).last&.agree_disagree(current_user)
+  def stance_of(user)
+    last_argument_by(user)&.agree_disagree(user)
+  end
+
+  def agreed_by?(user)
+    last_argument_by(user)&.agree
+  end
+
+  def last_argument_by(user)
+    arguments.where(user: user).last
   end
 end

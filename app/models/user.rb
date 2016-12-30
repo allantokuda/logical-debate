@@ -20,4 +20,12 @@ class User < ApplicationRecord
       .join
       .slice(0, 6)
   end
+
+  def upvoted_argument?(argument)
+    Vote.find_by(user: self, argument: argument).present?
+  end
+
+  def votes_on_statement(statement)
+    Vote.joins(:argument => :subject_statement).where('statements.id = ?', statement.id)
+  end
 end
