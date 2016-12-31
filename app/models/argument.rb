@@ -5,6 +5,10 @@ class Argument < ApplicationRecord
   belongs_to :subject_statement, class_name: 'Statement', optional: true
   belongs_to :subject_premise, class_name: 'Premise', optional: true
 
+  # An argument can address its parent argument
+  belongs_to :parent_argument, class_name: 'Argument', optional: true
+  has_many :child_arguments, class_name: 'Argument', foreign_key: :parent_argument_id
+
   has_many :premises, dependent: :destroy
 
   validates_inclusion_of :agree, in: [true, false]

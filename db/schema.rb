@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230181309) do
+ActiveRecord::Schema.define(version: 20161231053924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20161230181309) do
     t.integer  "subject_premise_id"
     t.datetime "published_at"
     t.integer  "user_id"
+    t.integer  "parent_argument_id"
   end
 
   create_table "premises", force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161230181309) do
     t.datetime "created_at",  null: false
   end
 
+  add_foreign_key "arguments", "arguments", column: "parent_argument_id"
   add_foreign_key "arguments", "premises", column: "subject_premise_id"
   add_foreign_key "arguments", "statements", column: "subject_statement_id"
   add_foreign_key "arguments", "users"

@@ -1,12 +1,8 @@
 <p class="argument-heading">
-  <%= user_for(argument) %> <b><%= argument.agree_disagree(current_user) %></b>:
-  <%= link_to argument.subject.text, argument.subject %>
-  <br>
-  <span class="date">
-    <% if argument.published? %>
-      Published <%= I18n.l argument.published_at %>
-    <% else %>
-      Not yet published
-    <% end %>
-  </span>
+  <% if argument.parent_argument.present? %>
+    Regarding: <%= link_to argument.subject.text, argument.subject %>
+  <% else %>
+    <%= user_for(argument) %> <b><%= argument.agree_disagree(current_user) %></b>:
+    <%= link_to argument.subject.text, argument.subject %>
+  <% end %>
 </p>

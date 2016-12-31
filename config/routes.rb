@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :publish
       post :upvote
       post :remove_vote
+      get :suggest_new
     end
   end
 

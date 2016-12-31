@@ -1,6 +1,6 @@
 class ArgumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_argument, only: [:show, :edit, :update, :publish, :upvote, :remove_vote, :destroy]
+  before_action :find_argument, only: [:show, :edit, :update, :publish, :upvote, :remove_vote, :destroy, :suggest_new]
   before_action :new_argument, only: [:new, :create]
   before_action :new_premise, only: [:create, :update]
 
@@ -13,6 +13,9 @@ class ArgumentsController < ApplicationController
   # GET /arguments/1
   # GET /arguments/1.json
   def show
+  end
+
+  def suggest_new
   end
 
   # GET /arguments/new
@@ -45,6 +48,7 @@ class ArgumentsController < ApplicationController
   # PATCH/PUT /arguments/1
   # PATCH/PUT /arguments/1.json
   def update
+    return fork_argument if @argument.published?
     ActiveRecord::Base.transaction do
       respond_to do |format|
         if !@argument.update(argument_params)
@@ -98,6 +102,29 @@ class ArgumentsController < ApplicationController
       @argument = Argument.new(argument_params.merge(user: current_user))
     end
 
+    def fork_argument
+      new_argument = @argument.dup
+      new_argument.user = current_user
+      new_argument.parent_argument = @argument
+      new_argument.published_at = nil
+      update_premise_params.each do |_id, text|
+        new_statement = Statement.new(text: text, user: current_user)
+        new_premise = Premise.new(statement: new_statement, argument: new_argument)
+        new_argument.premises << new_premise
+      end
+      @argument = new_argument
+
+      respond_to do |format|
+        if !@argument.save
+          format.html { render :suggest_new, alert: 'Failed to create suggested new argumen.' }
+          format.json { render json: @argument.errors, status: :unprocessable_entity }
+        else
+          format.html { redirect_to after_update_view }
+          format.json { render :show, status: :ok }
+        end
+      end
+    end
+
     def argument_params
       params.require(:argument).permit(:text, :agree, :subject_statement_id, :subject_premise_id)
     end
@@ -121,7 +148,7 @@ class ArgumentsController < ApplicationController
       if params.permit(:update_action).fetch(:update_action, nil) == 'save_and_add'
         edit_argument_path(@argument)
       else
-        @argument
+        argument_path(@argument)
       end
     end
 end

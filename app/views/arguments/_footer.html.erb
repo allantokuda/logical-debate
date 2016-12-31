@@ -1,0 +1,7 @@
+<span class="date">
+  <% if argument.published? %>
+    Published <%= I18n.l argument.published_at %>
+  <% else %>
+    Not yet published
+  <% end %>
+</span>

@@ -10,7 +10,13 @@
     </div>
   <% end %>
 
-  <p><%= @argument.premise_input_placeholder %></p>
+  <p>
+    <% if local_assigns[:suggest_new] %>
+      Without changing the argument's meaning, adjust the words to show how you interpret the original argument.
+    <% else %>
+      <%= @argument.premise_input_placeholder %>
+    <% end %>
+  </p>
 
   <ul class="premises-form">
     <% @argument.premises.each do |premise| %>

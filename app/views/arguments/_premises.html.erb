@@ -1,19 +1,16 @@
 <% if argument.premises.any? %>
-  <%= my(argument) ? 'Your' : 'Their' %> argument:
+  <% if argument.parent_argument.present? && !local_assigns[:no_recurse] %>
+    <%= my(argument) ? 'You interpret' : "#{argument.user.username} interprets" %>
+    <%= my(argument.parent_argument) ? 'your' : "#{argument.parent_argument.user.username}'s" %> argument as follows:
+  <% else %>
+    <%= my(argument) ? 'Your' : "#{argument.user.username}'s" %> argument:
+  <% end %>
 <% else %>
   No premises given.
 <% end %>
 
 <ul class="premises-list">
   <% argument.premises.each do |p| %>
-    <li>
-      <% if my(argument) %>
-        <%= p.text %>
-      <% elsif p.id == local_assigns[:highlight] %>
-        <span class="highlighted"><%= link_to p.text, argument_path(p.argument.id) %></span>
-      <% else %>
-        <%= link_to p.text, premise_path(p.id) %>
-      <% end %>
-    </li>
+    <li><%= p.text %></li>
   <% end %>
 </ul>

@@ -107,6 +107,10 @@ td, th {
   max-width: 800px;
 }
 
+.argument-actions {
+  margin-top: 30px;
+}
+
 .argument-actions button,
 .argument-actions input[type="submit"],
 .argument-actions a {

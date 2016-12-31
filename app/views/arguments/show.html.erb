@@ -1,12 +1,13 @@
 <%= render 'heading', argument: @argument %>
+<%= render 'premises', argument: @argument.parent_argument if @argument.parent_argument.present? %>
 <%= render 'premises', argument: @argument %>
+<%= render 'publish_date', argument: @argument %>
+
 <div class="argument-actions">
   <% if my(@argument) && !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
   <% elsif !my(@argument) && @argument.published? %>
-    <!--- temporary -->
-    <%= link_to 'Agree',    edit_argument_path(@argument), class: 'btn' %>
-    <%= link_to 'Disagree', edit_argument_path(@argument), class: 'btn' %>
+    <%= link_to 'Reply', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>
 </div>
