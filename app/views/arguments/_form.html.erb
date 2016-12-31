@@ -26,15 +26,10 @@
   <div class="argument-actions">
     <button type="submit">Save</button>
     <button type="submit" name="update_action" value="save_and_add">Add another premise</button>
+    <%= link_to 'Cancel', @argument.subject %>
   </div>
 
   <%= f.number_field :subject_statement_id, hidden: true %>
   <%= f.number_field :subject_premise_id, hidden: true %>
   <%= f.check_box :agree, hidden: true %>
-
-  <br>
-  <br>
-
-  <div class="actions">
-  </div>
 <% end %>

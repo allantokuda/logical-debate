@@ -107,10 +107,14 @@ td, th {
   max-width: 800px;
 }
 
-.premise-line
-
-.argument-actions button, .argument-actions input[type="submit"] {
+.argument-actions button,
+.argument-actions input[type="submit"],
+.argument-actions a {
   margin-right: 15px;
+}
+
+.argument-actions form {
+  display: inline;
 }
 
 .btn {
