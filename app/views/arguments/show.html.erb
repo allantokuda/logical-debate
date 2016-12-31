@@ -3,11 +3,20 @@
 <%= render 'premises', argument: @argument %>
 <%= render 'publish_date', argument: @argument %>
 
+<% if @argument.child_arguments.present? %>
+  <p>Replies:
+    <% @argument.child_arguments.map do |child| %>
+      &nbsp; <%= link_to "#{child.user.username}'s reply", child %>
+    <% end %>
+  </p>
+<% end %>
+
 <div class="argument-actions">
   <% if my(@argument) && !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
-  <% elsif !my(@argument) && @argument.published? %>
+  <% end %>
+  <% if !my(@argument) && @argument.published? %>
     <%= link_to 'Reply', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>
 </div>

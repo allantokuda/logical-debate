@@ -19,13 +19,13 @@
   <% [true, false].each do |side| %>
     <div class="agree-<%= side %>">
       <p><strong><%= side ? 'Agreements' : 'Disagreements' %></strong></p>
-      <% if (arguments = @statement.arguments.where(agree: side).published_or_by_user(current_user).vote_order).any? %>
+      <% if (arguments = @statement.arguments.where(agree: side, parent_argument_id: nil).published_or_by_user(current_user).vote_order).any? %>
         <% arguments.each do |argument| %>
           <div class="argument">
             <div><%= link_to argument.one_line, argument %></div>
             <div>
-              <span>by <%= argument.user.username %></span>
-              <% if @statement.agreed_by?(current_user) == side %>
+              <span><%= argument.published? ? "by #{argument.user.username}" : 'not yet published.' %></span>
+              <% if argument.published? && @statement.agreed_by?(current_user) == side %>
                 <div class="upvote">
                   <% if current_user.upvoted_argument?(argument) %>
                     <%= button_to 'Remove vote', remove_vote_argument_path(argument) %>
