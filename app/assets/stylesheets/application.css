@@ -96,13 +96,11 @@ td, th {
 }
 
 .statement-line {
-  width: 600px;
+  width: 90%; /* mobile */
+  max-width: 800px;
 }
 
-/* Allow standalone buttons with implied <form> to be inline blocks */
-form {
-  display: inline-block;
-}
+.premise-line
 
 .argument-actions button, .argument-actions input[type="submit"] {
   margin-right: 15px;
@@ -152,6 +150,7 @@ form {
 @media (min-width: 0px) {
   body {
     margin-left: 20px;
+    margin-right: 20px;
   }
 }
 
@@ -159,6 +158,7 @@ form {
 @media (min-width: 400px) {
   body {
     margin-left: 40px;
+    margin-right: 40px;
   }
 }
 
@@ -166,5 +166,6 @@ form {
 @media (min-width: 550px) {
   body {
     margin-left: 80px;
+    margin-right: 80px;
   }
 }

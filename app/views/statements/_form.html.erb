@@ -13,10 +13,11 @@
 
   <p>What do you wish to persuade others is true?</p>
   <div class="field">
-    <%= f.text_field :text, style: 'width: 600px' %>
+    <%= f.text_field :text, class: 'statement-line' %>
   </div>
 
-  <div class="actions">
+  <div class="argument-actions">
     <%= f.submit "Publish" %>
+    <%= link_to 'Back', statements_path %>
   </div>
 <% end %>

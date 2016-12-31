@@ -15,11 +15,11 @@
   <ul class="premises-form">
     <% @argument.premises.each do |premise| %>
       <li>
-        <input type="text" name="<%= "premises[#{premise.id}]" %>" value="<%= premise.text %>">
+        <input type="text" name="<%= "premises[#{premise.id}]" %>" value="<%= premise.text %>" class="statement-line">
       </li>
     <% end %>
     <li>
-      <input type="text" name="new_premise" value="" />
+      <input type="text" name="new_premise" class="statement-line" value="" />
     </li>
   </ul>
 
