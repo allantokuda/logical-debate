@@ -95,7 +95,7 @@ td, th {
   color: #888;
 }
 
-.premises-form input {
+.statement-line {
   width: 600px;
 }
 
@@ -148,33 +148,23 @@ form {
 }
 
 
-/* Larger than mobile */
+/* Small mobile, typical 320px width */
 @media (min-width: 0px) {
   body {
     margin-left: 20px;
   }
 }
 
-/* Larger than mobile */
+/* Medium mobile, typical 480px width */
 @media (min-width: 400px) {
   body {
     margin-left: 40px;
   }
 }
 
-/* Larger than phablet */
+/* Large mobile, typical 640px width */
 @media (min-width: 550px) {
   body {
     margin-left: 80px;
   }
 }
-
-/* Larger than tablet */
-@media (min-width: 750px) {
-}
-
-/* Larger than desktop */
-@media (min-width: 1000px) {}
-
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {}
