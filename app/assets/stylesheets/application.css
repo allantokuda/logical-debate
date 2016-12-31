@@ -55,7 +55,16 @@ p {
   height: 18px;
   text-align: right;
   background: #ccc;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-bar div:first-child {
+  text-align: left;
+  padding-right: 10px;
+}
+.top-bar div:last-child {
+  text-align: right;
 }
 
 .statements-index {

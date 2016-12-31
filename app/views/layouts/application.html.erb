@@ -11,7 +11,15 @@
 
   <body>
     <% if current_user %>
-      <div class="top-bar">Logged in as <%= link_to current_user.display_username, '/users/edit' %> - <a href="/users/sign_out" data-method="delete">Logout</a></div>
+      <div class="top-bar">
+        <div>
+          <%= link_to 'Home', statements_path %>
+        </div>
+        <div>
+          Logged in as <%= link_to current_user.display_username, '/users/edit' %> -
+          <a href="/users/sign_out" data-method="delete">Logout</a>
+        </div>
+      </div>
     <% end %>
     <p class="notices">
       <span class="notice"><%= notice %></span>
