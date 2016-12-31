@@ -36,11 +36,8 @@ p {
   margin: 16px 0px;
 }
 
-p#notice, p#alert {
-  height: 20px;
-}
-
-p#alert { color: red; }
+.notice { color: green; }
+.alert { color: red; }
 
 .highlighted {
   background: yellow;
@@ -55,7 +52,7 @@ p#alert { color: red; }
   left: 0;
   right: 0;
   padding: 10px;
-  height: 20px;
+  height: 18px;
   text-align: right;
   background: #ccc;
   display: block;
@@ -72,6 +69,7 @@ p#alert { color: red; }
 
 .statement-heading {
   font-size: medium;
+  margin-top: 0;
 }
 
 .field {
@@ -152,6 +150,8 @@ td, th {
     border-right: 3px solid #bbb;
     margin-right: 10px;
   }
+
+  p.notices { height: 28px; padding: 10px 0; margin: 0; }
 }
 
 /* Large mobile, typical 640px width */
@@ -166,4 +166,6 @@ td, th {
     border-right: 5px solid #bbb;
     margin-right: 20px;
   }
+
+  p.notices { height: 28px; padding: 20px 0; margin: 0; }
 }
