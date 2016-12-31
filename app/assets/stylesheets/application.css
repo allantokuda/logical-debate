@@ -131,12 +131,6 @@ td, th {
   max-width: 500px;
 }
 
-.arguments-table > div:first-child {
-  padding-right: 20px;
-  border-right: 5px solid #bbb;
-  margin-right: 20px;
-}
-
 .argument {
   margin-bottom: 20px;
 }
@@ -149,23 +143,27 @@ td, th {
 /* Small mobile, typical 320px width */
 @media (min-width: 0px) {
   body {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
-}
 
-/* Medium mobile, typical 480px width */
-@media (min-width: 400px) {
-  body {
-    margin-left: 40px;
-    margin-right: 40px;
+  .arguments-table > div:first-child {
+    padding-right: 10px;
+    border-right: 3px solid #bbb;
+    margin-right: 10px;
   }
 }
 
 /* Large mobile, typical 640px width */
-@media (min-width: 550px) {
+@media (min-width: 800px) {
   body {
     margin-left: 80px;
     margin-right: 80px;
+  }
+
+  .arguments-table > div:first-child {
+    padding-right: 20px;
+    border-right: 5px solid #bbb;
+    margin-right: 20px;
   }
 }
