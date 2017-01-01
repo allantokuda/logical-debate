@@ -18,6 +18,10 @@ class Argument < ApplicationRecord
     where.not(published_at: nil)
   end
 
+  def self.top_level
+    where(parent_argument_id: nil)
+  end
+
   def self.published_or_by_user(user)
     where('published_at is not null or arguments.user_id = ?', user.id)
   end

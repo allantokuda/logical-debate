@@ -17,7 +17,6 @@
 
 body {
   margin-left: 120px;
-  background: #ddd;
   margin: 40px;
   margin-left: 120px;
 }
@@ -54,7 +53,7 @@ p {
   padding: 10px;
   height: 18px;
   text-align: right;
-  background: #ccc;
+  background: #eee;
   display: flex;
   justify-content: space-between;
 }
@@ -74,11 +73,19 @@ p {
 .statements-index td {
   padding-top: 0;
   padding-left: 0;
+  padding-bottom: 30px;
 }
 
 .statement-heading {
   font-size: medium;
   margin-top: 0;
+}
+
+.statement-state {
+  margin: 0;
+}
+.statement-state img {
+  vertical-align: bottom;
 }
 
 .field {
@@ -164,7 +171,7 @@ td, th {
 
   .arguments-table > div:first-child {
     padding-right: 10px;
-    border-right: 3px solid #bbb;
+    border-right: 3px solid #eee;
     margin-right: 10px;
   }
 
@@ -180,7 +187,7 @@ td, th {
 
   .arguments-table > div:first-child {
     padding-right: 20px;
-    border-right: 5px solid #bbb;
+    border-right: 5px solid #eee;
     margin-right: 20px;
   }
 

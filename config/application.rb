@@ -14,6 +14,7 @@ module Debate
 
     Rails.application.configure do
       config.time_zone = 'Central Time (US & Canada)'
+      config.public_file_server.enabled
     end
   end
 end
