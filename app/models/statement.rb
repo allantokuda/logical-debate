@@ -5,6 +5,8 @@ class Statement < ApplicationRecord
   has_many :arguments, dependent: :destroy, foreign_key: :subject_statement_id
   has_many :dependent_arguments, through: :premises
 
+  belongs_to :countered_argument, class_name: 'Argument', optional: true
+
   def words
     text.split(' ').map(&:strip)
   end
@@ -21,29 +23,38 @@ class Statement < ApplicationRecord
     arguments.where(user: user).last
   end
 
-  def state
-    return 'Unaddressed' if arguments.count == 0
-    case argument_diff
-    when 1 then 'More agreements' # TODO: replace with 'Strong' once algorithm exists
-    when -1 then 'More disagreements' # TODO: replace with 'Countered' once algorithm exists
-    else 'Disputed'
+  def win?
+    @win ||= begin
+      return true if disagreements.none? && agreements.none? && countered_argument.present?
+      # TODO: scope to top-voted arguments for sanity
+      disagreements.none?(&:win?) && agreements.any?(&:win?)
     end
   end
 
+  def lose?
+    @lose ||= agreements.none?(&:win?) && disagreements.any?(&:win?)
+  end
+
+  def state
+    return 'Unaddressed' if arguments.count == 0
+    return 'Supported' if win?
+    return 'Countered' if lose?
+    'Disputed'
+  end
+
   def icon
-    return 'checkmark' if arguments.count == 0
-    case argument_diff
-    when 1 then 'checkmark'
-    when -1 then 'x'
-    else 'question'
-    end
+    return 'checkmark' if win?
+    return 'x' if lose?
+    'question'
   end
 
   private
 
-  def argument_diff
-    # temporary oversimplistic approach
-    @diff ||= arguments.published.top_level.where(agree: true).count <=>
-              arguments.published.top_level.where(agree: false).count
+  def agreements
+    arguments.published.top_level.where(agree: true)
+  end
+
+  def disagreements
+    arguments.published.top_level.where(agree: false)
   end
 end

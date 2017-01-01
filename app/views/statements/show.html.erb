@@ -19,7 +19,7 @@
 <div class="arguments-table">
   <% [true, false].each do |side| %>
     <div class="agree-<%= side %>">
-      <p><strong><%= side ? 'Agreements' : 'Disagreements' %></strong></p>
+      <p><strong><%= side ? 'Supporting arguments' : 'Counterarguments' %></strong></p>
       <% if (arguments = @statement.arguments.where(agree: side, parent_argument_id: nil).published_or_by_user(current_user).vote_order).any? %>
         <% arguments.each do |argument| %>
           <div class="argument">

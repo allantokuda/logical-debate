@@ -75,6 +75,10 @@ class Argument < ApplicationRecord
     published_at.present?
   end
 
+  def win?
+    true # temporary: arguments automatically win. TODO: build a way to challenge an argument.
+  end
+
   private
 
   def wordmap(text)
