@@ -4,7 +4,7 @@ class Premise < ApplicationRecord
 
   has_many :arguments, foreign_key: :subject_premise_id
 
-  delegate :text, to: :statement
+  delegate :text, :win?, to: :statement
 
   def num_agrees
     arguments.where(agree: true).count

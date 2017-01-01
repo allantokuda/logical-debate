@@ -6,7 +6,8 @@ class StatementsController < ApplicationController
   # GET /statements.json
   def index
     # Only show stand-alone statements. Allow premises to be debated in context.
-    @statements = Statement.joins('LEFT JOIN premises ON statements.id = premises.statement_id').where('premises.id IS NULL')
+    @statements = Statement.joins('LEFT JOIN premises ON premises.statement_id = statements.id').where('premises.id IS NULL')
+                           .joins('LEFT JOIN arguments ON arguments.id = statements.countered_argument_id').where('arguments.id IS NULL')
   end
 
   # GET /statements/1

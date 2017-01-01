@@ -11,6 +11,8 @@ class Argument < ApplicationRecord
 
   has_many :premises, dependent: :destroy
 
+  has_many :counters, class_name: 'Statement', foreign_key: :countered_argument_id
+
   validates_inclusion_of :agree, in: [true, false]
   validate :has_subject
 
@@ -59,7 +61,7 @@ class Argument < ApplicationRecord
   def conclusion_overlaps(premise)
     overlaps = wordmap(subject_statement.text)
     premise.words.each do |word|
-      overlaps[word] += 1 if overlaps.key?(word)  
+      overlaps[word] += 1 if overlaps.key?(word)
     end
   end
 
@@ -76,7 +78,17 @@ class Argument < ApplicationRecord
   end
 
   def win?
-    true # temporary: arguments automatically win. TODO: build a way to challenge an argument.
+    premises.all?(&:win?) && counters.none?(&:win?)
+  end
+
+  def lose?
+    !premises.all?(&:win?) || counters.any?(&:win?)
+  end
+
+  def state
+    return 'Unaddressed' if counters.none?
+    return 'Supported' if counters.none?(&:win?)
+    'Countered'
   end
 
   private

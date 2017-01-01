@@ -11,6 +11,15 @@
   </p>
 <% end %>
 
+<% if @argument.counters.any? %>
+  <p>Counters to that:</p>
+  <ul>
+    <% @argument.counters.map do |counter| %>
+      <li><%= link_to counter.text, statement_path(counter.id) %> (<%= counter.state %>)</li>
+    <% end %>
+  </ul>
+<% end%>
+
 <div class="argument-actions">
   <% if my(@argument) && !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>

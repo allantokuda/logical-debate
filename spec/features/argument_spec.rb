@@ -12,23 +12,25 @@ describe 'An argument' do
     expect(statement.arguments).to_not be_present
   end
 
-  it 'can agree with a statement' do
+  it 'can support a statement' do
     click_link 'Agree'
-    expect(find('.argument-heading', text: "You agree: #{statement.text}")).to be_present
+    expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
 
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Save'
+    expect(find('.argument-explanation', text: 'supporting argument')).to be_present
     expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
     expect(statement.reload.arguments).to be_present
     expect(statement.arguments.first.user).to eq user
   end
 
-  it 'can disagree with a statement' do
+  it 'can counter a statement' do
     click_link 'Disagree'
-    expect(find('.argument-heading', text: "You disagree: #{statement.text}")).to be_present
+    expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
 
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
     click_button 'Save'
+    expect(find('.argument-explanation', text: 'counterargument')).to be_present
     expect(find('.premises-list li', text: 'There exist examples of honest politicians.')).to be_present
     expect(statement.reload.arguments).to be_present
   end

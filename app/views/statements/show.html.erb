@@ -1,3 +1,7 @@
+<% if @statement.countered_argument.present? %>
+  <p>Countering argument: <%= link_to @statement.countered_argument.one_line, @statement.countered_argument %></p>
+<% end %>
+
 <p class="statement-heading"><%= @statement.text %></p>
 <%= render 'state', statement: @statement %>
 

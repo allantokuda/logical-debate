@@ -23,9 +23,13 @@ class Statement < ApplicationRecord
     arguments.where(user: user).last
   end
 
+  def nested
+    countered_argument.present? || premises.any?
+  end
+
   def win?
     @win ||= begin
-      return true if disagreements.none? && agreements.none? && countered_argument.present?
+      return true if nested && disagreements.none? && agreements.none?
       # TODO: scope to top-voted arguments for sanity
       disagreements.none?(&:win?) && agreements.any?(&:win?)
     end
