@@ -4,15 +4,7 @@
       <tr>
         <td>
           <%= link_to statement.text, statement, class: 'statement-heading' %>
-          <p class="statement-state">
-            <img src="/images/<%= statement.icon %>.png" alt="" />
-            <%= statement.state %>
-            <span>&nbsp;</span>
-            <span>&nbsp;</span>
-            <span class="date">
-            <%= statement.created_at.strftime('%Y %b %d') %>
-            </span>
-          </p>
+          <%= render 'state', statement: statement %>
         </td>
       </tr>
     <% end %>

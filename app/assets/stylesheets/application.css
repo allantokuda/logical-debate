@@ -79,6 +79,7 @@ p {
 .statement-heading {
   font-size: medium;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .statement-state {

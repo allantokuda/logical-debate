@@ -1,19 +1,20 @@
 <p class="statement-heading"><%= @statement.text %></p>
+<%= render 'state', statement: @statement %>
 
-<% if @statement.user == current_user %>
-  <span class="date">Published by you <%= I18n.l @statement.created_at %></span>
-<% else %>
-  <% if @statement.stance_of(current_user).blank? %>
-    <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
-    &nbsp;
-    <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+<p class="stance">
+  <% if @statement.user == current_user %>
+    <span class="date">Published by you</span>
   <% else %>
-    You <%= @statement.stance_of(current_user) %>.
-    <%= link_to "Add another argument", new_argument_path(argument: { subject_statement_id: @statement, agree: @statement.agreed_by?(current_user) }), class: 'btn' %>
+    <% if @statement.stance_of(current_user).blank? %>
+      <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
+      &nbsp;
+      <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+    <% else %>
+      You <%= @statement.stance_of(current_user) %>.
+      <%= link_to "Add another argument", new_argument_path(argument: { subject_statement_id: @statement, agree: @statement.agreed_by?(current_user) }), class: 'btn' %>
+    <% end %>
   <% end %>
-<% end %>
-<br>
-<br>
+</p>
 
 <div class="arguments-table">
   <% [true, false].each do |side| %>
