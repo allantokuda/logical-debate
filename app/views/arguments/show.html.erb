@@ -1,6 +1,4 @@
-<%= render 'heading', argument: @argument %>
-<%= render 'premises', argument: @argument.parent_argument if @argument.parent_argument.present? %>
-<%= render 'premises', argument: @argument %>
+<%= render 'body', argument: @argument %>
 <%= render 'publish_date', argument: @argument %>
 
 <% if @argument.child_arguments.present? %>
@@ -26,6 +24,7 @@
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
   <% end %>
   <% if !my(@argument) && @argument.published? %>
-    <%= link_to 'Reply', suggest_new_argument_path(@argument), class: 'btn' %>
+    <%= link_to 'Counter', counter_argument_path(@argument), class: 'btn' %>
+    <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>
 </div>

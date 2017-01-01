@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post :upvote
       post :remove_vote
       get :suggest_new
+      get :counter
     end
   end
 

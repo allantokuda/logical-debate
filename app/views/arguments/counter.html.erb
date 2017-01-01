@@ -1,0 +1,30 @@
+<%= render 'body', argument: @statement.countered_argument %>
+
+<%= form_for(@statement) do |f| %>
+  <% if @statement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@statement.errors.count, "error") %> prohibited this @statement from being saved:</h2>
+
+      <ul>
+        <% @statement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br />
+
+  <label for="text">What is the problem with this argument? <br /><i>Summarize in one statement. Further discussion is possible later.</i></label>
+
+  <div class="field">
+    <%= f.text_field :text, class: 'statement-line' %>
+  </div>
+
+  <%= f.number_field :countered_argument_id, hidden: true %>
+
+  <div class="argument-actions">
+    <%= f.submit "Publish" %>
+    <%= link_to 'Cancel', argument_path(@statement.countered_argument) %>
+  </div>
+<% end %>
