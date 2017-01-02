@@ -28,6 +28,6 @@ class PremisesController < ApplicationController
   end
 
   def premise_params
-    params.permit(:id)
+    params.permit(:id, :uuid)
   end
 end

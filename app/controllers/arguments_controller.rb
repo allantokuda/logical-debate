@@ -7,7 +7,7 @@ class ArgumentsController < ApplicationController
   # GET /arguments
   # GET /arguments.json
   def index
-    @arguments = Argument.all
+    redirect_to statements_path
   end
 
   # GET /arguments/1
@@ -111,6 +111,7 @@ class ArgumentsController < ApplicationController
       new_argument.user = current_user
       new_argument.parent_argument = @argument
       new_argument.published_at = nil
+      new_argument.set_uuid
       update_premise_params.each do |_id, text|
         new_statement = Statement.new(text: text, user: current_user)
         new_premise = Premise.new(statement: new_statement, argument: new_argument)
@@ -130,7 +131,7 @@ class ArgumentsController < ApplicationController
     end
 
     def argument_params
-      params.require(:argument).permit(:text, :agree, :subject_statement_id, :subject_premise_id)
+      params.require(:argument).permit(:uuid, :text, :agree, :subject_statement_id, :subject_premise_id)
     end
 
     def new_premise

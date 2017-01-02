@@ -1,4 +1,6 @@
 class Statement < ApplicationRecord
+  include UUID
+
   belongs_to :user
 
   has_many :premises, dependent: :destroy

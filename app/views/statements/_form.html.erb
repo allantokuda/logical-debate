@@ -16,6 +16,8 @@
     <%= f.text_field :text, class: 'statement-line' %>
   </div>
 
+  <%= f.text_field :uuid, hidden: true %>
+
   <div class="argument-actions">
     <%= f.submit "Publish" %>
     <%= link_to 'Back', statements_path %>

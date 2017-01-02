@@ -1,4 +1,6 @@
 class Premise < ApplicationRecord
+  include UUID
+
   belongs_to :statement
   belongs_to :argument
 

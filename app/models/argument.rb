@@ -1,4 +1,6 @@
 class Argument < ApplicationRecord
+  include UUID
+
   belongs_to :user
 
   # Subject can be either a standalone Statement, or a Premise which is the use of a statement in an argument
