@@ -113,10 +113,12 @@ class ArgumentsController < ApplicationController
       new_argument.published_at = nil
       new_argument.set_uuid
       update_premise_params.each do |_id, text|
-        new_statement = Statement.new(text: text, user: current_user)
-        new_premise = Premise.new(statement: new_statement, argument: new_argument)
-        new_argument.premises << new_premise
+        forked_statement = Statement.new(text: text, user: current_user)
+        forked_premise = Premise.new(statement: forked_statement, argument: new_argument)
+        new_argument.premises << forked_premise
       end
+      @new_premise.argument = new_argument
+      new_argument.premises << @new_premise if @new_premise.present?
       @argument = new_argument
 
       respond_to do |format|

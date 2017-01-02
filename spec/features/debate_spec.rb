@@ -22,10 +22,19 @@ describe 'Debate' do
 
   it "allows a user to improve on another user's argument" do
     click_link 'Clarify'
-    # TODO: indicate disagreement, make edits
+
+    # add a premise
+    all('input.statement-line', minimum: 2)[-1].set('New premise 1')
+
+    # add another premise
+    click_button 'Add another premise'
+    all('input.statement-line', minimum: 2)[-1].set('New premise 2')
+
     click_button 'Save'
     expect(argument.reload.child_arguments).to be_present
     expect(find('.argument-explanation', text: "You interpret Allan's argument as follows")).to be_present
+    expect(find('.premises-list li', text: "New premise 1")).to be_present
+    expect(find('.premises-list li', text: "New premise 2")).to be_present
   end
 
   it 'can navigate between arguments children/parents' do
