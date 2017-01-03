@@ -5,20 +5,19 @@
 <p class="statement-heading"><%= @statement.text %></p>
 <%= render 'state', statement: @statement %>
 
-<p class="stance">
+<div class="stance argument-actions">
   <% if @statement.user == current_user %>
     <span class="date">Published by you</span>
   <% else %>
-    <% if @statement.stance_of(current_user).blank? %>
-      <%= link_to "Agree", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn btn-success' %>
-      &nbsp;
-      <%= link_to "Disagree", new_argument_path(argument: { subject_statement_id: @statement, agree: false }), class: 'btn btn-danger' %>
+    <% if @stance %>
+      You <%= @stance %>. <%= button_to 'Clear', no_stance_statement_path(@statement) %>
     <% else %>
-      You <%= @statement.stance_of(current_user) %>.
-      <%= link_to "Add another argument", new_argument_path(argument: { subject_statement_id: @statement, agree: @statement.agreed_by?(current_user) }), class: 'btn' %>
+      <%= button_to 'Agree', agree_statement_path(@statement), class: 'btn btn-success' %>
+      &nbsp;
+      <%= button_to 'Disagree', disagree_statement_path(@statement), class: 'btn btn-danger' %>
     <% end %>
   <% end %>
-</p>
+</div>
 
 <div class="arguments-table">
   <% [true, false].each do |side| %>
@@ -46,6 +45,8 @@
       <% else %>
         <p>No responses.</p>
       <% end %>
+      <br />
+      <%= link_to "New #{side ? '' : 'counter'}argument", new_argument_path(argument: { subject_statement_id: @statement, agree: side }), class: 'btn' %>
     </div>
 
   <% end %>

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :statements do
     member do
       get :new_response
+      post :agree
+      post :disagree
+      post :no_stance
     end
   end
   resources :premises, controller: :premises, only: [:index, :show] do

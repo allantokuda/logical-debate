@@ -1,6 +1,7 @@
 class StatementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_statement, only: [:show, :edit, :update, :destroy]
+  before_action :find_statement, only: [:show, :edit, :update, :destroy, :agree, :disagree, :no_stance]
+  before_action :find_stance, only: [:show, :edit, :agree, :disagree]
 
   # GET /statements
   # GET /statements.json
@@ -71,10 +72,29 @@ class StatementsController < ApplicationController
     end
   end
 
+  def agree
+    Stance.new(statement: @statement, user: current_user, agree: true).save
+    redirect_to @statement
+  end
+
+  def disagree
+    Stance.new(statement: @statement, user: current_user, agree: false).save
+    redirect_to @statement
+  end
+
+  def no_stance
+    Stance.where(statement: @statement, user: current_user).first&.destroy
+    redirect_to @statement
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_statement
+    def find_statement
       @statement = Statement.find(params[:id])
+    end
+
+    def find_stance
+      @stance = Stance.where(user: current_user, statement: @statement).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

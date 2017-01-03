@@ -13,7 +13,7 @@ describe 'An argument' do
   end
 
   it 'can support a statement' do
-    click_link 'Agree'
+    click_link 'New argument'
     expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
 
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
@@ -25,7 +25,7 @@ describe 'An argument' do
   end
 
   it 'can counter a statement' do
-    click_link 'Disagree'
+    click_link 'New counterargument'
     expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
 
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
@@ -36,7 +36,7 @@ describe 'An argument' do
   end
 
   it 'can include multiple premises' do
-    click_link 'Agree'
+    click_link 'New argument'
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Add another premise'
     fill_in 'new_premise', with: 'Profit is king.'
