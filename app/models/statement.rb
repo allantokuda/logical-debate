@@ -7,6 +7,8 @@ class Statement < ApplicationRecord
   has_many :arguments, dependent: :destroy, foreign_key: :subject_statement_id
   has_many :dependent_arguments, through: :premises
 
+  before_validation :add_period
+
   belongs_to :countered_argument, class_name: 'Argument', optional: true
 
   def words
@@ -62,5 +64,9 @@ class Statement < ApplicationRecord
 
   def disagreements
     arguments.published.top_level.where(agree: false)
+  end
+
+  def add_period
+    text += '.' if text.present? && text.split(' ').count > 1 && !(text[-1] =~ /[.!?]/)
   end
 end
