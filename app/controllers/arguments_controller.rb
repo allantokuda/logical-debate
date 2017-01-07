@@ -3,6 +3,7 @@ class ArgumentsController < ApplicationController
   before_action :find_argument, only: [:show, :edit, :update, :publish, :upvote, :remove_vote, :destroy, :suggest_new, :counter]
   before_action :new_argument, only: [:new, :create]
   before_action :new_premise, only: [:create, :update]
+  after_action :publish_from_form, only: [:create, :update]
 
   # GET /arguments
   # GET /arguments.json
@@ -151,11 +152,22 @@ class ArgumentsController < ApplicationController
       params.permit(:premises => @argument.premises.map(&:id).map(&:to_s)).fetch(:premises, {})
     end
 
+    def save_action
+      params.permit(:save_action).fetch(:save_action, nil)
+    end
+
     def after_update_view
-      if params.permit(:update_action).fetch(:update_action, nil) == 'save_and_add'
+      case save_action
+      when 'save_and_add'
         edit_argument_path(@argument)
+      when 'publish'
+        @argument.subject
       else
         argument_path(@argument)
       end
+    end
+
+    def publish_from_form
+      @argument.publish! if save_action == 'publish'
     end
 end
