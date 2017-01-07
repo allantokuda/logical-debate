@@ -163,6 +163,15 @@ td, th {
   margin: 4px 0;
 }
 
+.link-button, .link-button:hover, .link-button:active {
+  display: inline-block;
+  background: #46b;
+  border-radius: 3px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
+
 
 /* Small mobile, typical 320px width */
 @media (min-width: 0px) {

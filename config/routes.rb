@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	devise_for :users, controllers: { registrations: 'users/registrations' }
-  root to: 'statements#index'
+  root 'public#landing'
   resources :arguments do
     member do
       post :publish
