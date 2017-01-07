@@ -134,11 +134,11 @@ describe 'An argument' do
     let(:argument) { FactoryGirl.create :argument, subject_statement: statement, user: user, published_at: Time.zone.now - 5.minutes }
     it 'can have upvotes applied and removed' do
       visit statement_path(argument.subject_statement)
+      click_button 'Remove vote'
+      expect(Vote.count).to be 0
       click_button 'Upvote'
       expect(Vote.last.argument).to eq argument
       expect(Vote.last.user).to eq user
-      click_button 'Remove vote'
-      expect(Vote.count).to be 0
     end
   end
 end

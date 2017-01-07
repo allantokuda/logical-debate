@@ -18,6 +18,8 @@ class Argument < ApplicationRecord
   validates_inclusion_of :agree, in: [true, false]
   validate :has_subject
 
+  after_create :upvote_if_applicable
+
   def self.published
     where.not(published_at: nil)
   end
@@ -101,5 +103,11 @@ class Argument < ApplicationRecord
 
   def has_subject
     errors.add(:base, 'Must have subject statement or premise') unless subject.present?
+  end
+
+  def upvote_if_applicable
+    if Vote.where(user: user, argument: self).none?
+      Vote.create(user: user, argument: self)
+    end
   end
 end
