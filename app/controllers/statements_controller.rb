@@ -6,9 +6,7 @@ class StatementsController < ApplicationController
   # GET /statements
   # GET /statements.json
   def index
-    # Only show stand-alone statements. Allow premises to be debated in context.
-    @statements = Statement.joins('LEFT JOIN premises ON premises.statement_id = statements.id').where('premises.id IS NULL')
-                           .joins('LEFT JOIN arguments ON arguments.id = statements.countered_argument_id').where('arguments.id IS NULL')
+    @statements = Statement.where(top_level: true)
   end
 
   # GET /statements/1
@@ -99,6 +97,6 @@ class StatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def statement_params
-      params.require(:statement).permit(:uuid, :text, :user_id, :parent_statement_id, :agree, :countered_argument_id)
+      params.require(:statement).permit(:uuid, :text, :user_id, :parent_statement_id, :agree, :countered_argument_id, :top_level)
     end
 end

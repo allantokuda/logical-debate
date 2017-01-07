@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102230559) do
+ActiveRecord::Schema.define(version: 20170107200158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20170102230559) do
   create_table "statements", force: :cascade do |t|
     t.string   "text"
     t.integer  "user_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "countered_argument_id"
     t.string   "uuid"
+    t.boolean  "top_level",             default: false, null: false
     t.index ["uuid"], name: "index_statements_on_uuid", unique: true, using: :btree
   end
 

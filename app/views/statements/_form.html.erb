@@ -17,6 +17,7 @@
   </div>
 
   <%= f.text_field :uuid, hidden: true %>
+  <%= f.check_box :top_level, hidden: true, checked: true %>
 
   <div class="argument-actions">
     <%= f.submit "Publish" %>
