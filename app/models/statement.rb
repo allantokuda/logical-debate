@@ -67,6 +67,6 @@ class Statement < ApplicationRecord
   end
 
   def add_period
-    text += '.' if text.present? && text.split(' ').count > 1 && !(text[-1] =~ /[.!?]/)
+    self.text += '.' if text.present? && !(text[-1] =~ /[.!?]/)
   end
 end
