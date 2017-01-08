@@ -1,7 +1,7 @@
 class StatementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_statement, only: [:show, :edit, :update, :destroy, :agree, :disagree, :no_stance]
-  before_action :find_stance, only: [:show, :edit, :agree, :disagree]
+  before_action :find_statement, only: [:show, :edit, :update, :destroy, :agree, :disagree, :no_stance, :agreements, :disagreements]
+  before_action :find_stance, only: [:show, :edit, :agree, :disagree, :agreements, :disagreements]
 
   # GET /statements
   # GET /statements.json
@@ -83,6 +83,16 @@ class StatementsController < ApplicationController
   def no_stance
     Stance.where(statement: @statement, user: current_user).first&.destroy
     redirect_to @statement
+  end
+
+  def agreements
+    @side = true
+    render :arguments
+  end
+
+  def disagreements
+    @side = false
+    render :arguments
   end
 
   private
