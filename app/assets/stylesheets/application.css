@@ -22,7 +22,7 @@ body {
 }
 
 a, a:visited, a:active {
-  color: blue;
+  color: #03f;
   text-decoration: none;
 }
 
@@ -101,6 +101,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   margin-left: 0px;
   padding: 6px;
   font-size: medium;
+  border: 1px solid #aaa;
 }
 
 td, th {
@@ -163,13 +164,35 @@ td, th {
   margin: 4px 0;
 }
 
-.link-button, .link-button:hover, .link-button:active {
+.button, .button:hover, .button:active,
+.button, .button:hover, .button:active,
+input[type="button"], input[type="submit"], button {
   display: inline-block;
-  background: #46b;
-  border-radius: 3px;
-  padding: 10px 20px;
   text-decoration: none;
   color: white;
+  font-size: 14px;
+  border: none;
+  background: #26f;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+.large-button {
+  padding: 10px 20px !important;
+}
+
+.red {
+  background: #f44 !important;
+}
+
+.green {
+  background: #5b0 !important;
+}
+
+.secondary {
+  background: #888 !important;
+}
+
 }
 
 

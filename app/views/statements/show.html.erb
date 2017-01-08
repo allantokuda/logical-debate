@@ -10,11 +10,11 @@
     <span class="date">Published by you</span>
   <% else %>
     <% if @stance %>
-      You <%= @stance %>. <%= button_to 'Clear', no_stance_statement_path(@statement) %>
+      You <%= @stance %>. <%= button_to 'Clear', no_stance_statement_path(@statement), class: 'secondary' %>
     <% else %>
-      <%= button_to 'Agree', agree_statement_path(@statement), class: 'btn btn-success' %>
+      <%= button_to 'Agree', agree_statement_path(@statement), class: 'green' %>
       &nbsp;
-      <%= button_to 'Disagree', disagree_statement_path(@statement), class: 'btn btn-danger' %>
+      <%= button_to 'Disagree', disagree_statement_path(@statement), class: 'red' %>
     <% end %>
   <% end %>
 </div>
@@ -32,10 +32,10 @@
               <% if argument.published? && @statement.agreed_by?(current_user) == side %>
                 <div class="upvote">
                   <% if current_user.upvoted_argument?(argument) %>
-                    <%= button_to 'Remove vote', remove_vote_argument_path(argument) %>
+                    <%= button_to 'Remove vote', remove_vote_argument_path(argument), class: 'secondary' %>
                   <!-- limit to one vote per statement for now -->
                   <% elsif current_user.votes_on_statement(argument.subject_statement).blank? %>
-                    <%= button_to 'Upvote', upvote_argument_path(argument) %>
+                    <%= button_to 'Upvote', upvote_argument_path(argument), class: 'secondary' %>
                   <% end %>
                 </div>
               <% end %>
