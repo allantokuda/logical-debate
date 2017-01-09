@@ -16,11 +16,11 @@ class Statement < ApplicationRecord
   end
 
   def stance_of(user)
-    last_argument_by(user)&.agree_disagree(user)
+    Stance.find_by(user: user, statement: self)
   end
 
   def agreed_by?(user)
-    last_argument_by(user)&.agree
+    Stance.find_by(user: user, statement: self)&.agree
   end
 
   def last_argument_by(user)

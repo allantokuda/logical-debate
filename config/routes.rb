@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post :no_stance
       get :agreements
       get :disagreements
+      post :review_arguments
     end
   end
   resources :premises, controller: :premises, only: [:index, :show] do

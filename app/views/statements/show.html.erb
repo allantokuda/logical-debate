@@ -10,7 +10,9 @@
     <span class="date">Published by you</span>
   <% else %>
     <% if @stance %>
-      You <%= @stance %>. <%= button_to 'Clear', no_stance_statement_path(@statement), class: 'secondary' %>
+      You <%= @stance %>. &nbsp;
+      <%= button_to 'Clear', no_stance_statement_path(@statement), class: 'link-button small-button' %>
+      <%= link_to "New #{@stance.agree ? '' : 'counter'}argument", new_argument_path(argument: { subject_statement_id: @statement, agree: @stance.agree }), class: 'btn' %>
     <% else %>
       <%= button_to 'Agree', agree_statement_path(@statement), class: 'green' %>
       &nbsp;
@@ -18,6 +20,7 @@
     <% end %>
   <% end %>
 </div>
+<br />
 
 <div class="arguments-table">
   <% [true, false].each do |side| %>
@@ -27,17 +30,17 @@
         <% arguments.each do |argument| %>
           <div class="argument">
             <div><%= link_to argument.one_line, argument %></div>
-            <div>
+            <div class="item-actions">
               <span><%= argument.published? ? "by #{argument.user.username}" : 'not yet published.' %></span>
               <% if argument.published? && @statement.agreed_by?(current_user) == side %>
-                <div class="upvote">
-                  <% if current_user.upvoted_argument?(argument) %>
-                    <%= button_to 'Remove vote', remove_vote_argument_path(argument), class: 'secondary' %>
-                  <!-- limit to one vote per statement for now -->
-                  <% elsif current_user.votes_on_statement(argument.subject_statement).blank? %>
-                    <%= button_to 'Upvote', upvote_argument_path(argument), class: 'secondary' %>
-                  <% end %>
-                </div>
+                <% if current_user.upvoted_argument?(argument) %>
+                  <%= button_to 'Remove vote', remove_vote_argument_path(argument), class: 'link-button small-button' %>
+                <!-- limit to one vote per statement for now -->
+                <% else %>
+                  <%= button_to 'Upvote', upvote_argument_path(argument), class: 'link-button small-button' %>
+                <% end %>
+              <% elsif @statement.agreed_by?(current_user)&.send(:!=, side) %>
+                <%= link_to 'Counter', counter_argument_path(argument), class: 'link-button small-button' %>
               <% end %>
             </div>
           </div>
@@ -46,7 +49,6 @@
         <p>No responses.</p>
       <% end %>
       <br />
-      <%= link_to "New #{side ? '' : 'counter'}argument", new_argument_path(argument: { subject_statement_id: @statement, agree: side }), class: 'btn' %>
     </div>
 
   <% end %>

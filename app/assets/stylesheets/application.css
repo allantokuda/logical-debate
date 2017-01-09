@@ -21,11 +21,6 @@ body {
   margin-left: 120px;
 }
 
-a, a:visited, a:active {
-  color: #03f;
-  text-decoration: none;
-}
-
 a:hover {
   text-decoration: underline;
   background: none;
@@ -117,6 +112,18 @@ td, th {
   max-width: 800px;
 }
 
+.item-actions {
+  padding: 6px 0;
+}
+
+.item-actions form {
+  display: inline;
+}
+
+.item-actions > * {
+  margin-right: 20px;
+}
+
 .argument-actions {
   margin-top: 30px;
 }
@@ -160,10 +167,6 @@ td, th {
   margin-bottom: 20px;
 }
 
-.upvote {
-  margin: 4px 0;
-}
-
 .button, .button:hover, .button:active,
 .button, .button:hover, .button:active,
 input[type="button"], input[type="submit"], button {
@@ -181,6 +184,10 @@ input[type="button"], input[type="submit"], button {
   padding: 10px 20px !important;
 }
 
+.small-button {
+  padding: 2px 4px !important;
+}
+
 .red {
   background: #f44 !important;
 }
@@ -191,6 +198,21 @@ input[type="button"], input[type="submit"], button {
 
 .secondary {
   background: #888 !important;
+}
+
+a, a:visited, a:active {
+  color: #03f;
+  text-decoration: none;
+}
+
+input.link-button, a.link-button, a.link-button:hover {
+  display: inline;
+  background: none;
+  color: #03f;
+  border: 1px solid #03f;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: default;
 }
 
 .checkbox-list {

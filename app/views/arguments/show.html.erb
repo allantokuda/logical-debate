@@ -23,7 +23,7 @@
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
   <% end %>
-  <% if !my(@argument) && @argument.published? %>
+  <% if !my(@argument) && @argument.published? && @argument.subject.stance_of(current_user).present? %>
     <%= link_to 'Counter', counter_argument_path(@argument), class: 'btn' %>
     <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>

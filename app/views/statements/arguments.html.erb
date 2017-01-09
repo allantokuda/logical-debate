@@ -7,12 +7,14 @@
 
 <br /><br />
 
-<form target="" action="POST">
+<form action="<%= review_arguments_statement_path(@statement) %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="agree" value="<%= @side ? 1 : 0 %>">
   <% if (arguments = @statement.arguments.where(agree: @side, parent_argument_id: nil).published_or_by_user(current_user).vote_order).any? %>
     <p>Which of these reflect your reasons for <%= @side ? 'agree' : 'disagree' %>ing?
     <ul class="checkbox-list">
     <% arguments.each do |argument| %>
-      <% param = "argument#{argument.id}" %>
+      <% param = "arguments[#{argument.id}]" %>
       <li>
         <label>
           <input type="checkbox" name="<%= param %>" value="1">
@@ -27,7 +29,11 @@
         </label>
       </li>
     </ul>
-    <input type="submit">
+    <br />
+    <div class="argument-actions">
+      <input type="submit" value="Next">
+      <input type="submit" value="Cancel" class="link-button">
+    </div>
   <% else %>
     <p>No responses.</p>
   <% end %>

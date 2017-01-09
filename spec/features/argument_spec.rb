@@ -13,9 +13,8 @@ describe 'An argument' do
   end
 
   it 'can support a statement' do
-    click_link 'New argument'
+    click_button 'Agree'
     expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
-
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'supporting argument')).to be_present
@@ -25,9 +24,8 @@ describe 'An argument' do
   end
 
   it 'can counter a statement' do
-    click_link 'New counterargument'
+    click_button 'Disagree'
     expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
-
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'counterargument')).to be_present
@@ -36,7 +34,7 @@ describe 'An argument' do
   end
 
   it 'can include multiple premises' do
-    click_link 'New argument'
+    click_button 'Disagree'
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Add another premise'
     fill_in 'new_premise', with: 'Profit is king.'
@@ -47,7 +45,7 @@ describe 'An argument' do
   end
 
   it 'can be published immediately from the creation form' do
-    click_link 'New argument'
+    click_button 'Agree'
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Add another premise'
     fill_in 'new_premise', with: 'Profit is king.'
@@ -56,7 +54,7 @@ describe 'An argument' do
   end
 
   it 'can be published from the edit form after saving as draft' do
-    click_link 'New argument'
+    click_button 'Agree'
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Add another premise'
     fill_in 'new_premise', with: 'Profit is king.'
@@ -132,6 +130,7 @@ describe 'An argument' do
 
   context '(once published)' do
     let(:argument) { FactoryGirl.create :argument, subject_statement: statement, user: user, published_at: Time.zone.now - 5.minutes }
+    let!(:stance) { Stance.create(agree: true, statement: argument.subject_statement, user: user) }
     it 'can have upvotes applied and removed' do
       visit statement_path(argument.subject_statement)
       click_button 'Remove vote'
