@@ -3,8 +3,9 @@
     <% @statements.each do |statement| %>
       <tr>
         <td>
-          <%= link_to statement.text, statement, class: 'statement-heading' %>
-          <%= render 'state', statement: statement %>
+          <p class="statement-heading"><%= link_to statement.text, statement %></p>
+          <%= render 'state', subject: statement %>
+          <%= render 'date_and_author', subject: statement %>
         </td>
       </tr>
     <% end %>

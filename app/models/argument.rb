@@ -48,6 +48,11 @@ class Argument < ApplicationRecord
     premises.map(&:text).join(' ').presence || '(No comment)'
   end
 
+  def type
+    return 'clarification' if parent_argument
+    agree ? 'supporting argument' : 'counterargument'
+  end
+
   def agree_disagree(context = nil)
     word = agree ? 'agree' : 'disagree'
 
@@ -93,6 +98,12 @@ class Argument < ApplicationRecord
     return 'Unaddressed' if counters.none?
     return 'Supported' if counters.none?(&:win?)
     'Countered'
+  end
+
+  def icon
+    return 'checkmark' if win?
+    return 'x' if lose?
+    'question'
   end
 
   private

@@ -1,9 +1,4 @@
-<p class="statement-state">
-  <img src="/images/<%= statement.icon %>.png" alt="" />
-  <%= statement.state %>
-  <span>&nbsp;</span>
-  <span>&nbsp;</span>
-  <span class="date">
-  <%= I18n.l statement.created_at %>
-  </span>
-</p>
+<span class="state-indicator">
+  <img src="/images/<%= subject.icon %>.png" alt="" />
+  <%= subject.state %>
+</span>

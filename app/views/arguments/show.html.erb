@@ -1,16 +1,20 @@
-<%= render 'body', argument: @argument %>
-<%= render 'publish_date', argument: @argument %>
+<%= render 'heading', argument: @argument %>
+
+<p class="statement-heading"><%= @argument.one_line %></p>
+<%= render 'statements/state', subject: @argument %>
+<%= render 'statements/date_and_author', subject: @argument %>
+<span class="argument-explanation meta-text">(<%= @argument.type %>)</span>
 
 <% if @argument.child_arguments.present? %>
   <p>Replies:
     <% @argument.child_arguments.map do |child| %>
-      &nbsp; <%= link_to "#{child.user.username}'s reply", child %>
+      &nbsp; <%= link_to "#{child.user.username}'s clarification", child %>
     <% end %>
   </p>
 <% end %>
 
 <% if @argument.counters.any? %>
-  <p>Counters to that:</p>
+  <p>Counters:</p>
   <ul>
     <% @argument.counters.map do |counter| %>
       <li><%= link_to counter.text, statement_path(counter.id) %> (<%= counter.state %>)</li>
@@ -28,4 +32,7 @@
     <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>
   <%= link_to 'Back to Subject', @argument.subject, class: 'btn' %>
+  <% if @argument.parent_argument.present? %>
+  <%= link_to 'Back to parent argument', @argument.parent_argument, class: 'btn' %>
+  <% end %>
 </div>

@@ -41,15 +41,14 @@ describe 'Debate' do
 
     click_button 'Save'
     expect(argument1.reload.child_arguments).to be_present
-    expect(find('.argument-explanation', text: "You interpret Allan's argument as follows")).to be_present
-    expect(find('.premises-list li', text: "New premise 1")).to be_present
-    expect(find('.premises-list li', text: "New premise 2")).to be_present
+    expect(find('.argument-explanation', text: "clarification")).to be_present
+    expect(find('.statement-heading', text: "New premise 1. New premise 2.")).to be_present
   end
 
   it 'can navigate between arguments children/parents' do
     child_argument = FactoryGirl.create :argument, parent_argument: argument1, user: user2
     visit argument_path(child_argument)
-    click_link "Allan's argument"
-    click_link "Bobby's reply"
+    click_link "Back to parent argument"
+    click_link "Bobby's clarification"
   end
 end

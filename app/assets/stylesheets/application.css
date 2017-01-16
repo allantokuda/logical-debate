@@ -74,13 +74,23 @@ p {
 .statement-heading {
   font-size: medium;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 3px;
 }
 
-.statement-state {
-  margin: 0;
+.statement-heading a:hover,
+.argument-oneline a:hover{
+  text-decoration: none;
 }
-.statement-state img {
+
+.argument-oneline {
+	margin-bottom: 3px;
+}
+
+.state-indicator {
+  margin: 0;
+  margin-right: 10px;
+}
+.state-indicator img {
   vertical-align: bottom;
 }
 
@@ -103,7 +113,7 @@ td, th {
   vertical-align: top;
 }
 
-.date {
+.date, .meta-text {
   color: #888;
 }
 
@@ -167,8 +177,13 @@ td, th {
   margin-bottom: 20px;
 }
 
+a, a:visited, a:active {
+  color: #03f;
+  text-decoration: none;
+}
+
 .button, .button:hover, .button:active,
-.button, .button:hover, .button:active,
+a.button, a.button:hover, a.button:active,
 input[type="button"], input[type="submit"], button {
   display: inline-block;
   text-decoration: none;
@@ -198,11 +213,6 @@ input[type="button"], input[type="submit"], button {
 
 .secondary {
   background: #888 !important;
-}
-
-a, a:visited, a:active {
-  color: #03f;
-  text-decoration: none;
 }
 
 input.link-button, a.link-button, a.link-button:hover {

@@ -1,0 +1,5 @@
+<% date = subject.try(:published_at) || subject.created_at %>
+<span class="date">
+  <span title="<%= I18n.l date %>">submitted <%= time_ago_in_words(date) %> ago</span>
+  <span>by <%= subject.user&.username %></span>
+</span>

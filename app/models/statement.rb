@@ -20,7 +20,12 @@ class Statement < ApplicationRecord
   end
 
   def agreed_by?(user)
-    Stance.find_by(user: user, statement: self)&.agree
+    return true if user == self.user
+    stance_of(user)&.agree
+  end
+
+  def allow_action?(user)
+    stance_of(user).present? || user == self.user
   end
 
   def last_argument_by(user)

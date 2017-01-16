@@ -18,7 +18,7 @@ describe 'An argument' do
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'supporting argument')).to be_present
-    expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
+    expect(find('.statement-heading', text: 'Honesty is unprofitable.')).to be_present
     expect(statement.reload.arguments).to be_present
     expect(statement.arguments.first.user).to eq user
   end
@@ -29,7 +29,7 @@ describe 'An argument' do
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'counterargument')).to be_present
-    expect(find('.premises-list li', text: 'There exist examples of honest politicians.')).to be_present
+    expect(find('.statement-heading', text: 'There exist examples of honest politicians.')).to be_present
     expect(statement.reload.arguments).to be_present
   end
 
@@ -39,8 +39,8 @@ describe 'An argument' do
     click_button 'Add another premise'
     fill_in 'new_premise', with: 'Profit is king.'
     click_button 'Save Draft'
-    expect(find('.premises-list li', text: 'Honesty is unprofitable.')).to be_present
-    expect(find('.premises-list li', text: 'Profit is king')).to be_present
+    expect(find('.statement-heading', text: 'Honesty is unprofitable.')).to be_present
+    expect(find('.statement-heading', text: 'Profit is king')).to be_present
     expect(statement.reload.arguments.last.premises.count).to eq 2
   end
 
@@ -75,42 +75,36 @@ describe 'An argument' do
 
     describe 'its premises' do
       it 'can be edited' do
-        expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
-        expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
-        expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+        expect(find('.statement-heading', text: argument.premises[0].text)).to be_present
+        expect(find('.statement-heading', text: argument.premises[1].text)).to be_present
+        expect(find('.statement-heading', text: argument.premises[2].text)).to be_present
         click_link 'Edit'
         fill_in "premises[#{argument.premises[0].id}]", with: 'Premise one'
         fill_in "premises[#{argument.premises[1].id}]", with: 'Premise two'
         fill_in "premises[#{argument.premises[2].id}]", with: 'Premise three'
         click_button 'Save Draft'
-        expect(find('.premises-list li', text: 'Premise one')).to be_present
-        expect(find('.premises-list li', text: 'Premise two')).to be_present
-        expect(find('.premises-list li', text: 'Premise three')).to be_present
+        expect(find('.statement-heading', text: 'Premise one')).to be_present
+        expect(find('.statement-heading', text: 'Premise two')).to be_present
+        expect(find('.statement-heading', text: 'Premise three')).to be_present
       end
 
       it 'can be deleted by resending them blank' do
         click_link 'Edit'
         fill_in "premises[#{argument.premises[0].id}]", with: ''
         click_button 'Save Draft'
-        expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
-        expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
-        expect( all('.premises-list li').count).to eq 2
+        expect(find('.statement-heading', text: argument.premises[1].text)).to be_present
+        expect(find('.statement-heading', text: argument.premises[2].text)).to be_present
       end
     end
 
-    it 'shows on the statement page as an unpublished argument' do
-      visit statement_path(argument.subject_statement)
-      expect(find('.argument', text: argument.one_line)).to be_present
-    end
-
     it 'can be published, making it no longer editable' do
-      expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
-      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
-      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[0].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[1].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[2].text)).to be_present
       click_button 'Publish'
-      expect(find('.premises-list li', text: argument.premises[0].text)).to be_present
-      expect(find('.premises-list li', text: argument.premises[1].text)).to be_present
-      expect(find('.premises-list li', text: argument.premises[2].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[0].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[1].text)).to be_present
+      expect(find('.statement-heading', text: argument.premises[2].text)).to be_present
       expect(all('a', text: 'Edit')).to_not be_present
       expect(all('button', text: 'Publish')).to_not be_present
     end
