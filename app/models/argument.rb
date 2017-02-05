@@ -9,11 +9,11 @@ class Argument < ApplicationRecord
 
   # An argument can address its parent argument
   belongs_to :parent_argument, class_name: 'Argument', optional: true
-  has_many :child_arguments, class_name: 'Argument', foreign_key: :parent_argument_id
+  has_many :child_arguments, dependent: :destroy, class_name: 'Argument', foreign_key: :parent_argument_id
 
   has_many :premises, dependent: :destroy
-
-  has_many :counters, class_name: 'Statement', foreign_key: :countered_argument_id
+  has_many :votes,    dependent: :destroy
+  has_many :counters, dependent: :destroy, class_name: 'Statement', foreign_key: :countered_argument_id
 
   validates_inclusion_of :agree, in: [true, false]
   validate :has_subject
