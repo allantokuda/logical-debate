@@ -7,8 +7,6 @@
 <p>What is the problem with this argument?</p>
 
 <form action="<%= new_counter_argument_path(@argument) %>" method="get" id="fallacy_radio">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
   <% Fallacy.common.each do |fallacy| %>
     <label>
       <input type="radio" name="fallacy_name" value="<%= fallacy.name %>" onchange="$('#fallacy_radio').submit();" <%= @fallacy&.name == fallacy.name ? 'checked' : '' %>/>
@@ -25,6 +23,10 @@
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
   <input hidden="true" type="text" name="fallacy_name" value="<%= @fallacy&.name %>" />
+
+  <% if @fallacy.name == 'Uncivil' %>
+    <p style="color: red">This will be reported to moderators.</p>
+  <% end %>
 
   <% if @fallacy.fill_in.present? %>
     <br />
