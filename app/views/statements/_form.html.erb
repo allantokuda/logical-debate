@@ -1,22 +1,39 @@
 <%= form_for(statement) do |f| %>
-  <% if statement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
-
-      <ul>
-        <% statement.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <p>What do you wish to persuade others is true?</p>
   <div class="field">
-    <%= f.text_field :text, class: 'statement-line' %>
+    <%= f.text_field :text, class: 'statement-line', onkeyup: 'showHideVerifyCheckbox()' %>
   </div>
 
+
   <%= f.text_field :uuid, hidden: true %>
+
+  <div class="verify-sentence">
+    <p>Looks like you may have entered more than one sentence. Please remove any unnecessary punctuation, adjust wording, or verify that this is one sentence.</p>
+    <label class="verify-sentence">
+      <%= f.check_box :verified_one_sentence, class: 'verify-sentence' %>
+      <span>This is one sentence.</span>
+    </label>
+  </div>
+
+  <script>
+    function showHideVerifyCheckbox() {
+      if ($('.statement-line').val()
+           .split(/[.!?]/).map(function(s) { return s.trim() })
+           .filter(function(s) { return s.length > 0 })
+           .length > 1) {
+        $('.verify-sentence').show()
+      } else {
+        $('.verify-sentence').hide()
+      }
+    }
+
+    showHideVerifyCheckbox();
+  </script>
+
+  <% if statement.errors.any? %>
+    <p style="color: red" class="errors"><%= statement.errors.full_messages.join(', ') %></p>
+  <% end %>
+
   <%= f.check_box :top_level, hidden: true, checked: true %>
 
   <div class="argument-actions">

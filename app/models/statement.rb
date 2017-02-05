@@ -13,6 +13,9 @@ class Statement < ApplicationRecord
 
   validates_presence_of :text
 
+  validate :one_statement, on: :create
+  attr_accessor :verified_one_sentence
+
   def words
     text.split(' ').map(&:strip)
   end
@@ -63,6 +66,14 @@ class Statement < ApplicationRecord
     'question'
   end
 
+  def sentence_split
+    text.strip.scan(/[^.!?]+[.!?]+\s*/).map(&:strip)
+  end
+
+  def likely_multiple_statements?
+    sentence_split.count > 1
+  end
+
   private
 
   def agreements
@@ -75,5 +86,9 @@ class Statement < ApplicationRecord
 
   def add_period
     self.text += '.' if text.present? && !(text[-1] =~ /[.!?]/)
+  end
+
+  def one_statement
+    errors.add(:base, 'Please verify that this is only one sentence.') if likely_multiple_statements? && verified_one_sentence != '1'
   end
 end

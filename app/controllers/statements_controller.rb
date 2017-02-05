@@ -128,7 +128,7 @@ class StatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def statement_params
-      params.require(:statement).permit(:uuid, :text, :user_id, :parent_statement_id, :agree, :countered_argument_id, :top_level)
+      params.require(:statement).permit(:uuid, :text, :user_id, :parent_statement_id, :agree, :countered_argument_id, :top_level, :verified_one_sentence)
     end
 
     def review_params
