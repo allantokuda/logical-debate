@@ -143,7 +143,8 @@ class ArgumentsController < ApplicationController
         argument: @argument,
         statement: Statement.new(
           text: text,
-          user: current_user
+          user: current_user,
+          verified_one_sentence: '1' # temporary
         )
       )
     end

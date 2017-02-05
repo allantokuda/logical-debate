@@ -7,7 +7,7 @@ class CountersController < ApplicationController
   end
 
   def create
-    statement = Statement.new(countered_argument: @argument, text: counter_params[:custom_text].presence || @fallacy.as_statement, user: current_user)
+    statement = Statement.new(countered_argument: @argument, text: counter_params[:custom_text].presence || @fallacy.as_statement, user: current_user, verified_one_sentence: '1')
     if statement.save
       redirect_to statement, notice: 'Counter saved successfully.'
     else
