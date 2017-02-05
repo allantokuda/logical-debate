@@ -38,7 +38,7 @@ class Argument < ApplicationRecord
 
   def premise_input_placeholder
     if premises.none?
-      "Why do you #{agree_disagree}? Enter one premise per line."
+      "Why do you #{agree ? 'support' : "disagree with" } this statement? Enter one premise per line."
     else
       "Expand on your other #{'premise'.pluralize(premises.count)} to form an argument."
     end

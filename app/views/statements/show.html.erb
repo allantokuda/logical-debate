@@ -8,7 +8,8 @@
 
 <div class="stance argument-actions">
   <% if @statement.user == current_user %>
-    <span class="date">Published by you</span>
+    <span class="date">Published by you</span>. &nbsp;
+    <%= link_to "Support your statement", new_argument_path(argument: { subject_statement_id: @statement, agree: true }), class: 'btn' %>
   <% else %>
     <% if @stance %>
       You <%= @stance %>. &nbsp;
