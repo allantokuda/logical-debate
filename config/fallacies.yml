@@ -1,0 +1,799 @@
+-
+  names:
+    - Uncivil
+  description: uses disrespectful or inflammatory language (will be reported).
+  common_index: 0
+  formal: false
+-
+  names:
+    - False premises
+  description: one or more of the premises is false or unsupported.
+  common_index: 1
+-
+  names:
+    - Appeal to the stone
+    - Argumentum ad lapidem (latin)
+  description: dismisses something as absurd without demonstrating proof for its absurdity.
+  about: ridiculousness
+  formal: false
+-
+  names:
+    - Ambiguity
+  description: expresses ideas that can be interpreted more than one way.
+  formal: false
+-
+  names:
+    - Argument from ignorance
+    - Appeal to Ignorance
+    - Argumentum ad ignorantiam (latin)
+  description: assumes that something is true because it has not been or cannot be proven false, or vice versa.
+  formal: false
+-
+  names:
+    - Argument from incredulity
+    - Appeal to Common Sense
+  description: assumes something cannot be true because it is difficult to imagine how it could be true.
+  formal: false
+-
+  names:
+    - Argument from repetition
+    - Argumentum ad nauseam (latin)
+    - Argumentum ad infinitum (latin)
+  description: assumes something is true because it has been stated many times.
+  formal: false
+-
+  names:
+    - Argument from silence
+    - Argumentum ex silentio (latin)
+  description: concludes based on the absence of evidence, rather than the existence of evidence.
+  formal: false
+-
+  names:
+    - Argument to moderation
+    - False compromise
+    - Middle ground
+    - Fallacy of the mean
+    - Argumentum ad temperantiam (latin)
+  description: assumes that the compromise between two positions is always correct.
+  about: middle ground
+  formal: false
+-
+  names:
+    - Ergo Decedo
+  description: where a critic's perceived affiliation is seen as the underlying reason for the criticism and the critic is asked to stay away from the issue altogether.
+  formal: false
+-
+  names:
+    - Begging the question
+    - Petitio principii (latin)
+  description: provides the conclusion of the argument as a premise.
+  common_index: 6
+  formal: false
+-
+  names:
+    - Shifting the burden of proof
+    - Onus probandi (latin)
+  description: assumes something is true unless someone can offer proof that it is false
+  about: needing proof
+  examples:
+    - I need not prove my claim, you must prove it is false.
+  formal: false
+-
+  names:
+    - Circular reasoning
+    - Assuming the conclusion
+    - Circulus in demonstrando (latin)
+  description: begins an argument with the final conclusion itself.
+  formal: false
+-
+  names:
+    - Circular cause and consequence
+  description: claims that a consequence of a phenomenon is its root cause.
+  formal: false
+-
+  names:
+    - Continuum fallacy
+    - Fallacy of the Beard
+    - Line-Drawing Fallacy
+    - Sorites Fallacy
+    - Fallacy of the Heap, Bald Man Fallacy
+  description: dismisses the idea because it is imprecise.
+  formal: false
+-
+  names:
+    - Suppressed correlative
+  description: redefines a correlative so that one alternative is made impossible.
+  formal: false
+-
+  names:
+    - Divine fallacy
+    - Argument from incredulity
+  description: argues that because something is so incredible/amazing/ununderstandable, it must be the result of superior, divine, alien or paranormal agency.
+  about: God
+  formal: false
+-
+  names:
+    - Double counting
+  description: counts events or occurrences more than once in probabilistic reasoning, which leads to the sum of the probabilities of all cases exceeding unity.
+  formal: false
+-
+  names:
+    - Equivocation
+  description: uses a term with more than one meaning, and glosses over which meaning is intended.
+  formal: false
+-
+  names:
+    - Ambiguous middle term
+  description: equivocates the middle term in a syllogism.
+  formal: false
+-
+  names:
+    - Definitional retreat
+  description: changes the meaning of a word to deal with an objection raised against the original wording.
+  formal: false
+-
+  names:
+    - Ecological fallacy
+  description: assumes the nature of specific individuals is based solely upon aggregate statistics collected for a group to which those individuals belong.
+  formal: false
+-
+  names:
+    - Etymological fallacy
+  description: assumes that the original or historical meaning of a word or phrase is similar to its present-day meaning.
+  about: words
+  formal: false
+-
+  names:
+    - Fallacy of accent
+  description: changes the meaning of a sentence by placing an unusual emphasis on particular words, or by making it unclear which words are emphasized.
+  about: words
+  formal: false
+-
+  names:
+    - Fallacy of composition
+  description: assumes that something true of part of a whole must also be true of the whole.
+  about: part of a whole
+  formal: false
+-
+  names:
+    - Fallacy of division
+  description: assumes that something true of a thing must also be true of all or some of its parts.
+  about: part of a whole
+  formal: false
+-
+  names:
+    - False attribution
+  description: appeals to an irrelevant, unqualified, unidentified, biased or fabricated source.
+  formal: false
+-
+  names:
+    - Quoting out of context
+    - Contextomy
+  description: distorts the meaning of words by quoting them outside of their original context.
+  formal: false
+-
+  names:
+    - False authority
+    - Single authority
+  description: uses an expert of dubious credentials, or uses only one opinion to sell a product or idea. Related to the appeal to authority fallacy.
+  formal: false
+-
+  names:
+    - Black or white
+    - False dilemma
+    - False dichotomy
+    - Fallacy of bifurcation
+  description: assumes two alternatives are the only possiblities, when in reality there may be more.
+  common_index: 7
+  formal: false
+-
+  names:
+    - False equivalence
+  description: treats two different things as the same because they are similar or related.
+  about: similarity
+  formal: false
+-
+  names:
+    - Fallacy of many questions
+    - Complex question
+    - Fallacy of presupposition
+    - Loaded question
+    - Plurium interrogationum
+  description: asks a question that presupposes something that has not been proven or accepted by all the people involved.
+  formal: false
+-
+  names:
+    - Fallacy of the single cause
+    - Causal oversimplification
+  description: assumes that there is only one cause of an outcome when in reality there may be many causes.
+  formal: false
+-
+  names:
+    - Furtive fallacy
+  description: asserts that outcomes have been caused by the malfeasance of decision makers.
+  about: bad outcomes
+  formal: false
+-
+  names:
+    - Gambler's fallacy
+  description: states that separate, independent events can affect the likelihood of another random event.
+  examples:
+    - If a fair coin lands on heads 10 times in a row, the belief that it is due to the number of times it had previously landed on tails is incorrect.
+  formal: false
+-
+  names:
+    - Historian's fallacy
+  description: assumes that decision makers of the past viewed events from the same perspective and having the same information as those subsequently analyzing the decision. Not to be confused with presentism, which is a mode of historical analysis in which present-day ideas, such as moral standards, are projected into the past.
+  formal: false
+-
+  names:
+    - Inflation of conflict
+  description: questions the legitimacy of an entire field of expertise because those experts disagree on a particular point.
+  formal: false
+-
+  names:
+    - If-by-whiskey
+  description: supports both sides of an issue using terms that are selectively emotionally sensitive.
+  formal: false
+-
+  names:
+    - Incomplete comparison
+  description: provides insufficient information to make a complete comparison.
+  about: similarity
+  formal: false
+-
+  names:
+    - Inconsistent comparison
+  description: uses different methods of comparison, leaving one with a false impression of the whole comparison.
+  about: similarity
+  formal: false
+-
+  names:
+    - Intentionality fallacy
+  description: insists that the ultimate meaning of an expression must be consistent with the intention of the person from whom the communication originated.
+  examples:
+    - A work of fiction that is widely received as a blatant allegory must necessarily not be regarded as such if the author intended it not to be so.
+  formal: false
+-
+  names:
+    - Irrelevant conclusion
+    - Missing the point
+    - Ignoratio elenchi (latin)
+  description: fails to address the issue in question, though the argument may in itself be valid.
+  formal: false
+-
+  names:
+    - Kettle logic
+  description: defends a position using multiple, jointly inconsistent arguments.
+  formal: false
+-
+  names:
+    - Ludic fallacy
+  description: supposes that the outcomes of non-regulated random occurrences can be encapsulated by a statistic. Fails to take into account \"unknown unknowns\" in determining the probability of events taking place.
+  formal: false
+-
+  names:
+    - McNamara fallacy
+    - Quantitative Fallacy
+  description: makes a decision based only on quantitative observations, discounting all other considerations.
+  formal: false
+-
+  names:
+    - Moral high ground fallacy
+  description: assumes a holier-than-thou attitude to win an argument.
+  formal: false
+-
+  names:
+    - Moralistic fallacy
+  description: infers factual conclusions from purely evaluative premises in violation of fact-value distinction.
+  formal: false
+-
+  names:
+    - Moving the goalposts
+    - Raising the bar
+  description: dismisses evidence presented and demands other evidence.
+  formal: false
+-
+  names:
+    - Nirvana fallacy
+    - Perfect solution fallacy
+  description: rejects solutions to problems because they are not perfect.
+  formal: false
+-
+  names:
+    - After this, therefore because of this
+    - Faulty cause/effect
+    - Coincidental correlation
+    - Correlation without causation
+    - Post hoc ergo propter hoc (latin)
+  fill_in: assumes that correlation between [two variables] implies that one causes the other.
+  description: assumes that correlation between two variables implies that one causes the other.
+  about: cause and effect
+  examples:
+    - X happened, then Y happened; therefore X caused Y.
+    - The Loch Ness Monster has been seen in this loch. Something tipped our boat over; it's obviously the Loch Ness Monster.
+  formal: false
+-
+  names:
+    - Proof by verbosity
+    - Proof by intimidation
+    - Argumentum verbosium (latin)
+    - Shotgun argumentation
+  description: submits an argument too complex and verbose to reasonably deal with in all its intimate details.
+  formal: false
+-
+  names:
+    - Prosecutor's fallacy
+  description: assumes that because A low probability of false matches does not mean a low probability of some false match being found.
+  about: probability
+  formal: false
+-
+  names:
+    - Proving too much
+  description: discredits an idea by reshaping the argument so that, if valid, it leads to an additional undesirable conclusion.
+  about: bad outcomes
+  formal: false
+-
+  names:
+    - Psychologist's fallacy
+  description: presupposes the objectivity of one's own perspective when analyzing a behavioral event.
+  formal: false
+-
+  names:
+    - Red herring
+  fill_in: distracts from the topic by [introducing an unrelated topic].
+  description: distracts from the topic by introducing an unrelated topic.
+  common_index: 2
+  formal: false
+-
+  names:
+    - Referential fallacy
+  description: assumes that all words refer to existing physical things and not to abstract ideas.
+  formal: false
+-
+  names:
+    - Regression fallacy
+  description: assumes that something has returned to normal because of corrective actions taken while it was abnormal. Fails to account for natural fluctuations.
+  formal: false
+-
+  names:
+    - Reification
+    - Concretism
+    - Hypostatization
+    - Fallacy of misplaced concreteness
+  description: treats an abstract idea as if it were a concrete, real event or physical entity.
+  formal: false
+-
+  names:
+    - Retrospective determinism
+  description: argues that because an event has occurred under some circumstance, the circumstance must have made its occurrence inevitable.
+  formal: false
+-
+  names:
+    - Special pleading
+  fill_in: says [a particular example] is an somehow a special exemption to [the rule].
+  description: cites an exemption to a rule or principle without justifying the exemption.
+  formal: false
+-
+  names:
+    - Wrong direction
+  fill_in: says [one thing] causes [the other], but the opposite is true.
+  description: reverses cause and effect. The cause is said to be the effect and vice versa.
+  formal: false
+-
+  names:
+    - Accident
+  fill_in: ignores [an exception], which should not be ignored for a generalization.
+  description: ignores an exception to a generalization.
+  formal: false
+-
+  names:
+    - No true Scotsman
+  description: makes a generalization true by changing the generalization to exclude a counterexample.
+  formal: false
+-
+  names:
+    - Cherry picking
+    - Suppressed evidence
+    - Incomplete evidence
+  description: points at individual cases or data that seem to confirm a particular position, while ignoring a significant portion of related cases or data that may contradict that position.
+  about: specific examples
+  formal: false
+-
+  names:
+    - Survivorship bias
+  description: focuses attention on a small number of successes while ignoring a large number of failures.
+  formal: false
+-
+  names:
+    - False analogy
+  description: makes an analogy that is poorly suited to the argument.
+  about: similarity
+  common_index: 3
+  formal: false
+-
+  names:
+    - Hasty generalization
+    - Fallacy of insufficient statistics
+    - Fallacy of insufficient sample
+    - Fallacy of the lonely fact
+    - Leaping to a conclusion
+    - Hasty induction
+    - Inductive fallacy
+    - Secundum quid (latin)
+    - Converse accident
+  description: bases a broad conclusion on a small sample. Reaches a conclusion from premises that only lightly support it.
+  about: specific examples
+  formal: false
+-
+  names:
+    - Misleading vividness
+  description: describes an occurrence in vivid detail, even if it is an exceptional occurrence, to convince someone that it is a problem.
+  formal: false
+-
+  names:
+    - Thought-terminating cliché
+  fill_in: says "[a cliché]" in an attempt to shut down critical thought and meaningful discussion.
+  description: uses a common phrase, sometimes passing as folk wisdom, to discourage critical thought and meaningful discussion.
+  formal: false
+-
+  names:
+    - Ad hominem
+  description: attacks the arguer instead of the argument.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Poisoning the well
+  fill_in: assumes that because [a particular person] supported this idea, that the idea is wrong.
+  description: presents adverse information about a person to discredit everything that the person says.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Abusive fallacy
+  description: verbally abuses the opponent rather than arguing about the originally proposed argument.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Tone policing
+  description: focuses on the emotion behind the message rather than the message itself as a discrediting tactic.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Appeal to motive
+  fill_in: "tries to question [a person]'s motives instead of staying on topic."
+  description: dismisses something by calling into question the motives of its proposer.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Appeal to authority
+    - Argumentum ab auctoritate (latin)
+  description: deems an assertion true because of the position or authority of the proposer.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Appeal to accomplishment
+  description: deems an assertion true or false based on the accomplishments of the proposer.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Appeal to consequences
+    - Argumentum ad consequentiam (latin)
+  fill_in: assumes that the idea is true or false because its consequences would be [good or bad].
+  description: supports a conclusion with a premise that has some unrelated positive or negative consequences.
+  about: bad outcomes
+  formal: false
+-
+  names:
+    - Appeal to emotion
+  description: manipulates emotions rather than using valid reasoning.
+  about: emotions
+  formal: false
+-
+  names:
+    - Appeal to fear
+  description: generates fear and prejudice towards the opposing side.
+  about: emotions
+  formal: false
+-
+  names:
+    - Appeal to flattery
+  description: uses flattery to gather support.
+  about: emotions
+  formal: false
+-
+  names:
+    - Appeal to pity
+    - Argumentum ad misericordiam (latin)
+  description: induces pity to sway opponents.
+  about: emotions
+  formal: false
+-
+  names:
+    - Appeal to ridicule
+  description: presents the idea in a way that makes it appear ridiculous.
+  about: ridiculousness
+  formal: false
+-
+  names:
+    - Appeal to spite
+  description: exploits people's bitterness or spite towards an opposing party.
+  about: emotions
+  formal: false
+-
+  names:
+    - Wishful thinking
+  description: assumes things must be a certain way based on what is pleasing to imagine, rather than according to evidence or reason.
+  formal: false
+-
+  names:
+    - Appeal to nature
+  description: reaches its conclusion based solely on whether the subject of judgment is 'natural' or 'unnatural'.
+  formal: false
+-
+  names:
+    - Appeal to novelty
+    - Argumentum novitatis, argumentum ad antiquitatis (latin)
+  description: claims the idea is superior or better solely because it is new or modern.
+  formal: false
+-
+  names:
+    - Appeal to poverty
+    - Argumentum ad Lazarum (latin)
+  description: supports or refutes the argument because the arguer is poor.
+  about: money
+  formal: false
+-
+  names:
+    - Appeal to wealth
+    - Argumentum ad crumenam (latin)
+  description: supports or refutes the argument because the arguer is wealthy.
+  about: money
+  formal: false
+-
+  names:
+    - Appeal to tradition
+    - Argumentum ad antiquitatem (latin)
+  description: supports the idea solely because it has long been held to be true.
+  formal: false
+-
+  names:
+    - Argumentum ad baculum (latin)
+    - Appeal to the stick
+    - Appeal to force
+    - Appeal to threat
+  description: threatens opponents of the idea.
+  formal: false
+-
+  names:
+    - Argumentum ad populum (latin)
+    - Appeal to widespread belief
+    - Bandwagon argument
+    - Appeal to the majority
+    - Appeal to the people
+  description: claims the idea is true or good solely because many people believe it to be so.
+  formal: false
+-
+  names:
+    - Association fallacy
+    - Guilt by association
+    - Honor by association
+  description: argues that because two things share some property, they are the same.
+  formal: false
+-
+  names:
+    - Bulverism
+    - Psychogenetic fallacy
+  description: assumes that the idea must be false because it comes from a biased person.
+  about: the person making the argument
+  formal: false
+-
+  names:
+    - Chronological snobbery
+  description: dismisses the idea because it was commonly held when something else, clearly false, was also commonly held.
+  about: history
+  formal: false
+-
+  names:
+    - Fallacy of relative privation
+    - Not as bad as
+  description: dismisses the idea due to the existence of more important problems in the world, regardless of whether those problems bear relevance to the initial argument.
+  examples:
+    - That's a First-World Problem.
+  formal: false
+-
+  names:
+    - Genetic fallacy
+  description: suggests a conclusion based solely on something or someone's origin without considering its current meaning or context.
+  about: history
+  formal: false
+-
+  names:
+    - Judgmental language
+  description: uses insulting or pejorative language to influence the recipient's judgment.
+  about: emotions
+  formal: false
+-
+  names:
+    - Naturalistic fallacy
+    - Is–ought fallacy
+  description: appeals to a definition of \"goodness\" based on natural properties or God's will.
+  formal: false
+-
+  names:
+    - Pooh-pooh
+  description: dismisses an argument as unworthy of serious consideration.
+  about: ridiculousness
+  formal: false
+-
+  names:
+    - Straw man
+  fill_in: misrepresents the argument as if it were saying [something different which is easier to attack].
+  description: misrepresents an argument to make it easier to attack.
+  formal: false
+-
+  names:
+    - Texas sharpshooter
+  description: asserts a cause explaining a cluster of data.
+  formal: false
+-
+  names:
+    - Tu quoque (latin)
+    - You too
+    - Appeal to hypocrisy
+    - I'm rubber and you're glue
+  description: disregards a position because its proponent fails to act consistently with that position.
+  about: hypocrisy
+  formal: false
+-
+  names:
+    - Two wrongs make a right
+  description: assumes that if one wrong is committed, an equal but opposite wrong will cancel it out.
+  formal: false
+-
+  names:
+    - Vacuous truth
+  description: is technically true but meaningless.
+  examples:
+    - no A in B has C, when there are no A in B.
+    - No mobile phones in the room are on. (Stated when there are no mobile phones in the room at all.)
+  formal: false
+-
+  names:
+    - Appeal to self-evident truth
+  description: claims that a proposition is self-evidently true, so needs no further supporting evidence. If self-evidence is actually the basis for the claim, it is arbitrary and the opposite (a contradictory or contrary statement) is equally true. In many cases, however, the basis is really some kind of unstated and unexamined observation or assumption.
+  formal: false
+-
+  names:
+    - Broken window fallacy
+  description: disregards lost opportunity costs (typically non-obvious, difficult to determine or otherwise hidden) associated with destroying property of others, or other ways of externalizing costs onto others.
+  examples:
+    - Breaking a window is good because it generates income for a window fitter. (Disregards that the money spent on the new window cannot now be spent on new shoes.)
+  formal: false
+-
+  names:
+    - Definist fallacy
+  description: involves the confusion between two notions by defining one in terms of the other.
+  formal: false
+-
+  names:
+    - Slippery slope
+    - Thin edge of the wedge
+    - Camel's nose
+  description: asserts that a chain of events is likely to occur if the first event occurs.
+  about: bad outcomes
+  examples:
+    - if person x does y then z would occur, leading to q, leading to w, leading to e.
+  common_index: 8
+  formal: false
+-
+  names:
+    - Non sequitur
+  description: the conclusion does not follow from the premises.
+  common_index: 9
+  formal: true
+-
+  names:
+    - Anecdotal fallacy
+  description: uses a personal experience or examples to extrapolate without a statistically significant number of cases that could form scientifically compelling evidence.
+  about: specific examples
+  formal: true
+-
+  names:
+    - Appeal to probability
+  description: takes something for granted because it would probably be the case, or might be the case.
+  about: probability
+  formal: true
+-
+  names:
+    - Argument from fallacy
+    - Fallacy fallacy
+  description: assumes that if an argument for some conclusion is fallacious, then the conclusion is false.
+  formal: true
+-
+  names:
+    - Base rate fallacy
+  description: makes a probability judgment based on conditional probabilities, without taking into account the effect of prior probabilities.
+  about: probability
+  formal: true
+-
+  names:
+    - Conjunction fallacy
+  description: assumes that an outcome simultaneously satisfying multiple conditions is more probable than an outcome satisfying a single one of them.
+  formal: true
+-
+  names:
+    - Masked-man fallacy
+    - Illicit substitution of identicals
+  description: substitutes identical things in a true statement, making it a false statement.
+  formal: true
+-
+  names:
+    - Affirming a disjunct
+  description: concludes that one disjunct of a logical disjunction must be false because the other disjunct is true.
+  examples:
+    - A or B; A, therefore not B.
+  formal: true
+-
+  names:
+    - Affirming the consequent
+  description: claims that the antecedent in an indicative conditional is true because the consequent is true.
+  examples:
+    - if A, then B; B, therefore A.
+  formal: true
+-
+  names:
+    - Denying the antecedent
+  description: claims that the consequent in an indicative conditional is false because the antecedent is false
+  examples:
+    - if A, then B; not A, therefore not B.
+  formal: true
+-
+  names:
+    - Existential fallacy
+  description: reaches a particular conclusion from a universal premise.
+  formal: true
+-
+  names:
+    - Affirmative conclusion from a negative premise
+    - Illicit negative
+  description: when a categorical syllogism has a positive conclusion, but at least one negative premise.
+  formal: true
+-
+  names:
+    - Fallacy of exclusive premises
+  description: a categorical syllogism that is invalid because both of its premises are negative.
+  formal: true
+-
+  names:
+    - Fallacy of four terms
+    - Quaternio terminorum (latin)
+  description: a categorical syllogism that has four terms.
+  formal: true
+-
+  names:
+    - Illicit major
+  description: a categorical syllogism that is invalid because its major term is not distributed in the major premise but distributed in the conclusion.
+  formal: true
+-
+  names:
+    - Illicit minor
+  description: a categorical syllogism that is invalid because its minor term is not distributed in the minor premise but distributed in the conclusion.
+  formal: true
+-
+  names:
+    - Negative conclusion from affirmative premises
+    - Illicit affirmative
+  description: when a categorical syllogism has a negative conclusion but affirmative premises.
+  formal: true
+-
+  names:
+    - Fallacy of the undistributed middle
+  description: the middle term in a categorical syllogism is not distributed.
+  formal: true

@@ -14,7 +14,7 @@ describe 'An argument' do
 
   it 'can support a statement' do
     click_button 'Agree'
-    expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
+    expect(find('.context', text: "Regarding: #{statement.text}")).to be_present
     fill_in 'new_premise', with: 'Honesty is unprofitable.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'supporting argument')).to be_present
@@ -25,7 +25,7 @@ describe 'An argument' do
 
   it 'can counter a statement' do
     click_button 'Disagree'
-    expect(find('.argument-heading', text: "Regarding: #{statement.text}")).to be_present
+    expect(find('.context', text: "Regarding: #{statement.text}")).to be_present
     fill_in 'new_premise', with: 'There exist examples of honest politicians.'
     click_button 'Save Draft'
     expect(find('.argument-explanation', text: 'counterargument')).to be_present

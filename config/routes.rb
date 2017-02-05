@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       post :upvote
       post :remove_vote
       get :suggest_new
-      get :counter
     end
   end
 
@@ -28,4 +27,7 @@ Rails.application.routes.draw do
       get :disagree
     end
   end
+
+  get 'arguments/:id/counter', to: 'counters#new', as: 'new_counter_argument'
+  post 'arguments/:id/counter', to: 'counters#create', as: 'create_counter_argument'
 end

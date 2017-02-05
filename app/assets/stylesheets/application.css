@@ -71,6 +71,10 @@ p {
   padding-bottom: 30px;
 }
 
+.context {
+  font-size: smaller;
+}
+
 .statement-heading {
   font-size: medium;
   margin-top: 0;
@@ -195,6 +199,10 @@ input[type="button"], input[type="submit"], button {
   padding: 5px 10px;
 }
 
+input[type="button"][disabled], input[type="submit"][disabled], button[disabled] {
+  background: #ddd;
+}
+
 .large-button {
   padding: 10px 20px !important;
 }
@@ -240,6 +248,18 @@ input.link-button, a.link-button, a.link-button:hover {
 
 .checkbox-list label:hover {
   background: #eee;
+}
+
+
+.editable {
+  border: 1px solid #aaa;
+  padding: 7px;
+}
+
+.highlight {
+  min-width: 50px;
+  background: yellow;
+  padding: 2px;
 }
 
 

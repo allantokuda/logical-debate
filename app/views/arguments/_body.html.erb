@@ -1,3 +1,3 @@
-<%= render 'heading', argument: argument %>
-<%= render 'premises', argument: argument.parent_argument if argument.parent_argument.present? %>
-<%= render 'premises', argument: argument %>
+<%= render 'arguments/heading', argument: argument %>
+<%= render 'arguments/premises', argument: argument.parent_argument if argument.parent_argument.present? %>
+<%= render 'arguments/premises', argument: argument %>

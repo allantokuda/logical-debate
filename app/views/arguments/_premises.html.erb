@@ -1,11 +1,10 @@
 <p class="argument-explanation">
   <% if argument.parent_argument.present? && !local_assigns[:no_recurse] %>
     <%= my(argument) ? 'You interpret' : "#{argument.user.username} interprets" %>
-    <%= link_to(my(argument.parent_argument) ? 'your argument' : "#{argument.parent_argument.user.username}'s argument", argument.parent_argument) %> as follows
+    <%= link_to(my(argument.parent_argument) ? 'your argument' : "#{argument.parent_argument.user.username}'s argument", argument.parent_argument) %> as follows:
   <% else %>
-    <%= my(argument) ? 'Your' : "#{argument.user.username}'s" %> <%= argument.agree ? 'supporting ' : 'counter' %>argument
+    <%= my(argument) ? 'Your' : "#{argument.user.username}'s" %> <%= argument.agree ? 'supporting ' : 'counter' %>argument:
   <% end %>
-  (<%= argument.state %>):
 </p>
 
 <% if argument.premises.any? %>

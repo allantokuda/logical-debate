@@ -11,6 +11,8 @@ class Statement < ApplicationRecord
 
   belongs_to :countered_argument, class_name: 'Argument', optional: true
 
+  validates_presence_of :text
+
   def words
     text.split(' ').map(&:strip)
   end

@@ -1,0 +1,19 @@
+-
+  names:
+    - Irritating
+    - Annoying
+    - Aggravating
+  description: uses words intended to be a nuisance instead of focusing on the issue.
+  common_index: 0
+-
+  names:
+    - Nice
+    - Sweet
+    - Kind
+  description: uses words intended to persuade with kindness instead of focusing on the issue.
+-
+  names:
+    - Mean
+    - Rude
+  description: uses words intended to upset people instead of focusing on the issue.
+

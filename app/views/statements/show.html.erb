@@ -44,7 +44,7 @@
                   <%= button_to 'Upvote', upvote_argument_path(argument), class: 'button-link' %>
                 <% end %>
               <% elsif @statement.agreed_by?(current_user) == !side %>
-                <%= link_to 'Counter', counter_argument_path(argument) %>
+                <%= link_to 'Counter', new_counter_argument_path(argument) %>
               <% end %>
             </div>
           </div>

@@ -20,9 +20,10 @@ describe 'Debate' do
     click_button 'Disagree'
     click_button 'Next'
     click_link 'Counter'
-    fill_in 'statement_text', with: 'This is a straw man argument. You misrepresented their argument to make it easier to attack.'
+    find('label', text: 'Irritating').click
+    click_button 'Next'
     click_button 'Publish'
-    expect(find('.statement-heading', text: 'This is a straw man argument')).to be_present
+    expect(find('.statement-heading', text: 'Irritating')).to be_present
     expect(find('.countered-argument', text: argument1.one_line)).to be_present
   end
 

@@ -1,0 +1,43 @@
+<%= render 'arguments/heading', argument: @argument %>
+
+<p class="statement-heading"><%= @argument.one_line %></p>
+
+<br />
+
+<p>What is the problem with this argument?</p>
+
+<form action="<%= new_counter_argument_path(@argument) %>" method="get" id="fallacy_radio">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <% Fallacy.common.each do |fallacy| %>
+    <label>
+      <input type="radio" name="fallacy_name" value="<%= fallacy.name %>" onchange="$('#fallacy_radio').submit();" <%= @fallacy&.name == fallacy.name ? 'checked' : '' %>/>
+      <b><%= fallacy.name %></b>:
+      <%= fallacy.description %>
+    </label><br />
+  <% end %>
+
+  <% if Rails.env.test? %><input type="submit" value="Next"><% end %>
+
+</form>
+
+<form action="<%= create_counter_argument_path(@argument) %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <input hidden="true" type="text" name="fallacy_name" value="<%= @fallacy&.name %>" />
+
+  <% if @fallacy.fill_in.present? %>
+    <br />
+    <p>OPTIONAL: You may edit your statement to be more specific. Please keep to <u>one sentence</u>.</p>
+    <p class="editable" id="editable" contenteditable="true" oninput="$('#custom_text').val($('#editable').text().replace(/\s+/g,' ').trim())">
+      <% @fallacy.fill_in_structure.each { |part| %><span class="<%= part[:highlight] ? 'highlight' : '' %>"><%= part[:text] %></span><% } %>
+    </p>
+    <textarea hidden="true" style="width: 600px; height:50px;" id="custom_text" name="custom_text"></textarea>
+  <% else %>
+  <% end %>
+
+  <div class="argument-actions">
+    <input type="submit" value="Publish" <%= @fallacy.name.present? ? '' : 'disabled'%>/>
+    <%= link_to 'Cancel', @argument %>
+  </div>
+</form>
