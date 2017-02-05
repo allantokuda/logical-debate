@@ -13,7 +13,7 @@
   <% else %>
     <% if @stance %>
       You <%= @stance %>. &nbsp;
-      <%= button_to 'Clear', no_stance_statement_path(@statement), class: 'link-button small-button' %>
+      <%= button_to 'Change your stance', no_stance_statement_path(@statement), class: 'link-button small-button' %>
       <%= link_to "New #{@stance.agree ? '' : 'counter'}argument", new_argument_path(argument: { subject_statement_id: @statement, agree: @stance.agree }), class: 'btn' %>
     <% else %>
       <%= button_to 'Agree', agree_statement_path(@statement), class: 'green' %>
