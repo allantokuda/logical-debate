@@ -42,7 +42,7 @@ class Fallacy
   end
 
   def fill_in_structure
-    "#{name}: #{fill_in}".scan(/\[[^\[\]]+\]|[^\[\]]+/).map do |part|
+    "#{name}: #{fill_in || description}".scan(/\[[^\[\]]+\]|[^\[\]]+/).map do |part|
       {
         highlight: part[0] == '[',
         text: part.delete('[').delete(']')

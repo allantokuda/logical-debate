@@ -28,7 +28,7 @@
     <p style="color: red">This will be reported to moderators.</p>
   <% end %>
 
-  <% if @fallacy.fill_in.present? %>
+  <% if @fallacy.name.present? %>
     <br />
     <p>OPTIONAL: You may edit your statement to be more specific. Please keep to <u>one sentence</u>.</p>
     <p class="editable" id="editable" contenteditable="true" oninput="$('#custom_text').val($('#editable').text().replace(/\s+/g,' ').trim())">
