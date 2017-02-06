@@ -13,6 +13,10 @@
   </p>
 <% end %>
 
+<% if @argument.prompt_user_for_stance? current_user %>
+  <p>To address this argument, please first indicate your stance on <%= link_to 'the subject', @argument.subject %>.</p>
+<% end %>
+
 <% if @argument.counters.any? %>
   <p>Counters:</p>
   <ul>
@@ -27,7 +31,7 @@
     <%= button_to 'Publish', publish_argument_path(@argument) %>
     <%= link_to 'Edit', edit_argument_path(@argument), class: 'btn' %>
   <% end %>
-  <% if !my(@argument) && @argument.published? && @argument.subject.stance_of(current_user).present? %>
+  <% if @argument.actionable_to_user? current_user %>
     <%= link_to 'Counter', new_counter_argument_path(@argument), class: 'btn' %>
     <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' %>
   <% end %>

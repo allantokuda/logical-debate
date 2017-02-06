@@ -63,6 +63,14 @@ class Argument < ApplicationRecord
     end
   end
 
+  def actionable_to_user?(subject_user)
+    published? && user != subject_user && subject.stance_of(subject_user).present?
+  end
+
+  def prompt_user_for_stance?(subject_user)
+    published? && user != subject_user && !subject.stance_of(subject_user).present?
+  end
+
   def can_be_published?
     premises.any?
   end
