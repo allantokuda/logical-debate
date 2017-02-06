@@ -44,7 +44,7 @@ class Argument < ApplicationRecord
     end
   end
 
-  def one_line
+  def text
     premises.map(&:text).join(' ').presence || '(No comment)'
   end
 
@@ -112,6 +112,10 @@ class Argument < ApplicationRecord
     return 'checkmark' if win?
     return 'x' if lose?
     'question'
+  end
+
+  def breadcrumbs
+    subject.breadcrumbs.concat([subject])
   end
 
   private

@@ -24,7 +24,7 @@ describe 'Debate' do
     click_button 'Next'
     click_button 'Publish'
     expect(find('.statement-heading', text: 'Irritating')).to be_present
-    expect(find('.countered-argument', text: argument1.one_line)).to be_present
+    expect(find('.breadcrumbs', text: argument1.text)).to be_present
   end
 
   it "allows a user to improve on another user's argument" do

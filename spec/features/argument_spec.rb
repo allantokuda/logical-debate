@@ -117,7 +117,7 @@ describe 'An argument' do
       it 'cannot yet be seen on the statement page' do
         visit statement_path(argument.subject_statement)
         expect(find('.statement-heading', text: argument.subject_statement.text)).to be_present
-        expect(all('.arguments-table td', text: argument.one_line)).to be_blank
+        expect(all('.arguments-table td', text: argument.text)).to be_blank
       end
     end
   end

@@ -1,0 +1,5 @@
+<p class="breadcrumbs">
+<% context.breadcrumbs.each do |breadcrumb| %>
+  Re: <%= link_to breadcrumb.text, breadcrumb %><br />
+<% end %>
+</p>

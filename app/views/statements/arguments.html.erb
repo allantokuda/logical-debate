@@ -1,5 +1,5 @@
 <% if @statement.countered_argument.present? %>
-  <p class="countered-argument">Countering argument: <%= link_to @statement.countered_argument.one_line, @statement.countered_argument %></p>
+  <p class="countered-argument">Countering argument: <%= link_to @statement.countered_argument.text, @statement.countered_argument %></p>
 <% end %>
 
 <p class="statement-heading"><%= @statement.text %></p>
@@ -18,7 +18,7 @@
       <li>
         <label>
           <input type="checkbox" name="<%= param %>" value="1">
-          <%= argument.one_line %>
+          <%= argument.text %>
         </label>
       </li>
     <% end %>

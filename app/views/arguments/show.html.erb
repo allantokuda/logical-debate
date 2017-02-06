@@ -1,6 +1,6 @@
-<%= render 'heading', argument: @argument %>
+<%= render 'shared/breadcrumbs', context: @argument %>
 
-<p class="statement-heading"><%= @argument.one_line %></p>
+<p class="statement-heading"><%= @argument.text %></p>
 <%= render 'statements/state', subject: @argument %>
 <%= render 'statements/date_and_author', subject: @argument %>
 <span class="argument-explanation meta-text">(<%= @argument.type %>)</span>

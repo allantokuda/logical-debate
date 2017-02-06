@@ -1,6 +1,4 @@
-<% if @statement.countered_argument.present? %>
-  <p class="countered-argument">Countering argument: <%= link_to @statement.countered_argument.one_line, @statement.countered_argument %></p>
-<% end %>
+<%= render 'shared/breadcrumbs', context: @statement %>
 
 <p class="statement-heading"><%= @statement.text %></p>
 <%= render 'state', subject: @statement %>
@@ -31,7 +29,7 @@
       <% if (arguments = @statement.arguments.published.where(agree: side, parent_argument_id: nil).published_or_by_user(current_user).vote_order).any? %>
         <% arguments.each do |argument| %>
           <div class="argument">
-            <div class="argument-oneline"><%= link_to argument.one_line, argument %></div>
+            <div class="argument-oneline"><%= link_to argument.text, argument %></div>
             <% if @statement.allow_action?(current_user) %>
               <%= render 'state', subject: argument %>
             <% end %>

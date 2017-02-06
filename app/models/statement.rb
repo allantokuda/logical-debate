@@ -74,6 +74,11 @@ class Statement < ApplicationRecord
     sentence_split.count > 1
   end
 
+  def breadcrumbs
+    return [] unless countered_argument.present?
+    countered_argument.breadcrumbs.concat([countered_argument])
+  end
+
   private
 
   def agreements
