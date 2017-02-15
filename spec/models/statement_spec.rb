@@ -27,4 +27,33 @@ describe 'Statement' do
       expect(s.text).to eq     'This is a question?'
     end
   end
+
+  describe 'stance of user' do
+    it 'returns nil for unrelated statement and user' do
+      user = User.new
+      statement = Statement.new
+      result = statement.stance_of(user)
+      expect(result).to be_nil
+    end
+
+    it 'returns a stance of agree=true for the current user' do
+      user = User.new
+      statement = Statement.new(user: user)
+      result = statement.stance_of(user)
+      expect(result).to be_a(Stance)
+      expect(result.agree).to be true
+    end
+
+    it 'returns a stance linking the statement and user' do
+      statement = FactoryGirl.create :statement
+      user1 = FactoryGirl.create :user
+      user2 = FactoryGirl.create :user
+      stance1 = FactoryGirl.create :stance, statement: statement, user: user1, agree: true
+      stance2 = FactoryGirl.create :stance, statement: statement, user: user2, agree: false
+      result1 = statement.stance_of(user1)
+      result2 = statement.stance_of(user2)
+      expect(result1).to eq stance1
+      expect(result2).to eq stance2
+    end
+  end
 end

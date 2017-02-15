@@ -20,6 +20,7 @@ class Statement < ApplicationRecord
   end
 
   def stance_of(user)
+    return Stance.new(user: user, statement: self, agree: true) if user == self.user
     Stance.find_by(user: user, statement: self)
   end
 
