@@ -21,12 +21,6 @@ Rails.application.routes.draw do
       post :review_arguments
     end
   end
-  resources :premises, controller: :premises, only: [:index, :show] do
-    member do
-      get :agree
-      get :disagree
-    end
-  end
 
   get 'arguments/:id/counter', to: 'counters#new', as: 'new_counter_argument'
   post 'arguments/:id/counter', to: 'counters#create', as: 'create_counter_argument'

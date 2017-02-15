@@ -7,12 +7,4 @@
   <% end %>
 </p>
 
-<% if argument.premises.any? %>
-  <ul class="premises-list">
-    <% argument.premises.each do |p| %>
-      <li><%= p.text %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No premises given.</p>
-<% end %>
+<p><%= argument.text %></p>

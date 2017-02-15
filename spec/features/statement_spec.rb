@@ -3,10 +3,8 @@ require 'spec_helper'
 describe 'Statement' do
   let(:user) { FactoryGirl.create(:user) }
   let(:statement) { FactoryGirl.create :statement, top_level: true }
-  let(:argument1) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: true }
-  let(:argument2) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: false }
-  let!(:premise1) { FactoryGirl.create :premise, argument: argument1, statement: FactoryGirl.create(:statement, text: 'This is a good argument.') }
-  let!(:premise2) { FactoryGirl.create :premise, argument: argument2, statement: FactoryGirl.create(:statement, text: 'This is a bad argument.') }
+  let!(:argument1) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: true, text: 'This is a good argument.' }
+  let!(:argument2) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: false, text: 'This is a bad argument.' }
 
   before do
     visit '/'

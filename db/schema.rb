@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107200158) do
+ActiveRecord::Schema.define(version: 20170206133727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,21 +20,24 @@ ActiveRecord::Schema.define(version: 20170107200158) do
     t.integer  "subject_statement_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.integer  "subject_premise_id"
     t.datetime "published_at"
     t.integer  "user_id"
     t.integer  "parent_argument_id"
     t.string   "uuid"
+    t.string   "text"
     t.index ["uuid"], name: "index_arguments_on_uuid", unique: true, using: :btree
   end
 
-  create_table "premises", force: :cascade do |t|
-    t.integer  "statement_id", null: false
-    t.integer  "argument_id",  null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "uuid"
-    t.index ["uuid"], name: "index_premises_on_uuid", unique: true, using: :btree
+  create_table "fallacies", force: :cascade do |t|
+    t.string   "description"
+    t.string   "fill_in"
+    t.string   "examples",                                       array: true
+    t.integer  "parent_fallacy_id"
+    t.boolean  "formal",            default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "disabled",          default: false, null: false
+    t.string   "names",                                          array: true
   end
 
   create_table "stances", force: :cascade do |t|
@@ -80,11 +83,9 @@ ActiveRecord::Schema.define(version: 20170107200158) do
   end
 
   add_foreign_key "arguments", "arguments", column: "parent_argument_id"
-  add_foreign_key "arguments", "premises", column: "subject_premise_id"
   add_foreign_key "arguments", "statements", column: "subject_statement_id"
   add_foreign_key "arguments", "users"
-  add_foreign_key "premises", "arguments"
-  add_foreign_key "premises", "statements"
+  add_foreign_key "fallacies", "fallacies", column: "parent_fallacy_id"
   add_foreign_key "stances", "statements"
   add_foreign_key "stances", "users"
   add_foreign_key "statements", "arguments", column: "countered_argument_id"

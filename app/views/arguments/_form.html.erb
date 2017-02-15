@@ -14,30 +14,20 @@
     <% if local_assigns[:suggest_new] %>
       Without changing the argument's meaning, adjust the words to show how you interpret the original argument.
     <% else %>
-      <%= @argument.premise_input_placeholder %>
+      <%= @argument.input_placeholder %>
     <% end %>
   </p>
 
-  <ul class="premises-form">
-    <% @argument.premises.each do |premise| %>
-      <li>
-        <input type="text" name="<%= "premises[#{premise.id}]" %>" value="<%= premise.text %>" class="statement-line">
-      </li>
-    <% end %>
-    <li>
-      <input type="text" name="new_premise" class="statement-line" value="" />
-    </li>
-  </ul>
+  <%= f.text_area :text, style: "width: 100%; height: 40px; font-family: Verdana;" %>
 
   <div class="argument-actions">
     <button type="submit" name="save_action" value="publish">Publish</button>
     <button type="submit" name="save_action" value="save_draft" class="secondary">Save Draft</button>
-    <button type="submit" name="save_action" value="save_and_add" class="secondary">Add another premise</button>
     <%= link_to 'Cancel', @argument.subject %>
   </div>
 
+  <%= f.number_field :parent_argument_id, hidden: true %>
   <%= f.number_field :subject_statement_id, hidden: true %>
-  <%= f.number_field :subject_premise_id, hidden: true %>
   <%= f.text_field :uuid, hidden: true %>
   <%= f.check_box :agree, hidden: true %>
 <% end %>

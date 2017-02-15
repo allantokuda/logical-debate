@@ -5,10 +5,8 @@ describe 'Debate' do
   let(:user2) { FactoryGirl.create(:user, username: 'Bobby') }
   let(:user3) { FactoryGirl.create(:user, username: 'Corey') }
   let(:statement) { FactoryGirl.create :statement, top_level: true }
-  let(:argument1) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: true, user: user1 }
-  let(:argument2) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: false, user: user3 }
-  let!(:premise1) { FactoryGirl.create :premise, argument: argument1 }
-  let!(:premise2) { FactoryGirl.create :premise, argument: argument2 }
+  let!(:argument1) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: true, user: user1 }
+  let!(:argument2) { FactoryGirl.create :argument, :published, subject_statement: statement, agree: false, user: user3 }
 
   before(:each) do
     visit '/'
@@ -30,20 +28,15 @@ describe 'Debate' do
   it "allows a user to improve on another user's argument" do
     click_button 'Agree'
     click_button 'Next'
-    click_link premise1.text
+    click_link(argument1.text)
     click_link 'Clarify'
 
-    # add a premise
-    all('input.statement-line', minimum: 2)[-1].set('New premise 1')
-
-    # add another premise
-    click_button 'Add another premise'
-    all('input.statement-line', minimum: 2)[-1].set('New premise 2')
+    fill_in 'argument[text]', with: 'A clearer version of what was already said.'
 
     click_button 'Save'
     expect(argument1.reload.child_arguments).to be_present
     expect(find('.argument-explanation', text: "clarification")).to be_present
-    expect(find('.statement-heading', text: "New premise 1. New premise 2.")).to be_present
+    expect(find('.statement-heading', text: "A clearer version of what was already said.")).to be_present
   end
 
   it 'can navigate between arguments children/parents' do
