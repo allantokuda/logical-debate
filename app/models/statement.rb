@@ -5,6 +5,7 @@ class Statement < ApplicationRecord
 
   has_many :arguments, dependent: :destroy, foreign_key: :subject_statement_id
 
+  before_validation :strip_text_whitespace
   before_validation :add_period
 
   belongs_to :countered_argument, class_name: 'Argument', optional: true
@@ -85,6 +86,10 @@ class Statement < ApplicationRecord
 
   def disagreements
     arguments.published.top_level.where(agree: false)
+  end
+
+  def strip_text_whitespace
+    text.strip!
   end
 
   def add_period
