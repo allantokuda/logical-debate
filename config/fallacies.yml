@@ -737,6 +737,14 @@
     - Thin edge of the wedge
     - Camel's nose
   description: asserts that a chain of events is likely to occur if the first event occurs.
+  questions:
+    -
+      label: What is the initial event?
+      name: text1
+    -
+      label: What is the assumed final outcome?
+      name: text2
+  fill_in: "This assumes that [text1] is a slippery slope that will inevitably cause [text2]."
   about: bad outcomes
   examples:
     - if person x does y then z would occur, leading to q, leading to w, leading to e.
