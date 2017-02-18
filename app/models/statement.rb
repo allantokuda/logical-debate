@@ -4,6 +4,7 @@ class Statement < ApplicationRecord
   belongs_to :user
 
   has_many :arguments, dependent: :destroy, foreign_key: :subject_statement_id
+  has_many :stances, dependent: :destroy
 
   before_validation :strip_text_whitespace
   before_validation :add_period
