@@ -26,10 +26,10 @@ class CountersController < ApplicationController
     end
 
     def counter_params
-      params.permit(:argument_id, :fallacy_name, :type, :text1, :text2)
+      params.permit(%i(argument_id fallacy_name) + Question::SUBSTITUTIONS)
     end
 
     def counter_data
-      counter_params.slice(:type, :text1, :text2)
+      counter_params.slice(*Question::SUBSTITUTIONS)
     end
 end

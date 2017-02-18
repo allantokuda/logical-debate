@@ -21,7 +21,7 @@ describe 'Debate' do
     find('label', text: 'Irritating').click
     click_button 'Next'
     click_button 'Publish'
-    expect(find('.statement-heading', text: 'Irritating')).to be_present
+    expect(find('.statement-heading', text: 'intended to be a nuisance')).to be_present
     expect(find('.breadcrumbs', text: argument1.text)).to be_present
   end
 

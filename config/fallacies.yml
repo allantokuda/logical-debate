@@ -4,17 +4,16 @@
   description: has a premise that is false or unsupported.
   questions:
     -
-      name: type
-      label: One of the premises (expressed or implied) is
-      type: select
-      options:
-        - unsupported
-        - 'false'
-    -
       name: text1
-      label: Which premise? (A premise is a statement, or something implied, that is a key starting point for the argument.)
-      type: text
-  fill_in: It is [type] that [text1].
+      label: What is the problematic premise? (Should be a a key starting point of the argument.)
+    -
+      name: select2
+      label: What is the problem with the premise?
+      options:
+        - is incorrect
+        - is inaccurate
+        - lacks supporting evidence
+  fill_in: The idea that [text1] [select2].
   common_index: 1
 -
   names:
@@ -348,26 +347,22 @@
 -
   names:
     - Red herring
-  fill_in: distracts from the topic by [introducing an unrelated topic].
   description: distracts from the topic by introducing an unrelated topic.
   questions:
     -
       name: text1
       label: What is this argument's unrelated/irrelevant/distracting topic?
-      type: text
     -
-      name: type
+      name: select1
       label: What is the problem with that topic?
-      type: select
       options:
         - irrelevant
         - unrelated
         - only tangentially related
     -
       name: text2
-      label: What should the author focus on instead?
-      type: text
-  fill_in: '[text1] is [type] to [text2].'
+      label: What should we focus on instead?
+  fill_in: '[text1] is [select1] to [text2].'
   common_index: 2
   formal: false
 -
@@ -431,9 +426,20 @@
   formal: false
 -
   names:
-    - False analogy
+    - Weak analogy
   description: makes an analogy that is poorly suited to the argument.
   about: similarity
+  questions:
+    -
+      label: What two things are being compared?
+      name: text1
+    -
+      label: What do those have in common?
+      name: text2
+    -
+      label: What should we focus on instead?
+      name: text3
+  fill_in: Comparing [text1] based on [text2] does not help support the idea that [text3].
   common_index: 3
   formal: false
 -

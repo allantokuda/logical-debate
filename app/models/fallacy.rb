@@ -35,7 +35,7 @@ class Fallacy
     @common_index = fallacy_data['common_index']
     @formal       = fallacy_data['formal']
     @fill_in      = fallacy_data['fill_in']
-    @questions    = (fallacy_data['questions'] || []).map { |q| OpenStruct.new(q) }
+    @questions    = (fallacy_data['questions'] || []).map { |q| Question.new(q) }
   end
 
   def name
@@ -43,11 +43,11 @@ class Fallacy
   end
 
   def fill_in
-    "#{name}: #{@fill_in || description}"
+    @fill_in || description || ''
   end
 
   def filled_in(response_params)
-    result = fill_in
+    result = fill_in.dup
     @questions.each do |question|
       result.gsub!("[#{question.name}]", response_params[question.name].to_s || '___')
     end

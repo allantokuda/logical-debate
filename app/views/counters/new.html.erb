@@ -28,14 +28,14 @@
   <br />
   <% @fallacy.questions.each do |question| %>
     <p><label>
-      <span><%= question['label'] %></span><br />
-      <% case question['type']
-         when 'text' %>
-        <input type="text" name="<%= question['name'] %>" onkeyup="update_fill_in()" />
-      <% when 'select' %>
-        <select name="<%= question['name'] %>" onchange="update_fill_in()" />
+      <span><%= question.label %></span><br />
+      <% case question.type
+         when :text %>
+        <input type="text" name="<%= question.name %>" onkeyup="update_fill_in()" />
+      <% when :select %>
+        <select name="<%= question.name %>" onchange="update_fill_in()" />
           <option value=""></option>
-          <% question['options'].each do |option| %>
+          <% question.options.each do |option| %>
             <option value="<%= option %>"><%= option %></option>
           <% end %>
         </select>
