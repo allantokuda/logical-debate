@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
+gem 'awesome_print'
 
 group :development do
   gem 'web-console'
@@ -22,6 +23,7 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'pry-rails'
   gem 'pry-byebug'
 end
 
