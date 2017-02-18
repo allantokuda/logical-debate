@@ -38,7 +38,7 @@
                   You upvoted this. <%= button_to 'Remove upvote', remove_vote_argument_path(argument), class: 'link-button small-button' %>
                 <!-- limit to one vote per statement for now -->
                 <% else %>
-                  <%= button_to 'Upvote', upvote_argument_path(argument), class: 'button-link' %>
+                  <%= button_to 'Upvote', upvote_argument_path(argument), class: 'link-button small-button' %>
                 <% end %>
               <% elsif @statement.agreed_by?(current_user) == !side %>
                 <%= link_to 'Counter', new_counter_argument_path(argument) %>
