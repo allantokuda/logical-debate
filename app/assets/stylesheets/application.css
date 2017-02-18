@@ -105,12 +105,24 @@ p {
 
 label { display: inline; }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], select, .text-preview {
   margin: 6px;
   margin-left: 0px;
   padding: 6px;
   font-size: medium;
   border: 1px solid #aaa;
+}
+
+select {
+  background: #eee;
+}
+
+.text-preview {
+  border: 3px dotted #bbb;
+  display: inline-block;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
 td, th {
