@@ -74,6 +74,11 @@
     - Petitio principii (latin)
   description: provides the conclusion of the argument as a premise.
   common_index: 6
+  questions:
+    -
+      label: What does the argument assume is true?
+      name: text1
+  fill_in: This assumes that [text1] instead of reaching that as a conclusion.
   formal: false
 -
   names:
