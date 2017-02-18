@@ -754,6 +754,11 @@
   names:
     - Non sequitur
   description: the conclusion does not follow from the premises.
+  questions:
+    -
+      label: What is the argument's conclusion?
+      name: text2
+  fill_in: The conclusion that [text2] does not follow from the premises.
   common_index: 9
   formal: true
 -
