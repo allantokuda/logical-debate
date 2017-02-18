@@ -58,13 +58,13 @@ class Fallacy
     "#{name}: #{description}"
   end
 
-  def undefined?
-    false
+  def defined?
+    true
   end
 
   class UndefinedFallacy < Fallacy
-    def undefined?
-      true
+    def defined?
+      false
     end
   end
 end

@@ -60,7 +60,7 @@
   terms = <%= raw @fallacy.questions.map(&:name).inspect %>;
 
   update_fill_in = function() {
-    complete = true;
+    complete = <%= @fallacy.defined? %>;
     any_items = false;
     result = fill_in;
 
