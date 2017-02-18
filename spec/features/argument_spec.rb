@@ -90,7 +90,7 @@ describe 'An argument' do
     let!(:stance) { Stance.create(agree: true, statement: argument.subject_statement, user: user) }
     it 'can have upvotes applied and removed' do
       visit statement_path(argument.subject_statement)
-      click_button 'Remove vote'
+      click_button 'Remove upvote'
       expect(Vote.count).to be 0
       click_button 'Upvote'
       expect(Vote.last.argument).to eq argument

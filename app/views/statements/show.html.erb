@@ -31,13 +31,13 @@
           <div class="argument">
             <div class="argument-oneline"><%= link_to argument.text, argument %></div>
             <% if @statement.allow_action?(current_user) %>
-              <%= render 'state', subject: argument %>
+              <%= render 'state', subject: argument, size: 'small' %>
             <% end %>
             <%= render 'date_and_author', subject: argument %>
             <div class="item-actions">
               <% if @statement.agreed_by?(current_user) == side %>
                 <% if current_user.upvoted_argument?(argument) %>
-                  <%= button_to 'Remove vote', remove_vote_argument_path(argument), class: 'link-button small-button' %>
+                  You upvoted this. <%= button_to 'Remove upvote', remove_vote_argument_path(argument), class: 'link-button small-button' %>
                 <!-- limit to one vote per statement for now -->
                 <% else %>
                   <%= button_to 'Upvote', upvote_argument_path(argument), class: 'button-link' %>

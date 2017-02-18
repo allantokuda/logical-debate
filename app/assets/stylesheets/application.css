@@ -94,9 +94,16 @@ p {
   margin: 0;
   margin-right: 10px;
 }
+
 .state-indicator img {
-  vertical-align: bottom;
+  vertical-align: -5px;
 }
+
+.state-indicator img.small {
+  vertical-align: -3px;
+  width: 15px;
+}
+
 
 .field {
   padding: 0;

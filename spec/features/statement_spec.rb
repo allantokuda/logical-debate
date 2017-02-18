@@ -44,7 +44,7 @@ describe 'Statement' do
       expect(Vote.find_by(user: user, argument: argument2)).to_not be_present
 
       # Modest user removes own auto-upvote
-      find('div.argument', text: 'This is a good argument').click_button 'Remove vote'
+      find('div.argument', text: 'This is a good argument').click_button 'Remove upvote'
       expect(Vote.find_by(user: user, argument: argument1)).to_not be_present
     end
 
@@ -56,7 +56,7 @@ describe 'Statement' do
       expect(Vote.find_by(user: user, argument: argument1)).to_not be_present
 
       # Modest user removes own auto-upvote
-      find('div.argument', text: 'This is a bad argument').click_button 'Remove vote'
+      find('div.argument', text: 'This is a bad argument').click_button 'Remove upvote'
       expect(Vote.find_by(user: user, argument: argument2)).to_not be_present
     end
   end
