@@ -28,14 +28,20 @@
     <p style="color: red">This will be reported to moderators.</p>
   <% end %>
 
-  <% if @fallacy.name.present? %>
-    <br />
-    <p>OPTIONAL: You may edit your statement to be more specific. Please keep to <u>one sentence</u>.</p>
-    <p class="editable" id="editable" contenteditable="true" oninput="$('#custom_text').val($('#editable').text().replace(/\s+/g,' ').trim())">
-      <% @fallacy.fill_in_structure.each { |part| %><span class="<%= part[:highlight] ? 'highlight' : '' %>"><%= part[:text] %></span><% } %>
-    </p>
-    <textarea hidden="true" style="width: 600px; height:50px;" id="custom_text" name="custom_text"></textarea>
-  <% else %>
+  <% @fallacy.questions&.each do |question| %>
+    <p><label>
+      <span><%= question['label'] %></span><br />
+      <% case question['type']
+         when 'text' %>
+        <input type="text" name="<%= question['name'] %>" />
+      <% when 'select' %>
+        <select name="<%= question['name'] %>" />
+          <% question['options'].each do |option| %>
+            <option value="<%= option %>"><%= option %></option>
+          <% end %>
+        </select>
+      <% end %>
+    </label></p>
   <% end %>
 
   <div class="argument-actions">

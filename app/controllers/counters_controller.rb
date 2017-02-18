@@ -7,7 +7,7 @@ class CountersController < ApplicationController
   end
 
   def create
-    statement = Statement.new(countered_argument: @argument, text: counter_params[:custom_text].presence || @fallacy.as_statement, user: current_user, verified_one_sentence: '1')
+    statement = Statement.new(countered_argument: @argument, text: @fallacy.filled_in(counter_data), user: current_user, verified_one_sentence: '1')
     if statement.save
       redirect_to statement, notice: 'Counter saved successfully.'
     else
@@ -26,6 +26,10 @@ class CountersController < ApplicationController
     end
 
     def counter_params
-      params.permit(:argument_id, :fallacy_name, :custom_text)
+      params.permit(:argument_id, :fallacy_name, :type, :text1, :text2)
+    end
+
+    def counter_data
+      counter_params.slice(:type, :text1, :text2)
     end
 end

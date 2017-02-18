@@ -27,7 +27,7 @@ class Fallacy
     @@common_fallacies
   end
 
-  attr_accessor :names, :description, :common_index, :formal, :fill_in
+  attr_accessor :names, :description, :common_index, :formal, :fill_in, :questions
 
   def initialize(fallacy_data = {})
     @names        = fallacy_data['names'] || []
@@ -35,19 +35,19 @@ class Fallacy
     @common_index = fallacy_data['common_index']
     @formal       = fallacy_data['formal']
     @fill_in      = fallacy_data['fill_in']
+    @questions    = (fallacy_data['questions'] || []).map { |q| OpenStruct.new(q) }
   end
 
   def name
     names.first
   end
 
-  def fill_in_structure
-    "#{name}: #{fill_in || description}".scan(/\[[^\[\]]+\]|[^\[\]]+/).map do |part|
-      {
-        highlight: part[0] == '[',
-        text: part.delete('[').delete(']')
-      }
+  def filled_in(response_params)
+    result = fill_in || "#{name}: #{description}"
+    @questions.each do |question|
+      result.gsub!("[#{question.name}]", response_params[question.name])
     end
+    result
   end
 
   def as_statement

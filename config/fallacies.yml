@@ -1,13 +1,20 @@
 -
   names:
-    - Uncivil
-  description: uses disrespectful or inflammatory language.
-  common_index: 0
-  formal: false
--
-  names:
     - False premises
-  description: one or more of the premises is false or unsupported.
+  description: has a premise that is false or unsupported.
+  questions:
+    -
+      name: type
+      label: One of the premises (expressed or implied) is
+      type: select
+      options:
+        - unsupported
+        - 'false'
+    -
+      name: text1
+      label: Which premise? (A premise is a statement, or something implied, that is a key starting point for the argument.)
+      type: text
+  fill_in: It is [type] that [text1].
   common_index: 1
 -
   names:
@@ -343,6 +350,24 @@
     - Red herring
   fill_in: distracts from the topic by [introducing an unrelated topic].
   description: distracts from the topic by introducing an unrelated topic.
+  questions:
+    -
+      name: text1
+      label: What is this argument's unrelated/irrelevant/distracting topic?
+      type: text
+    -
+      name: type
+      label: What is the problem with that topic?
+      type: select
+      options:
+        - irrelevant
+        - unrelated
+        - only tangentially related
+    -
+      name: text2
+      label: What should the author focus on instead?
+      type: text
+  fill_in: '[text1] is [type] to the issue of [text2].'
   common_index: 2
   formal: false
 -
