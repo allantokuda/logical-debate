@@ -118,9 +118,9 @@ select {
 }
 
 .text-preview {
-  border: 3px dotted #bbb;
+  border: 3px dotted #bdf;
   display: inline-block;
-  background: #eee;
+  background: #f0f7ff;
   padding: 10px;
   margin-bottom: 15px;
 }
