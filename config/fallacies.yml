@@ -367,7 +367,7 @@
       name: text2
       label: What should the author focus on instead?
       type: text
-  fill_in: '[text1] is [type] to the issue of [text2].'
+  fill_in: '[text1] is [type] to [text2].'
   common_index: 2
   formal: false
 -

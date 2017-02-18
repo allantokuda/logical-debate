@@ -20,14 +20,14 @@ class Fallacy
   end
 
   def self.find_by_name(name)
-    @@fallacies[(name.presence || '').downcase] || Fallacy.new
+    @@fallacies[(name.presence || '').downcase] || UndefinedFallacy.new
   end
 
   def self.common
     @@common_fallacies
   end
 
-  attr_accessor :names, :description, :common_index, :formal, :fill_in, :questions
+  attr_accessor :names, :description, :common_index, :formal, :questions
 
   def initialize(fallacy_data = {})
     @names        = fallacy_data['names'] || []
@@ -42,16 +42,30 @@ class Fallacy
     names.first
   end
 
+  def fill_in
+    "#{name}: #{@fill_in || description}"
+  end
+
   def filled_in(response_params)
-    result = fill_in || "#{name}: #{description}"
+    result = fill_in
     @questions.each do |question|
-      result.gsub!("[#{question.name}]", response_params[question.name])
+      result.gsub!("[#{question.name}]", response_params[question.name].to_s || '___')
     end
     result
   end
 
   def as_statement
     "#{name}: #{description}"
+  end
+
+  def undefined?
+    false
+  end
+
+  class UndefinedFallacy < Fallacy
+    def undefined?
+      true
+    end
   end
 end
 

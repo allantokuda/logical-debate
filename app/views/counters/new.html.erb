@@ -16,6 +16,7 @@
   <% end %>
 
   <% if Rails.env.test? %><input type="submit" value="Next"><% end %>
+  <br />
 
 </form>
 
@@ -24,18 +25,16 @@
 
   <input hidden="true" type="text" name="fallacy_name" value="<%= @fallacy&.name %>" />
 
-  <% if @fallacy.name == 'Uncivil' %>
-    <p style="color: red">This will be reported to moderators.</p>
-  <% end %>
-
-  <% @fallacy.questions&.each do |question| %>
+  <br />
+  <% @fallacy.questions.each do |question| %>
     <p><label>
       <span><%= question['label'] %></span><br />
       <% case question['type']
          when 'text' %>
-        <input type="text" name="<%= question['name'] %>" />
+        <input type="text" name="<%= question['name'] %>" onkeyup="update_fill_in()" />
       <% when 'select' %>
-        <select name="<%= question['name'] %>" />
+        <select name="<%= question['name'] %>" onchange="update_fill_in()" />
+          <option value=""></option>
           <% question['options'].each do |option| %>
             <option value="<%= option %>"><%= option %></option>
           <% end %>
@@ -44,8 +43,39 @@
     </label></p>
   <% end %>
 
+  <div class="statement-preview">
+  <p>Your statement:</p>
+  <p>"<span class="counter-statement"></span>"</p>
+  </div>
+
   <div class="argument-actions">
-    <input type="submit" value="Publish" <%= @fallacy.name.present? ? '' : 'disabled'%>/>
+    <input type="submit" value="Publish" class="publish-button" />
     <%= link_to 'Cancel', @argument %>
   </div>
 </form>
+
+<script type="text/javascript">
+  /* The results of these inspect calls in Ruby are assumed to be parseable by JavaScript. */
+  fill_in = <%= raw @fallacy.fill_in.inspect %>;
+  terms = <%= raw @fallacy.questions.map(&:name).inspect %>;
+
+  update_fill_in = function() {
+    complete = true;
+    any_items = false;
+    result = fill_in;
+
+    terms.forEach(function(term) {
+      enteredValue = $('input[name="' + term + '"]').val() ||
+                     $('select[name="' + term + '"]').val();
+
+      complete = complete && !!enteredValue;
+      any_items = any_items || !!enteredValue;
+
+      result = result.replace('['+term+']', enteredValue || '___');
+    });
+    $('.counter-statement').text(result);
+    $('.publish-button').prop('disabled', !complete);
+    $('.statement-preview').css('visibility', any_items ? 'visible' : 'hidden');
+  }
+  update_fill_in();
+</script>
