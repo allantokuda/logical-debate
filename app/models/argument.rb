@@ -9,6 +9,9 @@ class Argument < ApplicationRecord
   belongs_to :parent_argument, class_name: 'Argument', optional: true
   has_many :child_arguments, dependent: :destroy, class_name: 'Argument', foreign_key: :parent_argument_id
 
+  # temporary to enable migration
+  has_many :premises
+
   has_many :votes,    dependent: :destroy
   has_many :counters, dependent: :destroy, class_name: 'Statement', foreign_key: :countered_argument_id
 

@@ -1,6 +1,6 @@
 class SimpleArguments < ActiveRecord::Migration[5.0]
   def up
-    # add_column :arguments, :text, :string
+    add_column :arguments, :text, :string
 
     Argument.all.each do |argument|
       argument.update(text: argument.premises.map(&:text).join(' '))
@@ -36,6 +36,6 @@ class SimpleArguments < ActiveRecord::Migration[5.0]
       premise.save
     end
 
-    # drop_column :arguments, :text, :string
+    remove_column :arguments, :text, :string
   end
 end
