@@ -684,8 +684,13 @@
 -
   names:
     - Straw man
-  fill_in: misrepresents the argument as if it were saying [something different which is easier to attack].
-  description: misrepresents an argument to make it easier to attack.
+  questions:
+    -
+      label: What does this argument pretend was the original statement?
+      name: text1
+  fill_in: This misrepresents the original statement as if it were saying [text1].
+  description: misrepresents an argument to make it easier to attack or defend.
+  common_index: 4
   formal: false
 -
   names:
