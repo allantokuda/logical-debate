@@ -25,6 +25,7 @@ describe 'Debate' do
     expect(find('.breadcrumbs', text: argument1.text)).to be_present
   end
 
+  # Hidden feature for now - needs redesign before release.
   it "allows a user to improve on another user's argument" do
     click_button 'Agree'
     click_button 'Next'

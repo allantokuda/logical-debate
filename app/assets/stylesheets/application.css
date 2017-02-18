@@ -198,6 +198,17 @@ a, a:visited, a:active {
   text-decoration: none;
 }
 
+.parent-nav {
+  position: fixed;
+  top: 50px;
+  left: 10px;
+}
+
+.parent-nav {
+  color: #bbb;
+}
+
+
 .button, .button:hover, .button:active,
 a.button, a.button:hover, a.button:active,
 input[type="button"], input[type="submit"], button {

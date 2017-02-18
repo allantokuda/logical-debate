@@ -17,15 +17,6 @@
   <p>To address this argument, please first indicate your stance on <%= link_to 'the subject', @argument.subject %>.</p>
 <% end %>
 
-<% if @argument.counters.any? %>
-  <p>Counters:</p>
-  <ul>
-    <% @argument.counters.map do |counter| %>
-      <li><%= link_to counter.text, statement_path(counter.id) %> (<%= counter.state %>)</li>
-    <% end %>
-  </ul>
-<% end%>
-
 <div class="argument-actions">
   <% if my(@argument) && !@argument.published? %>
     <%= button_to 'Publish', publish_argument_path(@argument) %>
@@ -33,10 +24,23 @@
   <% end %>
   <% if @argument.actionable_to_user? current_user %>
     <%= link_to 'Counter', new_counter_argument_path(@argument), class: 'btn' %>
-    <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' %>
+    <%= link_to 'Clarify', suggest_new_argument_path(@argument), class: 'btn' if Rails.env.test? %>
   <% end %>
-  <%= link_to 'Back to Subject', @argument.subject, class: 'btn' %>
   <% if @argument.parent_argument.present? %>
-  <%= link_to 'Back to parent argument', @argument.parent_argument, class: 'btn' %>
+  <%= link_to 'Back to parent argument', @argument.parent_argument, class: 'btn' if Rails.env.test? %>
   <% end %>
 </div>
+
+<br />
+
+<% if @argument.counters.any? %>
+  <p><strong>Counters</strong></p>
+    <% @argument.counters.map do |counter| %>
+      <div class="argument">
+        <div class="argument-oneline"><%= link_to counter.text, statement_path(counter.id) %></div>
+        <%= render 'statements/state', subject: counter %>
+        <%= render 'statements/date_and_author', subject: counter %>
+      </div>
+    <% end %>
+  </div>
+<% end%>
