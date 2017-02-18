@@ -30,9 +30,7 @@
         <% arguments.each do |argument| %>
           <div class="argument">
             <div class="argument-oneline"><%= link_to argument.text, argument %></div>
-            <% if @statement.allow_action?(current_user) %>
-              <%= render 'state', subject: argument, size: 'small' %>
-            <% end %>
+            <%= render 'state', subject: argument, size: 'small' %>
             <%= render 'date_and_author', subject: argument %>
             <div class="item-actions">
               <% if @statement.agreed_by?(current_user) == side %>
