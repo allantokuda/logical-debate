@@ -1,12 +1,100 @@
-<center>
-  <h1>Logical Debate</h1>
-  <p>Differing views unite.</p>
-  <br>
-  <br>
-  <br>
-  <a href="users/sign_up" class="button large-button">Sign up</a>
-  <br>
-  <br>
-  <a href="users/sign_in">Log in</a>
+<style type="text/css">
+  .landing {
+    text-align: center;
+    margin-left: -1000px;
+    margin-right: -1000px;
+  }
+  .triangles {
+    border-color: transparent;
+    border-left-color: #eef0ff;
+    border-right-color: #ffeeee;
+    border-width: 1000px;
+    border-left-width: 630px;
+    border-right-width: 630px;
+    border-style: solid;
+    margin: auto;
+    margin-bottom: -1414px;
+    height: 0px;
+    width: 160px;
+    margin-top: -860px;
+  }
+  .title {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+  }
+  .overview {
+    width: 100%;
+    background: #465688;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 460px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0px 70px 0px;
+  }
 
-</center>
+  .overview-point {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
+    font-size: large;
+    color: white;
+  }
+
+  .bottom {
+    background: #edc;
+    width: 100%;
+    height: 100px;
+  }
+
+  @media (max-width: 1023px) {
+    /* Switch to 2x2 layout */
+    .overview-point {
+      flex-basis: 33%;
+    }
+  }
+</style>
+
+<div class="landing">
+  <div class="triangles">
+  </div>
+
+  <div class="title">
+    <h1>Logical Debate</h1>
+    <p>Differing views unite.</p>
+    <br>
+    <br>
+    <br>
+    <a href="users/sign_up" class="button large-button">Sign up</a>
+    <br>
+    <br>
+    <a href="users/sign_in">Log in</a>
+  </div>
+
+  <div class="overview">
+    <div class="overview-point">
+      <div class="icon"><img src="/images/statement.svg"></div>
+      State your belief
+    </div>
+    <div class="overview-point">
+      <div class="icon"><img src="/images/argument.svg"></div>
+      Hear opposing points of view
+    </div>
+    <div class="overview-point">
+      <div class="icon"><img src="/images/circle.svg"></div>
+      Take time to debate logically
+    </div>
+    <div class="overview-point">
+      <div class="icon"><img src="/images/pyramid.svg"></div>
+      Find truth together
+    </div>
+  </div>
+
+  <div class="bottom">
+    abc
+  </div>
+
+</div>
