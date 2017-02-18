@@ -195,6 +195,20 @@
     - False dichotomy
     - Fallacy of bifurcation
   description: assumes two alternatives are the only possiblities, when in reality there may be more.
+  questions:
+    -
+      label: What is one possibility?
+      name: text1
+    -
+      label: What is the other?
+      name: text2
+    -
+      label: What kind of things are those?
+      name: select1
+      options:
+        - options we can choose (false dilemma)
+        - possibilities that can exist (false dichotomy)
+  fill_in: This assumes that [text1] and [text2] are the only two [select1].
   common_index: 7
   formal: false
 -
