@@ -20,17 +20,17 @@
     display: flex;
   }
   .left-area {
-    background: #eef0ff;
+    background: hsl(216, 100%, 96%);
     flex: 1;
   }
   .right-area {
-    background: #ffeeee;
+    background: hsl(0, 100%, 96%);
     flex: 1;
   }
   .chevrons {
     border-color: white;
-    border-left-color: #eef0ff;
-    border-right-color: #ffeeee;
+    border-left-color: hsl(216, 100%, 96%);
+    border-right-color: hsl(0, 100%, 96%);
     border-width: 230px;
     border-left-width: 170px;
     border-right-width: 170px;
@@ -45,6 +45,21 @@
     top: 100px;
     left: 0;
     right: 0;
+    font-size: large;
+  }
+
+  .title p {
+    font-size: large;
+  }
+
+  .title .button, .title .button:hover {
+    background: hsl(236, 32%, 40%);
+    color: white;
+    font-size: large;
+  }
+
+  .title a {
+    color: hsl(236, 22%, 40%);
   }
 
   .section {
@@ -62,12 +77,12 @@
   }
 
   .overview {
-    background: #465688;
+    background: hsl(236, 32%, 40%);
     color: white;
   }
 
   .bottom {
-    background: #8991a9;
+    background: hsl(236, 63%, 96%);
     width: 100%;
     height: 100px;
   }
