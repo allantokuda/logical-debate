@@ -86,15 +86,18 @@ describe 'An argument' do
   end
 
   context '(once published)' do
-    let(:argument) { FactoryGirl.create :argument, subject_statement: statement, user: user, published_at: Time.zone.now - 5.minutes }
+    let(:other_user) { FactoryGirl.create :user }
+    let(:argument) { FactoryGirl.create :argument, subject_statement: statement, user: other_user, published_at: Time.zone.now - 5.minutes }
     let!(:stance) { Stance.create(agree: true, statement: argument.subject_statement, user: user) }
     it 'can have upvotes applied and removed' do
       visit statement_path(argument.subject_statement)
-      click_button 'Remove upvote'
-      expect(Vote.count).to be 0
+      expect(Vote.count).to be 1 # automatic vote by author
       click_button 'Upvote'
       expect(Vote.last.argument).to eq argument
       expect(Vote.last.user).to eq user
+      expect(Vote.count).to be 2
+      click_button 'Remove upvote'
+      expect(Vote.count).to be 1
     end
   end
 end

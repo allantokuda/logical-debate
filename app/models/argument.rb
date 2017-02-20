@@ -33,7 +33,8 @@ class Argument < ApplicationRecord
   end
 
   def self.vote_order
-    joins('LEFT JOIN votes ON votes.argument_id = arguments.id').group('arguments.id').order('count(votes.id) desc')
+    # Sort by number of votes and then by state priority.
+    joins('LEFT JOIN votes ON votes.argument_id = arguments.id').group('arguments.id').order('count(votes.id) desc').sort_by(&:state_priority)
   end
 
   def input_placeholder
@@ -87,6 +88,14 @@ class Argument < ApplicationRecord
     return 'Unaddressed' if counters.none?
     return 'Supported' if counters.none?(&:win?)
     'Countered'
+  end
+
+  def state_priority
+    case state
+    when 'Supported' then 0
+    when 'Unaddressed' then 1
+    when 'Countered' then 2
+    end
   end
 
   def icon
