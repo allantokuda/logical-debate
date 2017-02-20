@@ -16,6 +16,11 @@ class Statement < ApplicationRecord
   validate :one_statement, on: :create
   attr_accessor :verified_one_sentence
 
+  # For now, mask the fact that there is no separate publish date.
+  def published_at
+    created_at
+  end
+
   def words
     text.split(' ').map(&:strip)
   end

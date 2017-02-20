@@ -26,17 +26,16 @@
   <% [true, false].each do |side| %>
     <div class="agree-<%= side %>">
       <p><strong><%= side ? 'Supporting arguments' : 'Counterarguments' %></strong></p>
-      <% if (arguments = @statement.arguments.published.where(agree: side, parent_argument_id: nil).published_or_by_user(current_user).vote_order).any? %>
+      <% if (arguments = @statement.arguments.where(agree: side, parent_argument_id: nil).visible_to_user(current_user).vote_order).any? %>
         <% arguments.each do |argument| %>
           <div class="argument">
             <div class="argument-oneline"><%= link_to argument.text, argument %></div>
             <%= render 'state', subject: argument, size: 'small' %>
             <%= render 'date_and_author', subject: argument %>
             <div class="item-actions">
-              <% if @statement.agreed_by?(current_user) == side %>
+              <% if @statement.agreed_by?(current_user) == side && argument.user != current_user %>
                 <% if current_user.upvoted_argument?(argument) %>
                   You upvoted this. <%= button_to 'Remove upvote', remove_vote_argument_path(argument), class: 'link-button small-button' %>
-                <!-- limit to one vote per statement for now -->
                 <% else %>
                   <%= button_to 'Upvote', upvote_argument_path(argument), class: 'link-button small-button' %>
                 <% end %>

@@ -1,5 +1,11 @@
-<% date = subject.try(:published_at) || subject.created_at %>
-<span class="date">
-  <span title="<%= I18n.l date %>">submitted <%= time_ago_in_words(date) %> ago</span>
-  <span>by <%= subject.user&.username %></span>
-</span>
+<% if date = subject.try(:published_at) %>
+  <span class="date">
+    <span><%= "(#{subject.votes.count})" unless Rails.env.production? || subject.try(:votes).nil? %></span>
+    <span title="<%= I18n.l date %>">submitted <%= time_ago_in_words(date) %> ago</span>
+    <span>by <%= subject.user&.username %></span>
+  </span>
+<% else %>
+  <span class="alert">
+    SAVED AS DRAFT
+  </span>
+<% end %>
