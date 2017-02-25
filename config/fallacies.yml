@@ -4,16 +4,16 @@
   description: has a premise that is false or unsupported.
   questions:
     -
+      name: select2
+      label: The problematic premise is
+      options:
+        - incorrect
+        - inaccurate
+        - unsupported by evidence
+    -
       name: text1
       label: What is the problematic premise? (Should be a a key starting point of the argument.)
-    -
-      name: select2
-      label: What is the problem with the premise?
-      options:
-        - is incorrect
-        - is inaccurate
-        - lacks supporting evidence
-  fill_in: The idea that [text1] [select2].
+  fill_in: The idea that [text1] is [select2].
   common_index: 1
 -
   names:

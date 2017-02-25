@@ -292,6 +292,11 @@ input.link-button, a.link-button, a.link-button:hover {
   padding: 2px;
 }
 
+.phrase-input {
+  max-width: 400px;
+  width: 100%;
+}
+
 
 /* Small mobile, typical 320px width */
 @media (min-width: 0px) {

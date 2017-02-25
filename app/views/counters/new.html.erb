@@ -31,7 +31,7 @@
       <span><%= question.label %></span><br />
       <% case question.type
          when :text %>
-        <input type="text" name="<%= question.name %>" onkeyup="update_fill_in()" />
+        <input type="text" class="phrase-input" name="<%= question.name %>" width="<%= question.width %>" onkeyup="update_fill_in()" />
       <% when :select %>
         <select name="<%= question.name %>" onchange="update_fill_in()" />
           <option value=""></option>
@@ -44,7 +44,7 @@
   <% end %>
 
   <div class="statement-preview">
-    <span>Your statement: </span><br />
+    <span>Your statement preview: </span><br />
     <p class="text-preview counter-statement"></p>
   </div>
 
