@@ -76,6 +76,12 @@
     font-size: large;
   }
 
+  .section > .section-header {
+    flex: 1;
+    flex-basis: 100%;
+    font-size: x-large;
+  }
+
   .overview {
     background: hsl(236, 32%, 40%);
     color: white;
@@ -92,10 +98,17 @@
     text-decoration: underline;
   }
 
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    margin: 8px;
+  }
 
   @media (max-width: 1023px) {
     /* Switch to 2x2 layout */
-    .overview-point {
+    .section > * {
       flex-basis: 33%;
     }
   }
@@ -108,32 +121,38 @@
     <div class="right-area"></div>
 
     <div class="title">
-      <h1>Logical Debate</h1>
-      <p>Differing views unite.</p>
+      <p>Do you agree to&hellip;</p>
+      <ul>
+        <li>Listen to opposing points of view?</li>
+        <li>Maintain civil discussion?</li>
+        <li>Speak only the truth?</li>
+        <li>Be open minded?</li>
+      </ul>
+      <br>
+      <br>
+      <a href="statements" class="button large-button">Challenge accepted</a>
       <br>
       <br>
       <br>
-      <a href="users/sign_up" class="button large-button">Sign up</a>
       <br>
-      <br>
-      <a href="users/sign_in">Log in</a>
     </div>
   </div>
 
   <div class="overview section">
-    <div class="overview-point">
+    <div class="section-header">How we operate</div>
+    <div>
       <div class="icon"><img src="/images/statement.svg"></div>
       State your belief
     </div>
-    <div class="overview-point">
+    <div>
       <div class="icon"><img src="/images/argument.svg"></div>
       Hear opposing points of view
     </div>
-    <div class="overview-point">
+    <div>
       <div class="icon"><img src="/images/circle.svg"></div>
       Take time to debate logically
     </div>
-    <div class="overview-point">
+    <div>
       <div class="icon"><img src="/images/pyramid.svg"></div>
       Find truth together
     </div>

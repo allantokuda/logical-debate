@@ -1,5 +1,5 @@
 class ArgumentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_argument, only: [:show, :edit, :update, :publish, :upvote, :remove_vote, :destroy, :suggest_new, :counter]
   before_action :new_argument, only: [:new, :create]
   after_action :publish_from_form, only: [:create, :update]

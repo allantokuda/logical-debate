@@ -33,4 +33,8 @@ class User < ApplicationRecord
   def votes_on_statement(statement)
     Vote.joins(:argument => :subject_statement).where('statements.id = ?', statement.id)
   end
+
+  def logged_in?
+    true
+  end
 end

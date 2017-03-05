@@ -19,10 +19,14 @@
             <%= link_to 'Home', statements_path %>
           <% end %>
         </div>
-        <div>
-          Logged in as <%= link_to current_user.display_username, '/users/edit' %> -
-          <a href="/users/sign_out" data-method="delete">Logout</a>
-        </div>
+        <% if current_user.logged_in? %>
+          <div>
+            Logged in as <%= link_to current_user.display_username, '/users/edit' %> -
+            <a href="/users/sign_out" data-method="delete">Logout</a>
+          </div>
+        <% else %>
+          <a href="/users/sign_in">Log in</a>
+        <% end %>
       </div>
     <% end %>
     <p class="notices">
