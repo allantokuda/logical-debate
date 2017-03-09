@@ -1,6 +1,4 @@
-<h2>Log in</h2>
-
-<div class="arguments-table">
+<div class="auth-split">
   <div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -28,12 +26,8 @@
 
     <%- if devise_mapping.recoverable? %>
       <br />
-      <br />
       <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
     <% end -%>
-
-
-
 
   </div>
   <div>

@@ -60,6 +60,9 @@ p {
 .top-bar div:last-child {
   text-align: right;
 }
+.top-bar div:last-child > * {
+  margin-left: 8px;
+}
 
 .statements-index {
   border-spacing: 0;
@@ -107,7 +110,6 @@ p {
 
 .field {
   padding: 0;
-  padding-bottom: 20px;
 }
 
 label { display: inline; }
@@ -194,6 +196,36 @@ td, th {
 .arguments-table > div {
   width: 50%;
   max-width: 500px;
+}
+
+.auth-split {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.auth-split > * {
+  flex: 1;
+  max-width: 350px;
+}
+
+.auth-split > :first-child {
+  padding-bottom: 40px;
+  border-bottom: 3px solid #eee;
+  border-right: none;
+}
+
+@media(min-width: 480px) {
+  .auth-split {
+    flex-direction: row;
+  }
+
+  .auth-split > :first-child {
+    padding-right: 20px;
+    border-right: 3px solid #eee;
+    border-bottom: none;
+    margin-right: 20px;
+  }
 }
 
 .argument {

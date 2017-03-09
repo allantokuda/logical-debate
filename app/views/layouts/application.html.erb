@@ -25,7 +25,10 @@
             <a href="/users/sign_out" data-method="delete">Logout</a>
           </div>
         <% else %>
-          <a href="/users/sign_in">Log in</a>
+          <div>
+            <%= link_to 'Sign up', new_user_registration_path unless current_page? new_user_registration_path %>
+            <%= link_to 'Log in', new_user_session_path unless current_page? new_user_session_path %>
+          </div>
         <% end %>
       </div>
     <% end %>
