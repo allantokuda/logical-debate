@@ -20,7 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  agreement:
+    button: Challenge accepted
   date:
     formats:
       default: "%Y-%m-%d"

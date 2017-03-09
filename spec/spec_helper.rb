@@ -18,3 +18,8 @@ RSpec.configure do |config|
     end
   end
 end
+
+headers = {}
+Rack::Utils.set_cookie_header!(headers, 'agreement', I18n.t('agreement.button'))
+cookie_string = headers['Set-Cookie']
+Capybara.current_session.driver.browser.set_cookie(cookie_string)
