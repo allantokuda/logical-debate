@@ -15,7 +15,7 @@
         <div>
           <% if (context = @argument || @statement) && context.breadcrumbs.any? %>
             <%= link_to 'Back', context.breadcrumbs.last %>
-          <% elsif !current_page? statements_path %>
+          <% elsif !current_page?(statements_path) && !current_page?(root_path) %>
             <%= link_to 'Home', statements_path %>
           <% end %>
         </div>
