@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-	devise_for :users, controllers: { registrations: 'users/registrations' }
+	devise_for :users, controllers: {
+    registrations: 'registrations',
+    confirmations: 'confirmations'
+  }
   root 'statements#index'
 
   post :accept_agreement, controller: 'application'
