@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   after_action :store_location
 
   def get_agreement
-    return unless request.method == 'GET'
+    return unless request.method == 'GET' && !(request.path =~ /\/users\//)
     session[:target_path] = request.path
     render 'public/landing' unless cookies[:agreement]
   end

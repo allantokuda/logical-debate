@@ -3,8 +3,8 @@
 
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    # Prefer going to the Sign Up page instead of the Log In page for now
-    new_user_registration_url #(:subdomain => 'secure')
+    # Go to either sign up or log in
+    smart_auth_url #(:subdomain => 'secure')
   end
 
   # Need to override respond to eliminate recall

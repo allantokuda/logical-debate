@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 	devise_for :users, controllers: {
     registrations: 'registrations',
-    confirmations: 'confirmations'
+    confirmations: 'confirmations',
+    sessions: 'sessions'
   }
   root 'statements#index'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'users/confirmation_sent', to: 'confirmations#confirmation_sent', as: 'confirmation_sent'
+    get 'users/smart_auth', to: 'sessions#smart_auth', as: 'smart_auth'
   end
 
   resources :arguments do
