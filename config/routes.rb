@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   post :accept_agreement, controller: 'application'
 
+  devise_scope :user do
+    get 'users/confirmation_sent', to: 'confirmations#confirmation_sent', as: 'confirmation_sent'
+  end
+
   resources :arguments do
     member do
       post :publish
