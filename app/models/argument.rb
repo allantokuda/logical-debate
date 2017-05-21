@@ -70,6 +70,7 @@ class Argument < ApplicationRecord
 
   def publish!
     touch(:published_at)
+    notify_previous_user
   end
 
   def published?
@@ -122,5 +123,9 @@ class Argument < ApplicationRecord
     if Vote.where(user: user, argument: self).none?
       Vote.create(user: user, argument: self)
     end
+  end
+
+  def notify_previous_user
+    ActivityNotificationMailer.notify_reply(self).deliver_now
   end
 end

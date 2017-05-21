@@ -16,6 +16,12 @@ class Statement < ApplicationRecord
   validate :one_statement, on: :create
   attr_accessor :verified_one_sentence
 
+  after_create :notify_previous_user
+
+  def subject
+    countered_argument
+  end
+
   # For now, mask the fact that there is no separate publish date.
   def published_at
     created_at
@@ -105,5 +111,9 @@ class Statement < ApplicationRecord
 
   def one_statement
     errors.add(:base, 'Please verify that this is only one sentence.') if likely_multiple_statements? && verified_one_sentence != '1'
+  end
+
+  def notify_previous_user
+    ActivityNotificationMailer.notify_reply(self).deliver_now
   end
 end
