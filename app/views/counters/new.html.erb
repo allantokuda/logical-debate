@@ -59,21 +59,45 @@
   fill_in = <%= raw @fallacy.fill_in.inspect %>;
   terms = <%= raw @fallacy.questions.map(&:name).inspect %>;
 
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+      }[s];
+    });
+  }
+
   update_fill_in = function() {
     complete = <%= @fallacy.defined? %>;
     any_items = false;
     result = fill_in;
 
     terms.forEach(function(term) {
-      enteredValue = $('input[name="' + term + '"]').val() ||
-                     $('select[name="' + term + '"]').val();
+      enteredValue = escapeHtml(
+        $('input[name="' + term + '"]').val() ||
+        $('select[name="' + term + '"]').val() || ''
+      ).trim();
 
       complete = complete && !!enteredValue;
       any_items = any_items || !!enteredValue;
 
-      result = result.replace('['+term+']', enteredValue || '___');
+      term_placeholder = '[' + term + ']';
+
+      // Prevent "that that" grammatical error
+      if (enteredValue.substr(0,4) == 'that') {
+        result = result.replace('that ' + term_placeholder, term_placeholder);
+      }
+
+      result = result.replace(term_placeholder, enteredValue ? "<u class='fill_in'>" + enteredValue + "</u>" : '___');
     });
-    $('.counter-statement').text(result);
+    $('.counter-statement').html(result);
     $('.publish-button').prop('disabled', !complete);
     $('.statement-preview').css('visibility', any_items ? 'visible' : 'hidden');
   }

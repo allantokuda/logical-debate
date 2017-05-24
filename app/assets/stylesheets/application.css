@@ -134,6 +134,15 @@ select {
   margin-bottom: 15px;
 }
 
+/* Make this look more like a fill-in-the-blank instead of an underline */
+.text-preview u {
+  border-bottom: 1px solid #39f;
+  text-decoration: none;
+  padding: 2px 5px;
+  line-height: 30px;
+  color: #39f;
+}
+
 td, th {
   vertical-align: top;
 }
