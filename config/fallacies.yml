@@ -12,7 +12,7 @@
         - unsupported by evidence
     -
       name: text1
-      label: What is the problematic premise? (Should be a a key starting point of the argument.)
+      label: What is the problematic premise? (Should be a key starting point of the argument.)
   fill_in: The idea that [text1] is [select2].
   common_index: 1
 -
@@ -377,7 +377,7 @@
       options:
         - irrelevant
         - unrelated
-        - only tangentially related
+        - unimportant
     -
       name: text2
       label: What should we focus on instead?
